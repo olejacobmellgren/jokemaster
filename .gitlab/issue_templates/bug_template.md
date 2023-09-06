@@ -1,11 +1,11 @@
-## Hva er feilen knyttet til?
+## What is the bug?
 - 
 
-## Forventet oppførsel
+## Expected behavior
 - 
 
-## Faktisk oppførsel
+## Actual behavior
 - 
 
-## Antatt fiks
+## Assumed fix
 - 
