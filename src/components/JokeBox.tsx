@@ -26,7 +26,7 @@ function Joke() {
   const [isError2, setIsError] = useState(false)
   const [flip, setFlip] = useState(false)
 
-  const handleClick = () => {
+  function handleClick()  {
     setFlip(!flip)
   }
 
