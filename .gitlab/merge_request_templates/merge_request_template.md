@@ -6,7 +6,7 @@
 
 Please review and check the following:
 
-- [ ] **Code Quality**: The code follows the project's coding standards and guidelines.
+- [ ] **Code Quality**: The code follows the project's coding standards and guidelines ```npx prettier . --write``` and ```npx prettier . --check``````
 - [ ] **Tests**: New features and changes are covered by appropriate tests, and existing tests pass.
 - [ ] **Dependencies**: Any new dependencies are justified and documented.
 - [ ] **Responsive**: The code is responsive to mobile devices.
