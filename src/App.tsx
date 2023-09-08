@@ -1,8 +1,7 @@
-import { Route, Routes } from 'react-router-dom';
-import Mainpage from './pages/MainPage';
+import { Route, Routes } from "react-router-dom";
+import Mainpage from "./pages/MainPage";
 
 function App() {
-
   return (
     <>
       <div className="App">
