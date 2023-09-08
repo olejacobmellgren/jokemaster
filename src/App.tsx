@@ -1,10 +1,10 @@
+import Header from './components/Header.tsx';
+
 function App() {
 
   return (
     <>
-      <p>
-        JokeMaster-3000
-      </p>
+      <Header />
     </>
   );
 }
