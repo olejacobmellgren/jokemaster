@@ -24,7 +24,7 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
 }
 
 function Header() {
-  const { changeCategory } = useCategory(); // Getting selectedCategory and changeCategory from the context
+  const { changeCategory } = useCategory(); // Getting changeCategory from the context
 
   
   const [dropdown, setDropdown] = useState(false);
@@ -35,6 +35,7 @@ function Header() {
   const [christmas, setChristmas] = useState(false);
   const [category, setCategory] = useState('')
   
+  // a quick check to initiate the category to 'Category'
   if (!programming && category == '') {
     changeCategory('Category')
   }
@@ -58,6 +59,7 @@ function Header() {
     const wasSpooky = spooky == true && categoryType == 'Spooky';
     const wasChristmas = christmas == true && categoryType == 'Christmas';
 
+    // checks if the user unchecked a category - if so, set category to 'Category'.
     if (wasProgramming || wasPun || wasSpooky || wasChristmas) {
       changeCategory('Category');
     } else {

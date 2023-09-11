@@ -20,6 +20,7 @@ function JokeBox() {
     const [delivery, setDelivery] = useState('')
     const [jokes, setJokes] = useState<Joke[]>([])
     
+    // runs when the category is changed. Resets counter to 0 and displays first joke for that category
     useEffect(() => {
         setCounter(0)
         const index = setJokeIndexState()
@@ -33,6 +34,7 @@ function JokeBox() {
         }
     }, [selectedCategory])
 
+    // increases counter by 1, which will display the next joke
     function handleRightClick() {
         if (counter === 9) {
             return
@@ -40,6 +42,7 @@ function JokeBox() {
         setCounter(prevCounter => prevCounter + 1)
     }
     
+    // decreases counter by 1, which will display the previous joke
     function handleLeftClick() {
         if (counter === 0) {
             return
@@ -47,6 +50,7 @@ function JokeBox() {
         setCounter(prevCounter => prevCounter - 1)
     }
 
+    // runs when the counter is updated. Ensures that the joke to be displayed is rendered instantly to website
     useEffect(() => {
         if (jokes.length != 0) {
             const index = setJokeIndexState();
@@ -59,6 +63,7 @@ function JokeBox() {
         }
     }, [counter])
     
+    // returns the start index(dependent on category)  + current counter-value. 
     function setJokeIndexState() {
         let index = 0;
         if (selectedCategory == 'Programming') {
@@ -75,8 +80,8 @@ function JokeBox() {
         return index
     }
     
+    // extracts data from localStorage and saves it to the state "jokes"
     useEffect(() => {
-        // hent ut data fra localstorage. Lagre det i states
         let list: Joke[] = [];
         const categories = ['Programming', 'Pun', 'Spooky', 'Christmas'];
         for (let i = 0; i < 4; i++) {
@@ -89,10 +94,10 @@ function JokeBox() {
             console.log(jokesFromCategory)
         }
         setJokes(list);
-        // Create a function that takes the category as an argument
-        
     }, [])
 
+    // runs when the jokes are extracted from localstorage. Don't remember why I wrote this and how it works, but don't delete!
+    // crashes without this
     useEffect(() => {
         const index = setJokeIndexState();
         if (counter == 0 && jokes.length != 0) {
