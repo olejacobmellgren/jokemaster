@@ -1,3 +1,4 @@
+import Header from './components/Header.tsx';
 import { Route, Routes } from "react-router-dom";
 import Mainpage from "./pages/MainPage";
 import { useEffect } from "react";
@@ -45,6 +46,7 @@ function App() {
 
   return (
     <>
+      <Header />
       <div className="App">
         <Routes>
           <Route path="/" element={<Mainpage />} />
