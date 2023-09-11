@@ -3,14 +3,15 @@ import { Route, Routes } from "react-router-dom";
 import Mainpage from "./pages/MainPage";
 import { useEffect } from "react";
 import { QueryClient } from "@tanstack/react-query";
+import JokeBox from './components/JokeBox.tsx';
 
 function App() {
   const queryClient = new QueryClient();
 
   useEffect(() => {
-    const jokesCached = localStorage.getItem("Programming");
+    const jokesCached = localStorage.getItem('Programming');
     if (!jokesCached) {
-      const categories = ["Pun", "Programming", "Spooky", "Christmas"];
+      const categories = ['Programming', 'Pun', 'Spooky', 'Christmas'];
       for (let i = 0; i < 4; i++) {
         // Create a function that takes the category as an argument
         const fetchJokesForCategory = (category: string) => {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/" element={<Mainpage />} />
         </Routes>
       </div>
+      <JokeBox />
     </>
   );
 }
