@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import '../assets/Header.css';
+import { useCategory } from './CategoryContext'; // Importing useCategory hook
 
 type CheckboxProps = {
   name: string;
@@ -23,28 +24,45 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
 }
 
 function Header() {
-  const [dropdown, setDropdown] = useState(false);
+  const { changeCategory } = useCategory(); // Getting selectedCategory and changeCategory from the context
 
+  
+  const [dropdown, setDropdown] = useState(false);
+  
   const [programming, setProgramming] = useState(false);
   const [pun, setPun] = useState(false);
   const [spooky, setSpooky] = useState(false);
   const [christmas, setChristmas] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem("Category", getCategory())
-  }, [dropdown])
+  const [category, setCategory] = useState('')
+  
+  if (!programming && category == '') {
+    changeCategory('Category')
+  }
 
   function handleDropdown() {
     setDropdown(!dropdown);
   }
   
-  function handleCheck({checked, setChecked}: any) {
+  function handleCheck({checked, categoryType, setChecked}: any) {
     setProgramming(false);
     setPun(false);
     setSpooky(false);
     setChristmas(false);
     setChecked(!checked);
+    setCategory(categoryType)
+
     setDropdown(false);
+
+    const wasProgramming = programming == true && categoryType == 'Programming';
+    const wasPun = pun == true && categoryType == 'Pun';
+    const wasSpooky = spooky == true && categoryType == 'Spooky';
+    const wasChristmas = christmas == true && categoryType == 'Christmas';
+
+    if (wasProgramming || wasPun || wasSpooky || wasChristmas) {
+      changeCategory('Category');
+    } else {
+      changeCategory(categoryType);
+    }
   }
 
   function getCategory() {
@@ -69,10 +87,10 @@ function Header() {
         </div>
         {dropdown ? 
           <div className="Dropdown">
-            <Checkbox name="Programming" checked={programming} onChange={() => handleCheck({ checked: programming, setChecked: setProgramming })}/>
-            <Checkbox name="Pun" checked={pun} onChange={() => handleCheck({ checked: pun, setChecked: setPun })}/>
-            <Checkbox name="Spooky" checked={spooky} onChange={() => handleCheck({ checked: spooky, setChecked: setSpooky })}/>
-            <Checkbox name="Christmas" checked={christmas} onChange={() => handleCheck({ checked: christmas, setChecked: setChristmas })}/>
+            <Checkbox name="Programming" checked={programming} onChange={() => handleCheck({ checked: programming, categoryType: 'Programming', setChecked: setProgramming })}/>
+            <Checkbox name="Pun" checked={pun} onChange={() => handleCheck({ checked: pun, categoryType: 'Pun', setChecked: setPun })}/>
+            <Checkbox name="Spooky" checked={spooky} onChange={() => handleCheck({ checked: spooky, categoryType: 'Spooky', setChecked: setSpooky })}/>
+            <Checkbox name="Christmas" checked={christmas} onChange={() => handleCheck({ checked: christmas, categoryType: 'Christmas', setChecked: setChristmas })}/>
           </div> : null}
         <p>
           JOKEMASTER-3000

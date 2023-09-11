@@ -7,7 +7,6 @@ function MainPage() {
         </header>
         <main>
           {/* Your main content goes here */}
-          <p>This is the main page of your React TypeScript app.</p>
         </main>
       </div>
     </>

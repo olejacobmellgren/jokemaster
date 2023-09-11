@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../assets/JokeBox.css'
-import { useParams } from 'react-router';
+import { useCategory } from './CategoryContext';
 
 interface Joke {
     // Define the structure of your JSON object here
@@ -9,81 +9,71 @@ interface Joke {
     delivery: string;
     joke: string;
     // Add other properties if present in your JSON objects
-  }
+}
 
 function JokeBox() {
-
-    const { categoryID } = useParams();
-    const categro = typeof categoryID === "string" ? categoryID : "";
-    const [counter, setCounter] = useState(0);
+    
+    const { selectedCategory } = useCategory();
+    
+    const [counter, setCounter] = useState(0)
     const [setUp, setSetUp] = useState('')
-    const [category, setCategory] = useState('')
     const [delivery, setDelivery] = useState('')
     const [jokes, setJokes] = useState<Joke[]>([])
-    const [jokeIndex, setJokeIndex] = useState(0)
-
+    
+    useEffect(() => {
+        setCounter(0)
+        const index = setJokeIndexState()
+        if (jokes.length != 0) {
+            setSetUp(jokes[index].setup)
+            if (jokes[index].type == 'single') {
+                setDelivery(jokes[index].joke)
+            } else {
+                setDelivery(jokes[index].delivery)
+            }
+        }
+    }, [selectedCategory])
 
     function handleRightClick() {
         if (counter === 9) {
             return
         }
-        setCounter((counter) => counter + 1);
-        setJokeIndexState()
-        setSetUp(jokes[jokeIndex].setup)
-        if (jokes[jokeIndex].type == 'single') {
-            setDelivery(jokes[jokeIndex].joke)
-        } else {
-            setDelivery(jokes[jokeIndex].delivery)
-        }
+        setCounter(prevCounter => prevCounter + 1)
     }
-
+    
     function handleLeftClick() {
         if (counter === 0) {
             return
         }
-        setCounter((counter) => counter - 1)
-        setJokeIndexState()
-        setSetUp(jokes[jokeIndex].setup)
-        if (jokes[jokeIndex].type == 'single') {
-            setDelivery(jokes[jokeIndex].joke)
-        } else {
-            setDelivery(jokes[jokeIndex].delivery)
-        }
+        setCounter(prevCounter => prevCounter - 1)
     }
 
+    useEffect(() => {
+        if (jokes.length != 0) {
+            const index = setJokeIndexState();
+            setSetUp(jokes[index].setup)
+            if (jokes[index].type == 'single') {
+                setDelivery(jokes[index].joke)
+            } else {
+                setDelivery(jokes[index].delivery)
+            }
+        }
+    }, [counter])
+    
     function setJokeIndexState() {
-        if (category == 'Programming') {
-            setJokeIndex(0 + counter)
-        } else if (category == 'Pun') {
-            setJokeIndex(10 + counter)
-
-        } else if (category == 'Spooky') {
-            setJokeIndex(20 + counter)
-            
-        } else if (category == 'Christmas') {
-            setJokeIndex(30 + counter)
+        let index = 0;
+        if (selectedCategory == 'Programming') {
+            index = 0 + counter;
+        } else if (selectedCategory == 'Pun') {
+            index = 10 + counter;
+        } else if (selectedCategory == 'Spooky') {
+            index = 20 + counter;
+        } else if (selectedCategory == 'Christmas') {
+            index = 30 + counter;
         } else {
-            setJokeIndex(Math.floor(Math.random() * (40)));
+            index = Math.floor(Math.random() * (40));
         }
+        return index
     }
-
-    useEffect(() => {
-        setCounter(0)
-        console.log(category)
-    }, [category])
-
-    useEffect(() => {
-        const categoryStored = localStorage.getItem('Category')
-        
-        if (categoryStored) {
-            setCategory(categoryStored); 
-        }
-        console.log("Counter er resettet")
-        console.log(category)
-        console.log(counter)
-        console.log(jokeIndex)
-        console.log(jokes[jokeIndex])
-    }, [counter, categro])
     
     useEffect(() => {
         // hent ut data fra localstorage. Lagre det i states
@@ -102,6 +92,21 @@ function JokeBox() {
         // Create a function that takes the category as an argument
         
     }, [])
+
+    useEffect(() => {
+        const index = setJokeIndexState();
+        if (counter == 0 && jokes.length != 0) {
+            setSetUp(jokes[index].setup)
+            if (jokes[index].type == 'single') {
+                setDelivery(jokes[index].joke)
+            } else {
+                setDelivery(jokes[index].delivery)
+            }
+        } else if (counter == 0 && index == 0) {
+            // må tenke hva som skal stå her
+        }
+    }, [jokes])
+    
 
     return (
         <>

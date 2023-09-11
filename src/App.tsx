@@ -4,6 +4,7 @@ import Mainpage from "./pages/MainPage";
 import { useEffect } from "react";
 import { QueryClient } from "@tanstack/react-query";
 import JokeBox from './components/JokeBox.tsx';
+import { CategoryProvider } from './components/CategoryContext.tsx';
 
 function App() {
   const queryClient = new QueryClient();
@@ -46,15 +47,17 @@ function App() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Mainpage />} />
-        </Routes>
-      </div>
-      <JokeBox />
-    </>
+    <CategoryProvider>
+      <>
+        <Header />
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Mainpage />} />
+          </Routes>
+        </div>
+        <JokeBox />
+      </>
+    </CategoryProvider>
   );
 }
 
