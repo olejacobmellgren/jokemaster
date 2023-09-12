@@ -16,14 +16,16 @@ function JokeBox() {
     
     const { selectedCategory } = useCategory();
     
-    const [counter, setCounter] = useState(0)
+    const [counter, setCounter] = useState(0) // Counter for jokes from different categories. Goes up to 9
+    const [counterForRandomJokes, setCounterForRandomJokes] = useState(0); // Own counter for random jokes. Goes up to 39
     const [setUp, setSetUp] = useState('')
     const [delivery, setDelivery] = useState('')
     const [jokes, setJokes] = useState<Joke[]>([])
+    const [randomJokes, setRandomJokes] = useState<Joke[]>([])
 
     // extracts data from localStorage and saves it to the state "jokes"
     useEffect(() => {
-      
+        // makes a list of all the jokes - sorted by category
         let list: Joke[] = [];
         const categories = ['Programming', 'Pun', 'Spooky', 'Christmas'];
         for (let i = 0; i < 4; i++) {
@@ -35,45 +37,77 @@ function JokeBox() {
             list = [...list, ...jokesFromCategory];
         }
         setJokes(list);
+
+        // makes a list of all the jokes - sorted randomly
+        let randomJokesList: Joke[] = [];
+        const jokesCached = localStorage.getItem("randomJokes");
+        if (jokesCached) {
+            randomJokesList = JSON.parse(jokesCached) as Joke[];
+        }
+        setRandomJokes(randomJokesList);
     }, [])
     
     // runs when the category is changed. Resets counter to 0 and displays first joke for that category
     useEffect(() => {
-        setCounter(0)
-        setDeliveryState()
+        if (selectedCategory == "Category") { // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
+            setCounterForRandomJokes(0)
+            setDeliveryState(randomJokes)
+        } else {                              // else, reset counter to 0 and display joke from jokes-state
+            setCounter(0)
+            setDeliveryState(jokes)
+        }
     }, [selectedCategory])
 
     // runs when the counter is updated. Ensures that the joke to be displayed is rendered instantly to website
     useEffect(() => {
-        setDeliveryState()
-    }, [counter])
+        if (selectedCategory == "Category") { // checks if current Category is "Category". If so, display joke from randomJokes-state
+            setDeliveryState(randomJokes)
+        } else {                              // else, display joke from jokes-state
+            setDeliveryState(jokes)
+        }
+        
+    }, [counter, counterForRandomJokes])
 
-    function setDeliveryState() {
-        if (jokes.length != 0) {
+    function setDeliveryState(jokeList: Joke[]) { // input is the Joke[]-list to fetch joke from. Dependent on current category selected.
+        if (jokeList.length != 0) {
             const index = setJokeIndexState();
-            setSetUp(jokes[index].setup)
-            if (jokes[index].type == 'single') {
-                setDelivery(jokes[index].joke)
+            setSetUp(jokeList[index].setup)
+            if (jokeList[index].type == 'single') {
+                setDelivery(jokeList[index].joke)
             } else {
-                setDelivery(jokes[index].delivery)
+                setDelivery(jokeList[index].delivery)
             }
         }
     }
 
-    // increases counter by 1, which will display the next joke
+    // checks if right limit is reached - if not, increase counter by 1
     function handleRightClick() {
-        if (counter === 9) {
-            return
+        if  (selectedCategory == "Category") {
+            if (counterForRandomJokes === 39) {
+                return
+            }
+            setCounterForRandomJokes(prevCounter => prevCounter + 1)
+        } else {
+            if (counter === 9) {
+                return
+            }
+            setCounter(prevCounter => prevCounter + 1)
         }
-        setCounter(prevCounter => prevCounter + 1)
     }
     
-    // decreases counter by 1, which will display the previous joke
+    // checks if left limit is reached - if not, decrease counter by 1
     function handleLeftClick() {
-        if (counter === 0) {
-            return
+        if  (selectedCategory == "Category") {
+            if (counterForRandomJokes === 0) {
+                return
+            }
+            setCounterForRandomJokes(prevCounter => prevCounter - 1)
+        } else {
+            if (counter === 0) {
+                return
+            }
+            setCounter(prevCounter => prevCounter - 1)
         }
-        setCounter(prevCounter => prevCounter - 1)
     }
 
     
@@ -89,7 +123,7 @@ function JokeBox() {
         } else if (selectedCategory == 'Christmas') {
             index = 30 + counter;
         } else {
-            index = Math.floor(Math.random() * (40));
+            index = 0 + counterForRandomJokes; // use counter for random jokes instead
         }
         return index
     }

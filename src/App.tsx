@@ -14,6 +14,7 @@ async function fetchAndStoreJokes() {
   const jokesCached = localStorage.getItem('Programming');
   if (!jokesCached) {
     const categories = ['Programming', 'Pun', 'Spooky', 'Christmas'];
+    let allJokesList = []
     for (const category of categories) {
       try {
         // Fetch 10 jokes from the specified category
@@ -25,6 +26,7 @@ async function fetchAndStoreJokes() {
         let jokesList = [];
         for (let i = 0; i < 10; i++) {
           jokesList.push(apiJokes.jokes[i]);
+          allJokesList.push(apiJokes.jokes[i]);
         }
         // Store jokes for category in localStorage
         localStorage.setItem(category, JSON.stringify(jokesList));
@@ -32,6 +34,8 @@ async function fetchAndStoreJokes() {
         console.error("Error fetching jokes:", error);
       }
     }
+    allJokesList.sort(() => Math.random() - 0.5); // randomizes the list. This list includes 40 jokes
+    localStorage.setItem("randomJokes", JSON.stringify(allJokesList))
   }
 }
 
