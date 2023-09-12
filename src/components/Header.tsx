@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../assets/Header.css';
-import { set } from 'firebase/database';
 
 type CheckboxProps = {
   name: string;
@@ -24,7 +23,7 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
 }
 
 function Header() {
-  const [Dropdown, setDropdown] = React.useState(false);
+  const [Dropdown, setDropdown] = useState(false);
 
   const [Programming, setProgramming] = React.useState(false);
   const [Misc, setMisc] = React.useState(false);
@@ -34,7 +33,11 @@ function Header() {
   const [Christmas, setChristmas] = React.useState(false);
 
   function handleDropdown() {
+    // const dropdownButton = document.querySelector(".DropdownButton") as HTMLElement;
     setDropdown(!Dropdown);
+    // if (Dropdown) {
+    //   dropdownButton.classList.remove("shadowed");
+    // }
   }
   
   function handleCheck({checked, setChecked}: any) {
@@ -45,7 +48,7 @@ function Header() {
     setSpooky(false);
     setChristmas(false);
     setChecked(!checked);
-    setDropdown(false);
+    handleDropdown();
   }
 
   function getCategory() {
@@ -69,8 +72,8 @@ function Header() {
   return (
     <>
       <div className="Header">
-        <div>
-          <button className="DropdownButton" onClick={handleDropdown}>{getCategory()}</button>
+        <div className="DropdownButtonWrapper">
+          <button className="DropdownButton" onClick={handleDropdown}><label className="DdBlabel">{getCategory()}</label><i className="arrow"></i></button>
         </div>
         {Dropdown ? 
           <div className="Dropdown">
@@ -81,9 +84,9 @@ function Header() {
             <Checkbox name="Spooky" checked={Spooky} onChange={() => handleCheck({ checked: Spooky, setChecked: setSpooky })}/>
             <Checkbox name="Christmas" checked={Christmas} onChange={() => handleCheck({ checked: Christmas, setChecked: setChristmas })}/>
           </div> : null}
-        <p>
-          JOKEMASTER-3000
-        </p>
+        <div className="Logo">
+          <p>JOKEMASTER-3000</p>
+        </div>
         <button className="DarkmodeButton">DarkMode</button>
       </div>
     </>
