@@ -9,42 +9,38 @@ import { CategoryProvider } from './components/CategoryContext.tsx';
 function App() {
   const queryClient = new QueryClient();
 
-  useEffect(() => {
-    const jokesCached = localStorage.getItem('Programming');
-    if (!jokesCached) {
-      const categories = ['Programming', 'Pun', 'Spooky', 'Christmas'];
-      for (let i = 0; i < 4; i++) {
-        // Create a function that takes the category as an argument
-        const fetchJokesForCategory = (category: string) => {
-          // Create an array of promises to fetch jokes from each category
-          const fetchJokesPromises = [];
-          // Fetch 10 jokes from the specified category
-          for (let k = 0; k < 10; k++) {
-            fetchJokesPromises.push(
-              queryClient.fetchQuery([`jokes${k}_${category}`], () =>
-                fetch(`https://v2.jokeapi.dev/joke/${category}`).then((res) =>
-                  res.json(),
-                ),
-              ),
-            );
-          }
-          // Fetch all jokes from the category concurrently
-          Promise.all(fetchJokesPromises)
-            .then((jokes) => {
-              // Store jokes for category in localStorage
-              localStorage.setItem(category, JSON.stringify(jokes));
-            })
-            .catch((error) => {
-              console.error("Error fetching jokes:", error);
-            });
-        };
-
-        // Call the function with the current category
-        const currentCategory = categories[i];
-        fetchJokesForCategory(currentCategory);
+ // Create an async function to fetch and store jokes
+async function fetchAndStoreJokes() {
+  const jokesCached = localStorage.getItem('Programming');
+  if (!jokesCached) {
+    const categories = ['Programming', 'Pun', 'Spooky', 'Christmas'];
+    for (const category of categories) {
+      try {
+        // Fetch 10 jokes from the specified category
+        const apiJokes = await queryClient.fetchQuery([`jokes_${category}`], () =>
+          fetch(`https://v2.jokeapi.dev/joke/${category}?amount=10`).then((res) =>
+            res.json()
+          )
+        );
+        let jokesList = [];
+        for (let i = 0; i < 10; i++) {
+          jokesList.push(apiJokes.jokes[i]);
+        }
+        // Store jokes for category in localStorage
+        localStorage.setItem(category, JSON.stringify(jokesList));
+      } catch (error) {
+        console.error("Error fetching jokes:", error);
       }
     }
-  }, []);
+  }
+}
+
+// Use the fetchAndStoreJokes function in the useEffect
+useEffect(() => {
+  fetchAndStoreJokes();
+}, []);
+
+  
 
   return (
     <CategoryProvider>

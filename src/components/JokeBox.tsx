@@ -12,6 +12,7 @@ interface Joke {
 }
 
 function JokeBox() {
+
     
     const { selectedCategory } = useCategory();
     
@@ -19,12 +20,37 @@ function JokeBox() {
     const [setUp, setSetUp] = useState('')
     const [delivery, setDelivery] = useState('')
     const [jokes, setJokes] = useState<Joke[]>([])
+
+    // extracts data from localStorage and saves it to the state "jokes"
+    useEffect(() => {
+      
+        let list: Joke[] = [];
+        const categories = ['Programming', 'Pun', 'Spooky', 'Christmas'];
+        for (let i = 0; i < 4; i++) {
+            let jokesFromCategory: Joke[] = [];
+            const jokesCached = localStorage.getItem(`${categories[i]}`);
+            if (jokesCached) {
+                jokesFromCategory = JSON.parse(jokesCached) as Joke[];
+            }
+            list = [...list, ...jokesFromCategory];
+        }
+        setJokes(list);
+    }, [])
     
     // runs when the category is changed. Resets counter to 0 and displays first joke for that category
     useEffect(() => {
         setCounter(0)
-        const index = setJokeIndexState()
+        setDeliveryState()
+    }, [selectedCategory])
+
+    // runs when the counter is updated. Ensures that the joke to be displayed is rendered instantly to website
+    useEffect(() => {
+        setDeliveryState()
+    }, [counter])
+
+    function setDeliveryState() {
         if (jokes.length != 0) {
+            const index = setJokeIndexState();
             setSetUp(jokes[index].setup)
             if (jokes[index].type == 'single') {
                 setDelivery(jokes[index].joke)
@@ -32,7 +58,7 @@ function JokeBox() {
                 setDelivery(jokes[index].delivery)
             }
         }
-    }, [selectedCategory])
+    }
 
     // increases counter by 1, which will display the next joke
     function handleRightClick() {
@@ -50,18 +76,6 @@ function JokeBox() {
         setCounter(prevCounter => prevCounter - 1)
     }
 
-    // runs when the counter is updated. Ensures that the joke to be displayed is rendered instantly to website
-    useEffect(() => {
-        if (jokes.length != 0) {
-            const index = setJokeIndexState();
-            setSetUp(jokes[index].setup)
-            if (jokes[index].type == 'single') {
-                setDelivery(jokes[index].joke)
-            } else {
-                setDelivery(jokes[index].delivery)
-            }
-        }
-    }, [counter])
     
     // returns the start index(dependent on category)  + current counter-value. 
     function setJokeIndexState() {
@@ -79,39 +93,7 @@ function JokeBox() {
         }
         return index
     }
-    
-    // extracts data from localStorage and saves it to the state "jokes"
-    useEffect(() => {
-        let list: Joke[] = [];
-        const categories = ['Programming', 'Pun', 'Spooky', 'Christmas'];
-        for (let i = 0; i < 4; i++) {
-            let jokesFromCategory: Joke[] = [];
-            const jokesCached = localStorage.getItem(`${categories[i]}`);
-            if (jokesCached) {
-                jokesFromCategory = JSON.parse(jokesCached) as Joke[];
-            }
-            list = [...list, ...jokesFromCategory];
-            console.log(jokesFromCategory)
-        }
-        setJokes(list);
-    }, [])
 
-    // runs when the jokes are extracted from localstorage. Don't remember why I wrote this and how it works, but don't delete!
-    // crashes without this
-    useEffect(() => {
-        const index = setJokeIndexState();
-        if (counter == 0 && jokes.length != 0) {
-            setSetUp(jokes[index].setup)
-            if (jokes[index].type == 'single') {
-                setDelivery(jokes[index].joke)
-            } else {
-                setDelivery(jokes[index].delivery)
-            }
-        } else if (counter == 0 && index == 0) {
-            // må tenke hva som skal stå her
-        }
-    }, [jokes])
-    
 
     return (
         <>
