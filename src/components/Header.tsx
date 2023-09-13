@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../assets/Header.css";
 import { useCategory } from "./CategoryContext"; // Importing useCategory hook
 
@@ -32,12 +32,15 @@ function Header() {
   const [pun, setPun] = useState(false);
   const [spooky, setSpooky] = useState(false);
   const [christmas, setChristmas] = useState(false);
+  const [favorites, setFavorites] = useState(false);
   const [category, setCategory] = useState("");
 
   // a quick check to initiate the category to 'Category'
-  if (!programming && category == "") {
-    changeCategory("Category");
-  }
+  useEffect(() => {
+    if (!programming && category == "") {
+      changeCategory("Category");
+    }
+  }, []);
 
   function handleDropdown() {
     setDropdown(!dropdown);
@@ -48,6 +51,7 @@ function Header() {
     setPun(false);
     setSpooky(false);
     setChristmas(false);
+    setFavorites(false);
     setChecked(!checked);
     setCategory(categoryType);
 
@@ -57,9 +61,10 @@ function Header() {
     const wasPun = pun == true && categoryType == "Pun";
     const wasSpooky = spooky == true && categoryType == "Spooky";
     const wasChristmas = christmas == true && categoryType == "Christmas";
+    const wasFavorites = favorites == true && categoryType == "Favorites";
 
     // checks if the user unchecked a category - if so, set category to 'Category'.
-    if (wasProgramming || wasPun || wasSpooky || wasChristmas) {
+    if (wasProgramming || wasPun || wasSpooky || wasChristmas || wasFavorites) {
       changeCategory("Category");
     } else {
       changeCategory(categoryType);
@@ -75,6 +80,8 @@ function Header() {
       return "Spooky";
     } else if (christmas) {
       return "Christmas";
+    } else if (favorites) {
+      return "Favorites";
     } else {
       return "Category";
     }
@@ -130,6 +137,17 @@ function Header() {
                     checked: christmas,
                     categoryType: "Christmas",
                     setChecked: setChristmas,
+                  })
+                }
+              />
+              <Checkbox
+                name="Favorites"
+                checked={favorites}
+                onChange={() =>
+                  handleCheck({
+                    checked: favorites,
+                    categoryType: "Favorites",
+                    setChecked: setFavorites,
                   })
                 }
               />

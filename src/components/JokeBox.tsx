@@ -18,10 +18,10 @@ function JokeBox() {
   const { selectedCategory } = useCategory();
 
   const [counter, setCounter] = useState(0); // Counter for jokes from different categories. Goes up to 9
+  const [favoriteCounter, setFavoriteCounter] = useState(0); // Counter for Favorites. Goes up to amount of favorites
   const [counterForRandomJokes, setCounterForRandomJokes] = useState(0); // Own counter for random jokes. Goes up to 39
   const [setUp, setSetUp] = useState("");
   const [delivery, setDelivery] = useState("");
-  const [jokes, setJokes] = useState<Joke[]>([]);
   const [randomJokes, setRandomJokes] = useState<Joke[]>([]);
   const [favorites, setFavorites] = useState<Joke[]>([]);
   const [jokesFromCategory, setJokesFromCategory] = useState<Joke[]>([]);
@@ -29,18 +29,6 @@ function JokeBox() {
 
   // extracts data from localStorage and saves it to the state "jokes"
   useEffect(() => {
-    // makes a list of all the jokes - sorted by category
-    let list: Joke[] = [];
-    const categories = ["Programming", "Pun", "Spooky", "Christmas"];
-    for (let i = 0; i < 4; i++) {
-      let jokesFromCategory: Joke[] = [];
-      const jokesCached = localStorage.getItem(`${categories[i]}`);
-      if (jokesCached) {
-        jokesFromCategory = JSON.parse(jokesCached) as Joke[];
-      }
-      list = [...list, ...jokesFromCategory];
-    }
-    setJokes(list);
 
     // makes a list of all the jokes - sorted randomly
     let randomJokesList: Joke[] = [];
@@ -51,7 +39,7 @@ function JokeBox() {
     setRandomJokes(randomJokesList);
 
     let favorites: Joke[] = [];
-    const favoritesJokesCached = localStorage.getItem("favoriteJokes");
+    const favoritesJokesCached = localStorage.getItem("Favorites");
     if (favoritesJokesCached) {
       favorites = JSON.parse(favoritesJokesCached) as Joke[];
     }
@@ -60,14 +48,18 @@ function JokeBox() {
 
   // runs when the category is changed. Resets counter to 0 and displays first joke for that category
   useEffect(() => {
+
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
       setCounterForRandomJokes(0);
-      setDeliveryState(randomJokes);
+      setJokeState(randomJokes);
+    // } else if (selectedCategory === "Favorites") {
+    //   setFavoriteCounter(0);
+    //   setJokeState(favorites);
     } else {
       // else, reset counter to 0 and display joke from jokes-state
       setCounter(0);
-      setDeliveryState(jokes);
+      setFavoriteCounter(0);
       //Add all jokes in category to jokelist
       let jokesFromCategory: Joke[] = [];
       const jokesCached = localStorage.getItem(`${selectedCategory}`);
@@ -75,42 +67,51 @@ function JokeBox() {
         jokesFromCategory = JSON.parse(jokesCached) as Joke[];
       }
       setJokesFromCategory(jokesFromCategory);
+      checkIfFavorite();
+      setJokeState(jokesFromCategory);
     }
-
   }, [selectedCategory]);
 
   // runs when the counter is updated. Ensures that the joke to be displayed is rendered instantly to website
   useEffect(() => {
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, display joke from randomJokes-state
-      setDeliveryState(randomJokes);
+      setJokeState(randomJokes);
+    // } else if (selectedCategory == "Favorites") {
+    //   setJokeState(favorites);
     } else {
       // else, display joke from jokes-state
-      setDeliveryState(jokes);
+      setJokeState(jokesFromCategory);
     }
     checkIfFavorite();
-  }, [counter, counterForRandomJokes]);
+  }, [counter, counterForRandomJokes, favoriteCounter]);
 
-  function setDeliveryState(jokeList: Joke[]) {
+  function setJokeState(jokeList: Joke[]) {
     // input is the Joke[]-list to fetch joke from. Dependent on current category selected.
-    if (jokeList.length != 0) {
-      const index = jokeIndex();
-      setSetUp(jokeList[index].setup);
-      if (jokeList[index].type == "single") {
-        setDelivery(jokeList[index].joke);
-      } else {
-        setDelivery(jokeList[index].delivery);
-      }
+    if (jokeList.length !== 0) {
+        const index = jokeIndex();
+        if (jokeList[index].type == "single") {
+          setSetUp("");
+          setDelivery(jokeList[index].joke);
+        } else {
+          setSetUp(jokeList[index].setup);
+          setDelivery(jokeList[index].delivery);
+        }
     }
   }
 
   // checks if right limit is reached - if not, increase counter by 1
   function handleRightClick() {
-    if (selectedCategory == "Category") {
+    if (selectedCategory === "Category") {
       if (counterForRandomJokes === 39) {
         return;
       }
       setCounterForRandomJokes((prevCounter) => prevCounter + 1);
+    } else if (selectedCategory === "Favorites") {
+      if (favoriteCounter === favorites.length - 1) {
+        return;
+      }
+      setFavoriteCounter((prevCounter) => prevCounter + 1);
     } else {
       if (counter === 9) {
         return;
@@ -126,6 +127,11 @@ function JokeBox() {
         return;
       }
       setCounterForRandomJokes((prevCounter) => prevCounter - 1);
+    } else if (selectedCategory === "Favorites") {
+      if (favoriteCounter === 0) {
+        return;
+      }
+      setFavoriteCounter((prevCounter) => prevCounter - 1);
     } else {
       if (counter === 0) {
         return;
@@ -136,35 +142,35 @@ function JokeBox() {
 
   // returns the start index(dependent on category)  + current counter-value.
   function jokeIndex() {
-    let index = 0;
-    if (selectedCategory == "Programming") {
-      index = 0 + counter;
-    } else if (selectedCategory == "Pun") {
-      index = 10 + counter;
-    } else if (selectedCategory == "Spooky") {
-      index = 20 + counter;
-    } else if (selectedCategory == "Christmas") {
-      index = 30 + counter;
-    } else {
+    let index = counter;
+    if (selectedCategory == "Category") {
       index = 0 + counterForRandomJokes; // use counter for random jokes instead
+    } else if (selectedCategory === "Favorites") {
+      index = 0 + favoriteCounter;
     }
+    console.log(index);
     return index;
   }
 
   function getJoke() {
     const index = jokeIndex();
+    console.log(index);
     let joke: Joke;
     if (selectedCategory == "Category") {
       joke = randomJokes[index];
+    // } else if (selectedCategory === "Favorites") {
+    //   joke = favorites[index];
     } else {
-      joke = jokes[index];
+      joke = jokesFromCategory[index];
     }
     return joke;
   }
 
   function checkIfFavorite() {
     const joke = getJoke();
-    const isInFavorites = favorites.includes(joke);
+    console.log(joke);
+    const isInFavorites = favorites.some((favorite) => favorite.id === joke.id);
+    console.log(isInFavorites);
     setIsFavorite(isInFavorites);
   }
 
@@ -173,30 +179,29 @@ function JokeBox() {
       const joke = getJoke();
       favorites.push(joke);
       setFavorites(favorites);
-      localStorage.setItem("favoriteJokes", JSON.stringify(favorites)); // save to localStorage
+      localStorage.setItem("Favorites", JSON.stringify(favorites)); // save to localStorage
     } else {
       const joke = getJoke();
       const indexToRemove = favorites.indexOf(joke);
       favorites.splice(indexToRemove, 1);
       setFavorites(favorites);
-      localStorage.setItem("favoriteJokes", JSON.stringify(favorites)); // save to localStorage
+      localStorage.setItem("Favorites", JSON.stringify(favorites)); // save to localStorage
     }
     checkIfFavorite();
   }
 
   function handleSelectJoke(event: any) {
     const selectJoke = document.getElementById("selectJoke") as HTMLSelectElement;
-    const selectedJokeId = event.target.value;
-    const selectedJoke = jokes.find((joke) => JSON.stringify(joke.id) === selectedJokeId);
+    const [id, index] = JSON.parse(event.target.value); // Deserialize the string into an array
+    setCounter(index)
+    if (selectedCategory === "Favorites") {
+      setFavoriteCounter(index)
+    }
+    const selectedJoke = jokesFromCategory.find((joke) => JSON.stringify(joke.id) === id);
     selectJoke.value = "default";
 
     if (selectedJoke) {
-      setSetUp(selectedJoke.setup);
-      if (selectedJoke.type == "single") {
-          setDelivery(selectedJoke.joke);
-        } else {
-          setDelivery(selectedJoke.delivery);
-        }
+      setJokeState(jokesFromCategory)
     }
   }
 
@@ -221,19 +226,19 @@ function JokeBox() {
         </div>
         <div>
           {(selectedCategory === "Category") ? null : 
-            <select id="selectJoke" onChange={handleSelectJoke}>
-              <option value="default" disabled selected>
+            <select id="selectJoke" value="default" onChange={(event) => {setCounter(parseInt(event.target.value)); handleSelectJoke(event);}}>
+              <option value="default" disabled>
                 Select specific joke
               </option>
-              {jokesFromCategory.map((joke) => (
-                <option key={joke.id} value={joke.id}>{
+              {jokesFromCategory.map((joke, index) => (
+                <option key={index} value={JSON.stringify([joke.id, index])}>{
                   (joke.type == "single") ?  (
                     joke.joke.slice(0,30)
                    ) : (
                     joke.setup.slice(0,30)
                    )
                 }
-                <p>...</p>
+                ...
                 </option>
               ))}
             </select>

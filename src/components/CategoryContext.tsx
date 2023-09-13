@@ -11,6 +11,7 @@ const Categories = {
   Pun: "Pun",
   Spooky: "Spooky",
   Christmas: "Christmas",
+  Favorites: "Favorites",
   Category: "Category",
 } as const;
 
