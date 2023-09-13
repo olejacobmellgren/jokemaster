@@ -10,6 +10,7 @@ interface Joke {
   setup: string;
   delivery: string;
   joke: string;
+  id: number;
   // Add other properties if present in your JSON objects
 }
 
@@ -67,6 +68,13 @@ function JokeBox() {
       // else, reset counter to 0 and display joke from jokes-state
       setCounter(0);
       setDeliveryState(jokes);
+      //Add all jokes in category to jokelist
+      let jokesFromCategory: Joke[] = [];
+      const jokesCached = localStorage.getItem(`${selectedCategory}`);
+      if (jokesCached) {
+        jokesFromCategory = JSON.parse(jokesCached) as Joke[];
+      }
+      setJokesFromCategory(jokesFromCategory);
     }
 
   }, [selectedCategory]);
@@ -176,6 +184,22 @@ function JokeBox() {
     checkIfFavorite();
   }
 
+  function handleSelectJoke(event: any) {
+    const selectJoke = document.getElementById("selectJoke") as HTMLSelectElement;
+    const selectedJokeId = event.target.value;
+    const selectedJoke = jokes.find((joke) => JSON.stringify(joke.id) === selectedJokeId);
+    selectJoke.value = "default";
+
+    if (selectedJoke) {
+      setSetUp(selectedJoke.setup);
+      if (selectedJoke.type == "single") {
+          setDelivery(selectedJoke.joke);
+        } else {
+          setDelivery(selectedJoke.delivery);
+        }
+    }
+  }
+
   return (
     <>
       <div>
@@ -196,10 +220,25 @@ function JokeBox() {
           )}
         </div>
         <div>
-          <select >
-              {}
-              <option value="fruit">Fruit</option>
-          </select>
+          {(selectedCategory === "Category") ? null : 
+            <select id="selectJoke" onChange={handleSelectJoke}>
+              <option value="default" disabled selected>
+                Select specific joke
+              </option>
+              {jokesFromCategory.map((joke) => (
+                <option key={joke.id} value={joke.id}>{
+                  (joke.type == "single") ?  (
+                    joke.joke.slice(0,30)
+                   ) : (
+                    joke.setup.slice(0,30)
+                   )
+                }
+                <p>...</p>
+                </option>
+              ))}
+            </select>
+          }
+          
         </div>
       </div>
     </>

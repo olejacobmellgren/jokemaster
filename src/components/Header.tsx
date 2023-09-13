@@ -85,7 +85,7 @@ function Header() {
       <div className="header">
         <div className="dropdownButtonWrapper">
           <button className="dropdownButton" onClick={handleDropdown}>
-            {getCategory()}
+            <label className="DdBlabel">{getCategory()}</label><i className="arrow"></i>
           </button>
           {dropdown ? (
             <div className="dropdown">
