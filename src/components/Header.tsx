@@ -12,7 +12,11 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
   return (
     <>
       <label>
-        <input type="checkbox" checked={checked} onChange={onChange} />
+        <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        />
         {name}
       </label>
     </>
@@ -20,7 +24,7 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
 }
 
 function Header() {
-  const { changeCategory } = useCategory(); // Getting changeCategory from the context
+  const {changeCategory} = useCategory(); // Getting changeCategory from the context
 
   const [dropdown, setDropdown] = useState(false);
 
@@ -78,62 +82,64 @@ function Header() {
 
   return (
     <>
-      <div className="Header">
-        <div>
-          <button className="DropdownButton" onClick={handleDropdown}>
+      <div className="header">
+        <div className="dropdownButtonWrapper">
+          <button className="dropdownButton" onClick={handleDropdown}>
             {getCategory()}
           </button>
+          {dropdown ? (
+            <div className="dropdown">
+              <Checkbox
+                name="Programming"
+                checked={programming}
+                onChange={() =>
+                  handleCheck({
+                    checked: programming,
+                    categoryType: "Programming",
+                    setChecked: setProgramming,
+                  })
+                }
+              />
+              <Checkbox
+                name="Pun"
+                checked={pun}
+                onChange={() =>
+                  handleCheck({
+                    checked: pun,
+                    categoryType: "Pun",
+                    setChecked: setPun,
+                  })
+                }
+              />
+              <Checkbox
+                name="Spooky"
+                checked={spooky}
+                onChange={() =>
+                  handleCheck({
+                    checked: spooky,
+                    categoryType: "Spooky",
+                    setChecked: setSpooky,
+                  })
+                }
+              />
+              <Checkbox
+                name="Christmas"
+                checked={christmas}
+                onChange={() =>
+                  handleCheck({
+                    checked: christmas,
+                    categoryType: "Christmas",
+                    setChecked: setChristmas,
+                  })
+                }
+              />
+            </div>
+          ) : null}
         </div>
-        {dropdown ? (
-          <div className="Dropdown">
-            <Checkbox
-              name="Programming"
-              checked={programming}
-              onChange={() =>
-                handleCheck({
-                  checked: programming,
-                  categoryType: "Programming",
-                  setChecked: setProgramming,
-                })
-              }
-            />
-            <Checkbox
-              name="Pun"
-              checked={pun}
-              onChange={() =>
-                handleCheck({
-                  checked: pun,
-                  categoryType: "Pun",
-                  setChecked: setPun,
-                })
-              }
-            />
-            <Checkbox
-              name="Spooky"
-              checked={spooky}
-              onChange={() =>
-                handleCheck({
-                  checked: spooky,
-                  categoryType: "Spooky",
-                  setChecked: setSpooky,
-                })
-              }
-            />
-            <Checkbox
-              name="Christmas"
-              checked={christmas}
-              onChange={() =>
-                handleCheck({
-                  checked: christmas,
-                  categoryType: "Christmas",
-                  setChecked: setChristmas,
-                })
-              }
-            />
-          </div>
-        ) : null}
-        <p>JOKEMASTER-3000</p>
-        <button className="DarkmodeButton">DarkMode</button>
+        <div className = "logo">
+          <p>JOKEMASTER-3000</p>
+        </div>
+        <button className="darkmodeButton">DarkMode</button>
       </div>
     </>
   );
