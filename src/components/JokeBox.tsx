@@ -23,6 +23,7 @@ function JokeBox() {
   const [jokes, setJokes] = useState<Joke[]>([]);
   const [randomJokes, setRandomJokes] = useState<Joke[]>([]);
   const [favorites, setFavorites] = useState<Joke[]>([]);
+  const [jokesFromCategory, setJokesFromCategory] = useState<Joke[]>([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
   // extracts data from localStorage and saves it to the state "jokes"
@@ -67,6 +68,7 @@ function JokeBox() {
       setCounter(0);
       setDeliveryState(jokes);
     }
+
   }, [selectedCategory]);
 
   // runs when the counter is updated. Ensures that the joke to be displayed is rendered instantly to website
@@ -178,18 +180,27 @@ function JokeBox() {
     <>
       <div>
         <div className="jokebox">
-          <button onClick={handleLeftClick}> Previous </button>
+        
+          <button onClick={handleLeftClick}>previusos</button>
           <div>
             {setUp !== "" ? <p>{setUp}</p> : null}
             <p>{delivery}</p>
           </div>
           <button onClick={handleRightClick}> Next </button>
         </div>
-        {isFavorite ? (
-          <img onClick={handleFavorite} className="icon" src={favorite}></img>
-        ) : (
-          <img onClick={handleFavorite} className="icon" src={noFavorite}></img>
-        )}
+        <div>
+          {isFavorite ? (
+            <img onClick={handleFavorite} className="icon" src={favorite}></img>
+          ) : (
+            <img onClick={handleFavorite} className="icon" src={noFavorite}></img>
+          )}
+        </div>
+        <div>
+          <select >
+              {}
+              <option value="fruit">Fruit</option>
+          </select>
+        </div>
       </div>
     </>
   );
