@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "../assets/JokeBox.css";
 import { useCategory } from "./CategoryContext";
+import favorite from "../assets/images/favorite.png";
+import noFavorite from "../assets/images/no-favorite.png";
 
 interface Joke {
   // Define the structure of your JSON object here
@@ -20,6 +22,7 @@ function JokeBox() {
   const [delivery, setDelivery] = useState("");
   const [jokes, setJokes] = useState<Joke[]>([]);
   const [randomJokes, setRandomJokes] = useState<Joke[]>([]);
+  const [favorites, setFavorites] = useState<Joke[]>([]);
 
   // extracts data from localStorage and saves it to the state "jokes"
   useEffect(() => {
@@ -129,12 +132,24 @@ function JokeBox() {
     return index;
   }
 
+  function handleFavorite() {
+    
+  }
+
   return (
     <>
-      {setUp !== "" ? <p>{setUp}</p> : null}
-      <p>{delivery}</p>
-      <button onClick={handleLeftClick}> Previous </button>
-      <button onClick={handleRightClick}> Next </button>
+      <div>
+        <div className="jokebox">
+          <button onClick={handleLeftClick}> Previous </button>
+          <div>
+            {setUp !== "" ? <p>{setUp}</p> : null}
+            <p>{delivery}</p>
+          </div>
+          <button onClick={handleRightClick}> Next </button>
+        </div>
+
+        <img onClick={handleFavorite} className="icon" src={noFavorite}></img>
+      </div>
     </>
   );
 }
