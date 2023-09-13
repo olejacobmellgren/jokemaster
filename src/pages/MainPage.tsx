@@ -5,9 +5,7 @@ function MainPage() {
         <header>
           <h1>Welcome to My React TypeScript App</h1>
         </header>
-        <main>
-          {/* Your main content goes here */}
-        </main>
+        <main>{/* Your main content goes here */}</main>
       </div>
     </>
   );

@@ -15,7 +15,7 @@
   width: 6rem;
 }
 
-.DarkmodeButton{
+.DarkmodeButton {
   background-color: #f4f9fe;
   border: 1px solid #d8dde2;
   padding: 0.5rem;
@@ -23,12 +23,12 @@
   width: 6rem;
 }
 
-.Dropdown{ 
+.Dropdown {
   position: absolute;
   top: 60px;
   display: flex;
   flex-direction: column;
   background-color: #f4f9fe;
-  border-radius: 10px;;
+  border-radius: 10px;
   padding: 0.5rem;
 }
