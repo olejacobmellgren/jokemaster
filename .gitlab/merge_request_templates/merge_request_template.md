@@ -20,6 +20,3 @@ Please review and check the following:
 
 [Include any additional information or notes that might be relevant for reviewers.]
 
-## Reviewers
-
-/cc @mention-reviewer
