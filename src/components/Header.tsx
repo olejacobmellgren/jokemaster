@@ -11,7 +11,7 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
   return (
     <>
       <label>
-        <input 
+        <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
@@ -74,8 +74,7 @@ function Header() {
       <div className="Header">
         <div className="DropdownButtonWrapper">
           <button className="DropdownButton" onClick={handleDropdown}><label className="DdBlabel">{getCategory()}</label><i className="arrow"></i></button>
-        </div>
-        {Dropdown ? 
+          {Dropdown ? 
           <div className="Dropdown">
             <Checkbox name="Programming" checked={Programming} onChange={() => handleCheck({ checked: Programming, setChecked: setProgramming })}/>
             <Checkbox name="Misc" checked={Misc} onChange={() => handleCheck({ checked: Misc, setChecked: setMisc })}/>
@@ -84,6 +83,7 @@ function Header() {
             <Checkbox name="Spooky" checked={Spooky} onChange={() => handleCheck({ checked: Spooky, setChecked: setSpooky })}/>
             <Checkbox name="Christmas" checked={Christmas} onChange={() => handleCheck({ checked: Christmas, setChecked: setChristmas })}/>
           </div> : null}
+        </div>
         <div className="Logo">
           <p>JOKEMASTER-3000</p>
         </div>
