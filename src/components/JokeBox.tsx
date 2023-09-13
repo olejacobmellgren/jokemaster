@@ -23,6 +23,7 @@ function JokeBox() {
   const [jokes, setJokes] = useState<Joke[]>([]);
   const [randomJokes, setRandomJokes] = useState<Joke[]>([]);
   const [favorites, setFavorites] = useState<Joke[]>([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   // extracts data from localStorage and saves it to the state "jokes"
   useEffect(() => {
@@ -46,6 +47,13 @@ function JokeBox() {
       randomJokesList = JSON.parse(jokesCached) as Joke[];
     }
     setRandomJokes(randomJokesList);
+
+    let favorites: Joke[] = [];
+    const favoritesJokesCached = localStorage.getItem("favoriteJokes");
+    if (favoritesJokesCached) {
+      favorites = JSON.parse(favoritesJokesCached) as Joke[];
+    }
+    setFavorites(favorites);
   }, []);
 
   // runs when the category is changed. Resets counter to 0 and displays first joke for that category
@@ -70,12 +78,13 @@ function JokeBox() {
       // else, display joke from jokes-state
       setDeliveryState(jokes);
     }
+    checkIfFavorite();
   }, [counter, counterForRandomJokes]);
 
   function setDeliveryState(jokeList: Joke[]) {
     // input is the Joke[]-list to fetch joke from. Dependent on current category selected.
     if (jokeList.length != 0) {
-      const index = setJokeIndexState();
+      const index = jokeIndex();
       setSetUp(jokeList[index].setup);
       if (jokeList[index].type == "single") {
         setDelivery(jokeList[index].joke);
@@ -116,7 +125,7 @@ function JokeBox() {
   }
 
   // returns the start index(dependent on category)  + current counter-value.
-  function setJokeIndexState() {
+  function jokeIndex() {
     let index = 0;
     if (selectedCategory == "Programming") {
       index = 0 + counter;
@@ -132,8 +141,37 @@ function JokeBox() {
     return index;
   }
 
+  function getJoke() {
+    const index = jokeIndex();
+    let joke: Joke;
+    if (selectedCategory == "Category") {
+      joke = randomJokes[index];
+    } else {
+      joke = jokes[index];
+    }
+    return joke;
+  }
+
+  function checkIfFavorite() {
+    const joke = getJoke();
+    const isInFavorites = favorites.includes(joke);
+    setIsFavorite(isInFavorites);
+  }
+
   function handleFavorite() {
-    
+    if (!isFavorite) {
+      const joke = getJoke();
+      favorites.push(joke);
+      setFavorites(favorites);
+      localStorage.setItem("favoriteJokes", JSON.stringify(favorites)); // save to localStorage
+    } else {
+      const joke = getJoke();
+      const indexToRemove = favorites.indexOf(joke);
+      favorites.splice(indexToRemove, 1);
+      setFavorites(favorites);
+      localStorage.setItem("favoriteJokes", JSON.stringify(favorites)); // save to localStorage
+    }
+    checkIfFavorite();
   }
 
   return (
@@ -147,8 +185,11 @@ function JokeBox() {
           </div>
           <button onClick={handleRightClick}> Next </button>
         </div>
-
-        <img onClick={handleFavorite} className="icon" src={noFavorite}></img>
+        {isFavorite ? (
+          <img onClick={handleFavorite} className="icon" src={favorite}></img>
+        ) : (
+          <img onClick={handleFavorite} className="icon" src={noFavorite}></img>
+        )}
       </div>
     </>
   );

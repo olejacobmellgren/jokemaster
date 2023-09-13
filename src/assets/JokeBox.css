@@ -1,9 +1,7 @@
-
-
 .jokebox {
-    display: flex;
+  display: flex;
 }
 
 .icon {
-    width: 4rem;
+  width: 4rem;
 }
