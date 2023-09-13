@@ -53,9 +53,6 @@ function JokeBox() {
       // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
       setCounterForRandomJokes(0);
       setJokeState(randomJokes);
-    // } else if (selectedCategory === "Favorites") {
-    //   setFavoriteCounter(0);
-    //   setJokeState(favorites);
     } else {
       // else, reset counter to 0 and display joke from jokes-state
       setCounter(0);
@@ -77,8 +74,6 @@ function JokeBox() {
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, display joke from randomJokes-state
       setJokeState(randomJokes);
-    // } else if (selectedCategory == "Favorites") {
-    //   setJokeState(favorites);
     } else {
       // else, display joke from jokes-state
       setJokeState(jokesFromCategory);
@@ -158,8 +153,6 @@ function JokeBox() {
     let joke: Joke;
     if (selectedCategory == "Category") {
       joke = randomJokes[index];
-    // } else if (selectedCategory === "Favorites") {
-    //   joke = favorites[index];
     } else {
       joke = jokesFromCategory[index];
     }
