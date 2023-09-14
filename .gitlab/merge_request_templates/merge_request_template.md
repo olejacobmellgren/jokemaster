@@ -13,9 +13,9 @@ Please review and check the following:
 - [ ] **Tests**: New features and changes are covered by appropriate tests, and existing tests pass.
 - [ ] **Dependencies**: Any new dependencies are justified and documented.
 - [ ] **Responsive**: The code is responsive to mobile devices.
-- [ ] **Review**: Requesting a review from [@mention-reviewer] or the appropriate team.
+- [ ] **Review**: Requesting a review from @mention-reviewer or the appropriate team.
 
-## Screenshots (if applicable)
+## Screenshots
 
 [Include screenshots or GIFs to visually demonstrate the changes, especially for UI-related changes.]
 
