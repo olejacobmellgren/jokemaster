@@ -14,7 +14,7 @@ function App() {
     const jokesCached = localStorage.getItem("Programming");
     if (!jokesCached) {
       const categories = ["Programming", "Pun", "Spooky", "Christmas"];
-      let allJokesList = [];
+      const allJokesList = [];
       for (const category of categories) {
         try {
           // Fetch 10 jokes from the specified category
@@ -25,7 +25,7 @@ function App() {
                 (res) => res.json(),
               ),
           );
-          let jokesList = [];
+          const jokesList = [];
           for (let i = 0; i < 10; i++) {
             jokesList.push(apiJokes.jokes[i]);
             allJokesList.push(apiJokes.jokes[i]);
@@ -44,7 +44,7 @@ function App() {
   // Use the fetchAndStoreJokes function in the useEffect
   useEffect(() => {
     fetchAndStoreJokes();
-  }, []);
+  });
 
   return (
     <CategoryProvider>

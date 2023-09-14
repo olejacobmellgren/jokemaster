@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../assets/Header.css";
 import { useCategory } from "./CategoryContext"; // Importing useCategory hook
+import { Category } from "./CategoryContext"; // Importing Category type
 
 type CheckboxProps = {
   name: string;
@@ -12,11 +13,7 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
   return (
     <>
       <label>
-        <input
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        />
+        <input type="checkbox" checked={checked} onChange={onChange} />
         {name}
       </label>
     </>
@@ -24,7 +21,7 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
 }
 
 function Header() {
-  const {changeCategory} = useCategory(); // Getting changeCategory from the context
+  const { changeCategory } = useCategory(); // Getting changeCategory from the context
 
   const [dropdown, setDropdown] = useState(false);
 
@@ -32,22 +29,34 @@ function Header() {
   const [pun, setPun] = useState(false);
   const [spooky, setSpooky] = useState(false);
   const [christmas, setChristmas] = useState(false);
+  const [favorites, setFavorites] = useState(false);
   const [category, setCategory] = useState("");
 
   // a quick check to initiate the category to 'Category'
-  if (!programming && category == "") {
-    changeCategory("Category");
-  }
+  useEffect(() => {
+    if (!programming && category == "") {
+      changeCategory("Category");
+    }
+  });
 
   function handleDropdown() {
     setDropdown(!dropdown);
   }
 
-  function handleCheck({ checked, categoryType, setChecked }: any) {
+  function handleCheck({
+    checked,
+    categoryType,
+    setChecked,
+  }: {
+    checked: boolean;
+    categoryType: Category;
+    setChecked: (value: boolean) => void;
+  }) {
     setProgramming(false);
     setPun(false);
     setSpooky(false);
     setChristmas(false);
+    setFavorites(false);
     setChecked(!checked);
     setCategory(categoryType);
 
@@ -57,9 +66,10 @@ function Header() {
     const wasPun = pun == true && categoryType == "Pun";
     const wasSpooky = spooky == true && categoryType == "Spooky";
     const wasChristmas = christmas == true && categoryType == "Christmas";
+    const wasFavorites = favorites == true && categoryType == "Favorites";
 
     // checks if the user unchecked a category - if so, set category to 'Category'.
-    if (wasProgramming || wasPun || wasSpooky || wasChristmas) {
+    if (wasProgramming || wasPun || wasSpooky || wasChristmas || wasFavorites) {
       changeCategory("Category");
     } else {
       changeCategory(categoryType);
@@ -75,6 +85,8 @@ function Header() {
       return "Spooky";
     } else if (christmas) {
       return "Christmas";
+    } else if (favorites) {
+      return "Favorites";
     } else {
       return "Category";
     }
@@ -85,7 +97,8 @@ function Header() {
       <div className="header">
         <div className="dropdownButtonWrapper">
           <button className="dropdownButton" onClick={handleDropdown}>
-            {getCategory()}
+            <label className="DdBlabel">{getCategory()}</label>
+            <i className="arrow"></i>
           </button>
           {dropdown ? (
             <div className="dropdown">
@@ -133,10 +146,21 @@ function Header() {
                   })
                 }
               />
+              <Checkbox
+                name="Favorites"
+                checked={favorites}
+                onChange={() =>
+                  handleCheck({
+                    checked: favorites,
+                    categoryType: "Favorites",
+                    setChecked: setFavorites,
+                  })
+                }
+              />
             </div>
           ) : null}
         </div>
-        <div className = "logo">
+        <div className="logo">
           <p>JOKEMASTER-3000</p>
         </div>
         <button className="darkmodeButton">DarkMode</button>

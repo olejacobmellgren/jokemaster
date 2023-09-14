@@ -2,8 +2,7 @@ function MainPage() {
   return (
     <>
       <div>
-        <header>
-        </header>
+        <header></header>
         <main>{/* Your main content goes here */}</main>
       </div>
     </>

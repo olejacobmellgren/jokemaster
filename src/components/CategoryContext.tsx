@@ -1,11 +1,21 @@
 // CategoryContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from "react";
-import { Categories, Category } from "./categories";
 
 interface CategoryContextType {
   selectedCategory: Category;
   changeCategory: (category: Category) => void;
 }
+
+const Categories = {
+  Programming: "Programming",
+  Pun: "Pun",
+  Spooky: "Spooky",
+  Christmas: "Christmas",
+  Favorites: "Favorites",
+  Category: "Category",
+} as const;
+
+export type Category = (typeof Categories)[keyof typeof Categories];
 
 const CategoryContext = createContext<CategoryContextType | undefined>(
   undefined,
