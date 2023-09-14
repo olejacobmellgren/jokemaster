@@ -212,9 +212,9 @@ function JokeBox() {
           </p>
         ) : selectedCategory === "Favorites" ? (
           <p>
-            {favoriteCounter + 1 === 1 && favorites.length === 0 ? 
-              <p>{favoriteCounter} / {favorites.length}</p>
-              : <p>{favoriteCounter + 1} / {favorites.length}</p>
+            {favoriteCounter + 1 === 1 && favorites.length === 0 ? (
+              <p></p> 
+              ) : <p>{favoriteCounter + 1} / {favorites.length}</p>
             }
           </p>
         ) : (
@@ -225,25 +225,24 @@ function JokeBox() {
         <div className="jokebox">
           <button onClick={handleLeftClick}>previusos</button>
           <div>
-            {selectedCategory === "Favorites" && favoriteCounter + 1 === 1 && favorites.length === 0 ? 
+            {selectedCategory === "Favorites" && favorites.length === 0 ? (
               <p>You have no favorites</p>
-              : setUp !== "" ? 
-              <p>{setUp}</p> : null}
+              ) : setUp !== "" ? (
+              <p>{setUp}</p> ) : null}
 
-            {selectedCategory === "Favorites" && favoriteCounter + 1 === 1 && favorites.length === 0 ? 
-            <p></p> : <p>{delivery}</p>}
+            {selectedCategory === "Favorites" && favorites.length === 0 ? (
+            <p></p> ) : <p>{delivery}</p>}
           </div>
           <button onClick={handleRightClick}> Next </button>
         </div>
         <div>
-          {isFavorite ? (
+          {selectedCategory === "Favorites" && favorites.length === 0 ? (
+            null
+          ) : ( isFavorite ? (
             <img onClick={handleFavorite} className="icon" src={favorite}></img>
-          ) : (
-            <img
-              onClick={handleFavorite}
-              className="icon"
-              src={noFavorite}
-            ></img>
+            ) : (
+              <img onClick={handleFavorite} className="icon" src={noFavorite}></img>
+            )
           )}
         </div>
         <div>
