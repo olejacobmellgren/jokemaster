@@ -107,7 +107,7 @@ function JokeBox() {
       }
       setCounterForRandomJokes((prevCounter) => prevCounter + 1);
     } else if (selectedCategory === "Favorites") {
-      if (favoriteCounter === favorites.length - 1) {
+      if (favoriteCounter === favorites.length - 1 || favorites.length - 1 === -1) {
         return;
       }
       setFavoriteCounter((prevCounter) => prevCounter + 1);
@@ -153,7 +153,7 @@ function JokeBox() {
   function getJoke() {
     const index = jokeIndex();
     let joke: Joke;
-    
+
     if (selectedCategory == "Category") {
       joke = randomJokes[index];
     } else {
@@ -212,7 +212,10 @@ function JokeBox() {
           </p>
         ) : selectedCategory === "Favorites" ? (
           <p>
-            {favoriteCounter + 1} / {favorites.length}
+            {favoriteCounter + 1 === 1 && favorites.length === 0 ? 
+              <p>{favoriteCounter} / {favorites.length}</p>
+              : <p>{favoriteCounter + 1} / {favorites.length}</p>
+            }
           </p>
         ) : (
           <p>
@@ -222,8 +225,13 @@ function JokeBox() {
         <div className="jokebox">
           <button onClick={handleLeftClick}>previusos</button>
           <div>
-            {setUp !== "" ? <p>{setUp}</p> : null}
-            <p>{delivery}</p>
+            {selectedCategory === "Favorites" && favoriteCounter + 1 === 1 && favorites.length === 0 ? 
+              <p>You have no favorites</p>
+              : setUp !== "" ? 
+              <p>{setUp}</p> : null}
+
+            {selectedCategory === "Favorites" && favoriteCounter + 1 === 1 && favorites.length === 0 ? 
+            <p></p> : <p>{delivery}</p>}
           </div>
           <button onClick={handleRightClick}> Next </button>
         </div>
