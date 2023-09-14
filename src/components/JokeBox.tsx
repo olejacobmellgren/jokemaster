@@ -201,6 +201,13 @@ function JokeBox() {
   return (
     <>
       <div>
+        {selectedCategory === "Category" ? (
+          <p>{counterForRandomJokes + 1} / {randomJokes.length}</p>
+        ) : selectedCategory === "Favorites" ? (
+          <p>{favoriteCounter + 1} / {favorites.length}</p>
+        ) : (
+          <p>{counter + 1} / {jokesFromCategory.length}</p>
+        )}
         <div className="jokebox">
         
           <button onClick={handleLeftClick}>previusos</button>
