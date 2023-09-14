@@ -43,25 +43,21 @@ function JokeBox() {
       favorites = JSON.parse(favoritesJokesCached) as Joke[];
     }
     setFavorites(favorites);
-  });
+  }, []);
 
   // runs when the category is changed. Resets counter to 0 and displays first joke for that category
   useEffect(() => {
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
       setCounterForRandomJokes(0);
+      
+      checkIfFavorite();
       setJokeState(randomJokes);
     } else {
       // else, reset counter to 0 and display joke from jokes-state
       setCounter(0);
       setFavoriteCounter(0);
-      //Add all jokes in category to jokelist
-      let jokesFromCategory: Joke[] = [];
-      const jokesCached = localStorage.getItem(`${selectedCategory}`);
-      if (jokesCached) {
-        jokesFromCategory = JSON.parse(jokesCached) as Joke[];
-      }
-      setJokesFromCategory(jokesFromCategory);
+      
       checkIfFavorite();
       setJokeState(jokesFromCategory);
     }
@@ -141,14 +137,21 @@ function JokeBox() {
     } else if (selectedCategory === "Favorites") {
       index = 0 + favoriteCounter;
     }
-    console.log(index);
     return index;
   }
 
   function getJoke() {
     const index = jokeIndex();
-    console.log(index);
     let joke: Joke;
+
+    //Add all jokes in category to jokelist
+    let jokesFromCategory: Joke[] = [];
+    const jokesCached = localStorage.getItem(`${selectedCategory}`);
+    if (jokesCached) {
+      jokesFromCategory = JSON.parse(jokesCached) as Joke[];
+    }
+    setJokesFromCategory(jokesFromCategory)
+
     if (selectedCategory == "Category") {
       joke = randomJokes[index];
     } else {
@@ -159,9 +162,7 @@ function JokeBox() {
 
   function checkIfFavorite() {
     const joke = getJoke();
-    console.log(joke);
     const isInFavorites = favorites.some((favorite) => favorite.id === joke.id);
-    console.log(isInFavorites);
     setIsFavorite(isInFavorites);
   }
 
