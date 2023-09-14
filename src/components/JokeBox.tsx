@@ -173,12 +173,18 @@ function JokeBox() {
       const joke = getJoke();
       favorites.push(joke);
       setFavorites(favorites);
+      if (selectedCategory === "Favorites") {
+        setJokesFromCategory(favorites)
+      }
       localStorage.setItem("Favorites", JSON.stringify(favorites)); // save to localStorage
     } else {
       const joke = getJoke();
       const indexToRemove = favorites.indexOf(joke);
       favorites.splice(indexToRemove, 1);
       setFavorites(favorites);
+      if (selectedCategory === "Favorites") {
+        setJokesFromCategory(favorites)
+      }
       localStorage.setItem("Favorites", JSON.stringify(favorites)); // save to localStorage
     }
     checkIfFavorite();
