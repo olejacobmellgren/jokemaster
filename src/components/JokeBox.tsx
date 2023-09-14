@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import "../assets/JokeBox.css";
 import { useCategory } from "./CategoryContext";
 import favorite from "../assets/images/favorite.png";
@@ -29,7 +29,6 @@ function JokeBox() {
 
   // extracts data from localStorage and saves it to the state "jokes"
   useEffect(() => {
-
     // makes a list of all the jokes - sorted randomly
     let randomJokesList: Joke[] = [];
     const jokesCached = localStorage.getItem("randomJokes");
@@ -44,11 +43,10 @@ function JokeBox() {
       favorites = JSON.parse(favoritesJokesCached) as Joke[];
     }
     setFavorites(favorites);
-  }, []);
+  });
 
   // runs when the category is changed. Resets counter to 0 and displays first joke for that category
   useEffect(() => {
-
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
       setCounterForRandomJokes(0);
@@ -84,14 +82,14 @@ function JokeBox() {
   function setJokeState(jokeList: Joke[]) {
     // input is the Joke[]-list to fetch joke from. Dependent on current category selected.
     if (jokeList.length !== 0) {
-        const index = jokeIndex();
-        if (jokeList[index].type == "single") {
-          setSetUp("");
-          setDelivery(jokeList[index].joke);
-        } else {
-          setSetUp(jokeList[index].setup);
-          setDelivery(jokeList[index].delivery);
-        }
+      const index = jokeIndex();
+      if (jokeList[index].type == "single") {
+        setSetUp("");
+        setDelivery(jokeList[index].joke);
+      } else {
+        setSetUp(jokeList[index].setup);
+        setDelivery(jokeList[index].delivery);
+      }
     }
   }
 
@@ -183,18 +181,22 @@ function JokeBox() {
     checkIfFavorite();
   }
 
-  function handleSelectJoke(event: any) {
-    const selectJoke = document.getElementById("selectJoke") as HTMLSelectElement;
+  function handleSelectJoke(event: ChangeEvent<HTMLSelectElement>) {
+    const selectJoke = document.getElementById(
+      "selectJoke",
+    ) as HTMLSelectElement;
     const [id, index] = JSON.parse(event.target.value); // Deserialize the string into an array
-    setCounter(index)
+    setCounter(index);
     if (selectedCategory === "Favorites") {
-      setFavoriteCounter(index)
+      setFavoriteCounter(index);
     }
-    const selectedJoke = jokesFromCategory.find((joke) => JSON.stringify(joke.id) === id);
+    const selectedJoke = jokesFromCategory.find(
+      (joke) => JSON.stringify(joke.id) === id,
+    );
     selectJoke.value = "default";
 
     if (selectedJoke) {
-      setJokeState(jokesFromCategory)
+      setJokeState(jokesFromCategory);
     }
   }
 
@@ -202,14 +204,19 @@ function JokeBox() {
     <>
       <div>
         {selectedCategory === "Category" ? (
-          <p>{counterForRandomJokes + 1} / {randomJokes.length}</p>
+          <p>
+            {counterForRandomJokes + 1} / {randomJokes.length}
+          </p>
         ) : selectedCategory === "Favorites" ? (
-          <p>{favoriteCounter + 1} / {favorites.length}</p>
+          <p>
+            {favoriteCounter + 1} / {favorites.length}
+          </p>
         ) : (
-          <p>{counter + 1} / {jokesFromCategory.length}</p>
+          <p>
+            {counter + 1} / {jokesFromCategory.length}
+          </p>
         )}
         <div className="jokebox">
-        
           <button onClick={handleLeftClick}>previusos</button>
           <div>
             {setUp !== "" ? <p>{setUp}</p> : null}
@@ -221,29 +228,36 @@ function JokeBox() {
           {isFavorite ? (
             <img onClick={handleFavorite} className="icon" src={favorite}></img>
           ) : (
-            <img onClick={handleFavorite} className="icon" src={noFavorite}></img>
+            <img
+              onClick={handleFavorite}
+              className="icon"
+              src={noFavorite}
+            ></img>
           )}
         </div>
         <div>
-          {(selectedCategory === "Category") ? null : 
-            <select id="selectJoke" value="default" onChange={(event) => {setCounter(parseInt(event.target.value)); handleSelectJoke(event);}}>
+          {selectedCategory === "Category" ? null : (
+            <select
+              id="selectJoke"
+              value="default"
+              onChange={(event) => {
+                setCounter(parseInt(event.target.value));
+                handleSelectJoke(event);
+              }}
+            >
               <option value="default" disabled>
                 Select specific joke
               </option>
               {jokesFromCategory.map((joke, index) => (
-                <option key={index} value={JSON.stringify([joke.id, index])}>{
-                  (joke.type == "single") ?  (
-                    joke.joke.slice(0,30)
-                   ) : (
-                    joke.setup.slice(0,30)
-                   )
-                }
-                ...
+                <option key={index} value={JSON.stringify([joke.id, index])}>
+                  {joke.type == "single"
+                    ? joke.joke.slice(0, 30)
+                    : joke.setup.slice(0, 30)}
+                  ...
                 </option>
               ))}
             </select>
-          }
-          
+          )}
         </div>
       </div>
     </>

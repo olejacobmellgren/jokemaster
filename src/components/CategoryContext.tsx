@@ -15,7 +15,7 @@ const Categories = {
   Category: "Category",
 } as const;
 
-type Category = (typeof Categories)[keyof typeof Categories];
+export type Category = (typeof Categories)[keyof typeof Categories];
 
 const CategoryContext = createContext<CategoryContextType | undefined>(
   undefined,

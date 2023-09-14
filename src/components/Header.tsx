@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../assets/Header.css";
 import { useCategory } from "./CategoryContext"; // Importing useCategory hook
+import { Category } from "./CategoryContext"; // Importing Category type
 
 type CheckboxProps = {
   name: string;
@@ -12,11 +13,7 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
   return (
     <>
       <label>
-        <input
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        />
+        <input type="checkbox" checked={checked} onChange={onChange} />
         {name}
       </label>
     </>
@@ -24,7 +21,7 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
 }
 
 function Header() {
-  const {changeCategory} = useCategory(); // Getting changeCategory from the context
+  const { changeCategory } = useCategory(); // Getting changeCategory from the context
 
   const [dropdown, setDropdown] = useState(false);
 
@@ -40,13 +37,21 @@ function Header() {
     if (!programming && category == "") {
       changeCategory("Category");
     }
-  }, []);
+  });
 
   function handleDropdown() {
     setDropdown(!dropdown);
   }
 
-  function handleCheck({ checked, categoryType, setChecked }: any) {
+  function handleCheck({
+    checked,
+    categoryType,
+    setChecked,
+  }: {
+    checked: boolean;
+    categoryType: Category;
+    setChecked: (value: boolean) => void;
+  }) {
     setProgramming(false);
     setPun(false);
     setSpooky(false);
@@ -92,7 +97,8 @@ function Header() {
       <div className="header">
         <div className="dropdownButtonWrapper">
           <button className="dropdownButton" onClick={handleDropdown}>
-            <label className="DdBlabel">{getCategory()}</label><i className="arrow"></i>
+            <label className="DdBlabel">{getCategory()}</label>
+            <i className="arrow"></i>
           </button>
           {dropdown ? (
             <div className="dropdown">
@@ -154,7 +160,7 @@ function Header() {
             </div>
           ) : null}
         </div>
-        <div className = "logo">
+        <div className="logo">
           <p>JOKEMASTER-3000</p>
         </div>
         <button className="darkmodeButton">DarkMode</button>
