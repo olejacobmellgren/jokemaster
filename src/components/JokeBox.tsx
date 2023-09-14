@@ -58,10 +58,20 @@ function JokeBox() {
       setCounter(0);
       setFavoriteCounter(0);
       
-      checkIfFavorite();
-      setJokeState(jokesFromCategory);
+      //Add all jokes in category to jokelist
+      let jokesFromCategory: Joke[] = [];
+      const jokesCached = localStorage.getItem(`${selectedCategory}`);
+      if (jokesCached) {
+        jokesFromCategory = JSON.parse(jokesCached) as Joke[];
+      }
+      setJokesFromCategory(jokesFromCategory);
     }
   }, [selectedCategory]);
+
+  useEffect(() => {
+    checkIfFavorite();
+    setJokeState(jokesFromCategory);
+  }, jokesFromCategory)
 
   // runs when the counter is updated. Ensures that the joke to be displayed is rendered instantly to website
   useEffect(() => {
@@ -143,15 +153,7 @@ function JokeBox() {
   function getJoke() {
     const index = jokeIndex();
     let joke: Joke;
-
-    //Add all jokes in category to jokelist
-    let jokesFromCategory: Joke[] = [];
-    const jokesCached = localStorage.getItem(`${selectedCategory}`);
-    if (jokesCached) {
-      jokesFromCategory = JSON.parse(jokesCached) as Joke[];
-    }
-    setJokesFromCategory(jokesFromCategory)
-
+    
     if (selectedCategory == "Category") {
       joke = randomJokes[index];
     } else {
