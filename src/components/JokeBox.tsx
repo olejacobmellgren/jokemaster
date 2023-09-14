@@ -71,7 +71,7 @@ function JokeBox() {
   useEffect(() => {
     checkIfFavorite();
     setJokeState(jokesFromCategory);
-  }, jokesFromCategory)
+  }, [jokesFromCategory])
 
   // runs when the counter is updated. Ensures that the joke to be displayed is rendered instantly to website
   useEffect(() => {
