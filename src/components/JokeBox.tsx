@@ -47,24 +47,27 @@ function JokeBox() {
 
   // runs when the category is changed. Resets counter to 0 and displays first joke for that category
   useEffect(() => {
-    if (selectedCategory == "Category") {
-      // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
-      setCounterForRandomJokes(0);
-      
-      checkIfFavorite();
-      setJokeState(randomJokes);
-    } else {
-      // else, reset counter to 0 and display joke from jokes-state
-      setCounter(0);
-      setFavoriteCounter(0);
-      
-      //Add all jokes in category to jokelist
-      let jokesFromCategory: Joke[] = [];
-      const jokesCached = localStorage.getItem(`${selectedCategory}`);
-      if (jokesCached) {
-        jokesFromCategory = JSON.parse(jokesCached) as Joke[];
+    if (selectedCategory !== "DummyCategory") { // an important check, without this we cant save the filter
+      localStorage.setItem("lastCategory", selectedCategory)
+      if (selectedCategory == "Category") {
+        // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
+        setCounterForRandomJokes(0);
+        
+        checkIfFavorite();
+        setJokeState(randomJokes);
+      } else {
+        // else, reset counter to 0 and display joke from jokes-state
+        setCounter(0);
+        setFavoriteCounter(0);
+        
+        //Add all jokes in category to jokelist
+        let jokesFromCategory: Joke[] = [];
+        const jokesCached = localStorage.getItem(`${selectedCategory}`);
+        if (jokesCached) {
+          jokesFromCategory = JSON.parse(jokesCached) as Joke[];
+        }
+        setJokesFromCategory(jokesFromCategory);
       }
-      setJokesFromCategory(jokesFromCategory);
     }
   }, [selectedCategory]);
 
