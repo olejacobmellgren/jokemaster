@@ -43,18 +43,21 @@ function JokeBox() {
       favorites = JSON.parse(favoritesJokesCached) as Joke[];
     }
     setFavorites(favorites);
-  });
+  }, []);
 
   // runs when the category is changed. Resets counter to 0 and displays first joke for that category
   useEffect(() => {
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
       setCounterForRandomJokes(0);
+
+      checkIfFavorite();
       setJokeState(randomJokes);
     } else {
       // else, reset counter to 0 and display joke from jokes-state
       setCounter(0);
       setFavoriteCounter(0);
+
       //Add all jokes in category to jokelist
       let jokesFromCategory: Joke[] = [];
       const jokesCached = localStorage.getItem(`${selectedCategory}`);
@@ -62,10 +65,13 @@ function JokeBox() {
         jokesFromCategory = JSON.parse(jokesCached) as Joke[];
       }
       setJokesFromCategory(jokesFromCategory);
-      checkIfFavorite();
-      setJokeState(jokesFromCategory);
     }
   }, [selectedCategory]);
+
+  useEffect(() => {
+    checkIfFavorite();
+    setJokeState(jokesFromCategory);
+  }, [jokesFromCategory]);
 
   // runs when the counter is updated. Ensures that the joke to be displayed is rendered instantly to website
   useEffect(() => {
@@ -101,7 +107,10 @@ function JokeBox() {
       }
       setCounterForRandomJokes((prevCounter) => prevCounter + 1);
     } else if (selectedCategory === "Favorites") {
-      if (favoriteCounter === favorites.length - 1) {
+      if (
+        favoriteCounter === favorites.length - 1 ||
+        favorites.length - 1 === -1
+      ) {
         return;
       }
       setFavoriteCounter((prevCounter) => prevCounter + 1);
@@ -141,14 +150,13 @@ function JokeBox() {
     } else if (selectedCategory === "Favorites") {
       index = 0 + favoriteCounter;
     }
-    console.log(index);
     return index;
   }
 
   function getJoke() {
     const index = jokeIndex();
-    console.log(index);
     let joke: Joke;
+
     if (selectedCategory == "Category") {
       joke = randomJokes[index];
     } else {
@@ -159,9 +167,7 @@ function JokeBox() {
 
   function checkIfFavorite() {
     const joke = getJoke();
-    console.log(joke);
     const isInFavorites = favorites.some((favorite) => favorite.id === joke.id);
-    console.log(isInFavorites);
     setIsFavorite(isInFavorites);
   }
 
@@ -170,12 +176,18 @@ function JokeBox() {
       const joke = getJoke();
       favorites.push(joke);
       setFavorites(favorites);
+      if (selectedCategory === "Favorites") {
+        setJokesFromCategory(favorites);
+      }
       localStorage.setItem("Favorites", JSON.stringify(favorites)); // save to localStorage
     } else {
       const joke = getJoke();
       const indexToRemove = favorites.indexOf(joke);
       favorites.splice(indexToRemove, 1);
       setFavorites(favorites);
+      if (selectedCategory === "Favorites") {
+        setJokesFromCategory(favorites);
+      }
       localStorage.setItem("Favorites", JSON.stringify(favorites)); // save to localStorage
     }
     checkIfFavorite();
@@ -209,7 +221,13 @@ function JokeBox() {
           </p>
         ) : selectedCategory === "Favorites" ? (
           <p>
-            {favoriteCounter + 1} / {favorites.length}
+            {favoriteCounter + 1 === 1 && favorites.length === 0 ? (
+              <p></p>
+            ) : (
+              <p>
+                {favoriteCounter + 1} / {favorites.length}
+              </p>
+            )}
           </p>
         ) : (
           <p>
@@ -219,13 +237,23 @@ function JokeBox() {
         <div className="jokebox">
           <button onClick={handleLeftClick}>previusos</button>
           <div>
-            {setUp !== "" ? <p>{setUp}</p> : null}
-            <p>{delivery}</p>
+            {selectedCategory === "Favorites" && favorites.length === 0 ? (
+              <p>You have no favorites</p>
+            ) : setUp !== "" ? (
+              <p>{setUp}</p>
+            ) : null}
+
+            {selectedCategory === "Favorites" && favorites.length === 0 ? (
+              <p></p>
+            ) : (
+              <p>{delivery}</p>
+            )}
           </div>
           <button onClick={handleRightClick}> Next </button>
         </div>
         <div>
-          {isFavorite ? (
+          {selectedCategory === "Favorites" &&
+          favorites.length === 0 ? null : isFavorite ? (
             <img onClick={handleFavorite} className="icon" src={favorite}></img>
           ) : (
             <img

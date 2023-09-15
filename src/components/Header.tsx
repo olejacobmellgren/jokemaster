@@ -37,7 +37,7 @@ function Header() {
     if (!programming && category == "") {
       changeCategory("Category");
     }
-  });
+  }, []);
 
   function handleDropdown() {
     setDropdown(!dropdown);
