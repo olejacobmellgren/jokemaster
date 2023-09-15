@@ -191,16 +191,16 @@ function Header() {
           <p>JOKEMASTER-3000</p>
         </div>
         <div className="switch">
-            <input
-              className="toggle"
-              type="checkbox"
-              checked={darkMode}
-              onClick={(e) => e.stopPropagation()}
-              onChange={(e) => {
-                setDarkMode(e.target.checked);
-              }}
-            />
-          </div>
+          <input
+            className="toggle"
+            type="checkbox"
+            checked={darkMode}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => {
+              setDarkMode(e.target.checked);
+            }}
+          />
+        </div>
       </div>
     </>
   );

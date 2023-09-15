@@ -50,13 +50,13 @@ function App() {
   return (
     <DarkModeProvider>
       <CategoryProvider>
-          <Header />
-          <div className="App">
-            <Routes>
-              <Route path="/" element={<Mainpage />} />
-            </Routes>
-          </div>
-          <JokeBox />
+        <Header />
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Mainpage />} />
+          </Routes>
+        </div>
+        <JokeBox />
       </CategoryProvider>
     </DarkModeProvider>
   );

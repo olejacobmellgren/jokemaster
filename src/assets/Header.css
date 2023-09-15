@@ -101,10 +101,10 @@ body {
 .toggle:after {
   width: 32px;
   height: 26px;
-  content: '\1F319';
+  content: "\1F319";
   font-size: 24px;
 }
 
 .toggle:checked:after {
-  content: '\1F506';
+  content: "\1F506";
 }

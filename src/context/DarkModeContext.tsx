@@ -1,14 +1,15 @@
 import React, { createContext, useEffect, useState } from "react";
 
-const DarkModeContext = ({children}: { children: JSX.Element }) => {
-
-  const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "dark");
+const DarkModeContext = ({ children }: { children: JSX.Element }) => {
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("darkMode") === "dark",
+  );
 
   // Use Tailwind to enable darkmode for parents html-elements on first render or when darkMode is changed
   useEffect(() => {
     const html = document.documentElement;
 
-    if (darkMode){
+    if (darkMode) {
       html.classList.add("dark");
     } else {
       html.classList.remove("dark");
@@ -26,7 +27,7 @@ const DarkModeContext = ({children}: { children: JSX.Element }) => {
 
   return (
     <DarkModeProvider.Provider value={{ darkMode, setDarkMode: newDarkMode }}>
-      { children }
+      {children}
     </DarkModeProvider.Provider>
   );
 };
@@ -35,7 +36,7 @@ export const DarkModeProvider = createContext({
   darkMode: false,
   setDarkMode: (() => {
     throw new Error("No DarkModeProvider");
-  }) as (_: boolean)=>void,
+  }) as (_: boolean) => void,
 });
 
 export default DarkModeContext;
