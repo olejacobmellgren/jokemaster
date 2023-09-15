@@ -4,7 +4,8 @@ import Mainpage from "./pages/MainPage";
 import { useEffect } from "react";
 import { QueryClient } from "@tanstack/react-query";
 import JokeBox from "./components/JokeBox.tsx";
-import { CategoryProvider } from "./components/CategoryContext.tsx";
+import { CategoryProvider } from "./context/CategoryContext.tsx";
+import DarkModeProvider from "./context/DarkmodeContext.tsx";
 
 function App() {
   const queryClient = new QueryClient();
@@ -47,8 +48,8 @@ function App() {
   });
 
   return (
-    <CategoryProvider>
-      <>
+    <DarkModeProvider>
+      <CategoryProvider>
         <Header />
         <div className="App">
           <Routes>
@@ -56,8 +57,8 @@ function App() {
           </Routes>
         </div>
         <JokeBox />
-      </>
-    </CategoryProvider>
+      </CategoryProvider>
+    </DarkModeProvider>
   );
 }
 

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "../assets/Header.css";
-import { useCategory } from "./CategoryContext"; // Importing useCategory hook
-import { Category } from "./CategoryContext"; // Importing Category type
+import { useCategory } from "../context/CategoryContext"; // Importing useCategory hook
+import { Category } from "../context/CategoryContext"; // Importing Category type
+import { DarkModeProvider } from "../context/DarkmodeContext"; // Importing DarkModeContext
+import { useContext } from "react";
 
 type CheckboxProps = {
   name: string;
@@ -23,8 +25,8 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
 function Header() {
   const { changeCategory } = useCategory(); // Getting changeCategory from the context
 
+  const { darkMode, setDarkMode } = useContext(DarkModeProvider);
   const [dropdown, setDropdown] = useState(false);
-
   const [programming, setProgramming] = useState(false);
   const [pun, setPun] = useState(false);
   const [spooky, setSpooky] = useState(false);
@@ -188,7 +190,17 @@ function Header() {
         <div className="logo">
           <p>JOKEMASTER-3000</p>
         </div>
-        <button className="darkmodeButton">DarkMode</button>
+        <div className="switch">
+          <input
+            className="toggle"
+            type="checkbox"
+            checked={darkMode}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => {
+              setDarkMode(e.target.checked);
+            }}
+          />
+        </div>
       </div>
     </>
   );
