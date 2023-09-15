@@ -13,6 +13,7 @@ const Categories = {
   Christmas: "Christmas",
   Favorites: "Favorites",
   Category: "Category",
+  DummyCategory: "DummyCategory",
 } as const;
 
 export type Category = (typeof Categories)[keyof typeof Categories];
@@ -25,7 +26,7 @@ export const CategoryProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<Category>(
-    Categories.Programming,
+    Categories.DummyCategory,
   );
 
   const changeCategory = (category: Category) => {
