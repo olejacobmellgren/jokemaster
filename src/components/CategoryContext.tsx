@@ -13,7 +13,7 @@ const Categories = {
   Christmas: "Christmas",
   Favorites: "Favorites",
   Category: "Category",
-  DummyCategory: "DummyCategory"
+  DummyCategory: "DummyCategory",
 } as const;
 
 export type Category = (typeof Categories)[keyof typeof Categories];

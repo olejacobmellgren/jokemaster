@@ -35,27 +35,31 @@ function Header() {
   // a quick check to initiate the category to 'Category'
   useEffect(() => {
     if (!programming && category == "") {
-      const lastCategory = localStorage.getItem("lastCategory")
-      if (lastCategory !== null && lastCategory !== "DummyCategory" && lastCategory !== "Category") {
+      const lastCategory = localStorage.getItem("lastCategory");
+      if (
+        lastCategory !== null &&
+        lastCategory !== "DummyCategory" &&
+        lastCategory !== "Category"
+      ) {
         changeCategory(lastCategory as Category);
 
         let tempCheckbox: (value: boolean) => void;
         if (lastCategory === "Programming") {
-          tempCheckbox = setProgramming
+          tempCheckbox = setProgramming;
         } else if (lastCategory === "Pun") {
-          tempCheckbox = setPun
+          tempCheckbox = setPun;
         } else if (lastCategory === "Spooky") {
-          tempCheckbox = setSpooky
+          tempCheckbox = setSpooky;
         } else if (lastCategory === "Christmas") {
-          tempCheckbox = setChristmas
+          tempCheckbox = setChristmas;
         } else {
-          tempCheckbox = setFavorites
+          tempCheckbox = setFavorites;
         }
-        tempCheckbox(true)
-        setCategory(lastCategory as Category)
+        tempCheckbox(true);
+        setCategory(lastCategory as Category);
         setDropdown(false);
       } else {
-        changeCategory("Category")
+        changeCategory("Category");
       }
     }
   }, []);
