@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { QueryClient } from "@tanstack/react-query";
 import JokeBox from "./components/JokeBox.tsx";
 import { CategoryProvider } from "./context/CategoryContext.tsx";
-import DarkModeProvider from "./context/DarkmodeContext.tsx";
+import DarkModeProvider from "./context/DarkModeContext.tsx";
 
 function App() {
   const queryClient = new QueryClient();

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../assets/Header.css";
 import { useCategory } from "../context/CategoryContext"; // Importing useCategory hook
 import { Category } from "../context/CategoryContext"; // Importing Category type
-import { DarkModeProvider } from "../context/DarkmodeContext"; // Importing DarkModeContext
+import { DarkModeProvider } from "../context/DarkModeContext"; // Importing DarkModeContext
 import { useContext } from "react";
 
 type CheckboxProps = {
