@@ -80,3 +80,31 @@ body {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   color: #54595e;
 }
+
+.toggle {
+  appearance: none;
+  width: 3rem;
+  height: 3rem;
+  padding: 0.3rem 0 0 0.65rem;
+  cursor: pointer;
+  transition: 1s;
+  padding-top: 0.5rem;
+  margin-right: 5rem;
+  border: solid 0.1rem white;
+  border-radius: 2rem;
+}
+
+.toggle:hover {
+  background-color: white;
+}
+
+.toggle:after {
+  width: 32px;
+  height: 26px;
+  content: '\1F319';
+  font-size: 24px;
+}
+
+.toggle:checked:after {
+  content: '\1F506';
+}

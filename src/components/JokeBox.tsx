@@ -1,6 +1,6 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import "../assets/JokeBox.css";
-import { useCategory } from "./CategoryContext";
+import { useCategory } from "../context/CategoryContext";
 import favorite from "../assets/images/favorite.png";
 import noFavorite from "../assets/images/no-favorite.png";
 
