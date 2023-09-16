@@ -82,6 +82,9 @@ function JokeBox() {
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, display joke from randomJokes-state
       setJokeState(randomJokes);
+    } else if (selectedCategory == "Favorites") {
+      // checks if current Category is "Favorites". If so, display joke from favorites-state
+      setJokeState(favorites)
     } else {
       // else, display joke from jokes-state
       setJokeState(jokesFromCategory);
@@ -182,9 +185,6 @@ function JokeBox() {
       const joke = getJoke();
       favorites.push(joke);
       setFavorites(favorites);
-      if (selectedCategory === "Favorites") {
-        setJokesFromCategory(favorites);
-      }
       localStorage.setItem("Favorites", JSON.stringify(favorites)); // save to localStorage
     } else {
       const joke = getJoke();
@@ -204,7 +204,19 @@ function JokeBox() {
       favorites.splice(indexToRemove, 1);
       setFavorites(favorites);
       if (selectedCategory === "Favorites") {
-        setJokesFromCategory(favorites);
+        if (favoriteCounter !== favorites.length ) {
+          setJokesFromCategory(favorites)
+          setJokeState(favorites)
+        } else {
+          if (favoriteCounter == 0 && favorites.length == 0) {
+            setJokesFromCategory(favorites)
+            setJokeState(favorites)
+          } else {
+            setJokesFromCategory(favorites)
+            handleLeftClick()
+          }
+          
+        }
       }
       localStorage.setItem("Favorites", JSON.stringify(favorites)); // save to localStorage
     }
