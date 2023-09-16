@@ -163,6 +163,8 @@ function JokeBox() {
 
     if (selectedCategory == "Category") {
       joke = randomJokes[index];
+    } else if (selectedCategory == "Favorites") {
+      joke = favorites[index]
     } else {
       joke = jokesFromCategory[index];
     }
@@ -186,7 +188,19 @@ function JokeBox() {
       localStorage.setItem("Favorites", JSON.stringify(favorites)); // save to localStorage
     } else {
       const joke = getJoke();
-      const indexToRemove = favorites.indexOf(joke);
+      let indexToRemove;
+      if (joke.type === "single") {
+        indexToRemove = favorites.findIndex(favorite => 
+          favorite.type === joke.type &&
+          favorite.joke === joke.joke
+        );
+      } else {
+        indexToRemove = favorites.findIndex(favorite => 
+          favorite.type === joke.type &&
+          favorite.setup === joke.setup &&
+          favorite.delivery === joke.delivery
+        );
+      }
       favorites.splice(indexToRemove, 1);
       setFavorites(favorites);
       if (selectedCategory === "Favorites") {
@@ -224,7 +238,7 @@ function JokeBox() {
             {counterForRandomJokes + 1} / {randomJokes.length}
           </p>
         ) : selectedCategory === "Favorites" ? (
-          <p>
+          <div>
             {favoriteCounter + 1 === 1 && favorites.length === 0 ? (
               <p></p>
             ) : (
@@ -232,7 +246,7 @@ function JokeBox() {
                 {favoriteCounter + 1} / {favorites.length}
               </p>
             )}
-          </p>
+          </div>
         ) : (
           <p>
             {counter + 1} / {jokesFromCategory.length}
