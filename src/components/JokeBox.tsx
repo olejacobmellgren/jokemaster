@@ -29,13 +29,26 @@ function JokeBox() {
 
   // extracts data from localStorage and saves it to the state "jokes"
   useEffect(() => {
-    // makes a list of all the jokes - sorted randomly
-    let randomJokesList: Joke[] = [];
-    const jokesCached = localStorage.getItem("randomJokes");
-    if (jokesCached) {
-      randomJokesList = JSON.parse(jokesCached) as Joke[];
-    }
-    setRandomJokes(randomJokesList);
+    const fetchDataFromLocalStorage = () => {
+      // Recursive function to fetch data from localStorage
+
+      // makes a list of all the jokes - sorted randomly
+      let randomJokesList: Joke[] = [];
+      const jokesCached = localStorage.getItem("randomJokes");
+      if (jokesCached) {
+        randomJokesList = JSON.parse(jokesCached) as Joke[];
+        
+        setRandomJokes(randomJokesList);
+        setCounterForRandomJokes(0);
+
+        checkIfFavorite();
+        setJokeState(randomJokesList);
+      } else {
+        // If data is not available yet, wait for a short interval and try again
+        setTimeout(fetchDataFromLocalStorage, 100); // wait for 100ms before trying again
+      }
+    };
+    fetchDataFromLocalStorage(); // Call the function initially
 
     let favorites: Joke[] = [];
     const favoritesJokesCached = localStorage.getItem("Favorites");
