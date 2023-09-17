@@ -1,9 +1,15 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import Header from '../components/Header';
+import { test, expect} from 'vitest';
+import { CategoryProvider } from '../context/CategoryContext';
 
 
 test('Show dropdown when clicked', () => {
-    const {getByRole} = render(<Header/>);
+    const {getByRole} = render(
+      <CategoryProvider>
+          <Header/>
+      </CategoryProvider>
+    );
     const dropDown = getByRole("button");
     act(() => {
         fireEvent.click(dropDown);
