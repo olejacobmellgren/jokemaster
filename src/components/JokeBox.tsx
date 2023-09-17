@@ -29,13 +29,26 @@ function JokeBox() {
 
   // extracts data from localStorage and saves it to the state "jokes"
   useEffect(() => {
-    // makes a list of all the jokes - sorted randomly
-    let randomJokesList: Joke[] = [];
-    const jokesCached = localStorage.getItem("randomJokes");
-    if (jokesCached) {
-      randomJokesList = JSON.parse(jokesCached) as Joke[];
-    }
-    setRandomJokes(randomJokesList);
+    // recursive function to fetch data from localStorage
+    const fetchDataFromLocalStorage = () => {
+      // makes a list of all the jokes - sorted randomly
+      let randomJokesList: Joke[] = [];
+      const jokesCached = localStorage.getItem("randomJokes");
+      if (jokesCached) {
+        randomJokesList = JSON.parse(jokesCached) as Joke[];
+
+        // reset counter to 0 and display joke from randomJokes-state
+        setRandomJokes(randomJokesList);
+        setCounterForRandomJokes(0);
+
+        checkIfFavorite();
+        setJokeState(randomJokesList);
+      } else {
+        // if data is not available yet, wait for a short interval and try again
+        setTimeout(fetchDataFromLocalStorage, 100); // wait for 100ms before trying again
+      }
+    };
+    fetchDataFromLocalStorage(); // Call the function initially
 
     let favorites: Joke[] = [];
     const favoritesJokesCached = localStorage.getItem("Favorites");
@@ -52,7 +65,12 @@ function JokeBox() {
       localStorage.setItem("lastCategory", selectedCategory);
       if (selectedCategory == "Category") {
         // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
-        setCounterForRandomJokes(0);
+        const startCounter = sessionStorage.getItem("counterForRandomJokes");
+        if (startCounter === null) {
+          setCounterForRandomJokes(0);
+        } else {
+          setCounterForRandomJokes(parseInt(startCounter));
+        }
 
         checkIfFavorite();
         setJokeState(randomJokes);
@@ -82,6 +100,10 @@ function JokeBox() {
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, display joke from randomJokes-state
       setJokeState(randomJokes);
+      sessionStorage.setItem(
+        "counterForRandomJokes",
+        String(counterForRandomJokes),
+      );
     } else if (selectedCategory == "Favorites") {
       // checks if current Category is "Favorites". If so, display joke from favorites-state
       setJokeState(favorites);
