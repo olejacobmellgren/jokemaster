@@ -29,8 +29,8 @@ function JokeBox() {
 
   // extracts data from localStorage and saves it to the state "jokes"
   useEffect(() => {
+    // recursive function to fetch data from localStorage
     const fetchDataFromLocalStorage = () => {
-      // Recursive function to fetch data from localStorage
 
       // makes a list of all the jokes - sorted randomly
       let randomJokesList: Joke[] = [];
@@ -38,13 +38,14 @@ function JokeBox() {
       if (jokesCached) {
         randomJokesList = JSON.parse(jokesCached) as Joke[];
 
+        // reset counter to 0 and display joke from randomJokes-state
         setRandomJokes(randomJokesList);
         setCounterForRandomJokes(0);
 
         checkIfFavorite();
         setJokeState(randomJokesList);
       } else {
-        // If data is not available yet, wait for a short interval and try again
+        // if data is not available yet, wait for a short interval and try again
         setTimeout(fetchDataFromLocalStorage, 100); // wait for 100ms before trying again
       }
     };
