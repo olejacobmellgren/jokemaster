@@ -66,7 +66,12 @@ function JokeBox() {
       localStorage.setItem("lastCategory", selectedCategory);
       if (selectedCategory == "Category") {
         // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
-        setCounterForRandomJokes(0);
+        const startCounter = sessionStorage.getItem("counterForRandomJokes")
+        if (startCounter === null) {
+          setCounterForRandomJokes(0)
+        } else {
+          setCounterForRandomJokes(parseInt(startCounter))
+        }
 
         checkIfFavorite();
         setJokeState(randomJokes);
@@ -96,6 +101,7 @@ function JokeBox() {
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, display joke from randomJokes-state
       setJokeState(randomJokes);
+      sessionStorage.setItem("counterForRandomJokes", String(counterForRandomJokes))
     } else if (selectedCategory == "Favorites") {
       // checks if current Category is "Favorites". If so, display joke from favorites-state
       setJokeState(favorites);
