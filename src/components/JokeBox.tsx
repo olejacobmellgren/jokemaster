@@ -31,7 +31,6 @@ function JokeBox() {
   useEffect(() => {
     // recursive function to fetch data from localStorage
     const fetchDataFromLocalStorage = () => {
-
       // makes a list of all the jokes - sorted randomly
       let randomJokesList: Joke[] = [];
       const jokesCached = localStorage.getItem("randomJokes");
@@ -66,11 +65,11 @@ function JokeBox() {
       localStorage.setItem("lastCategory", selectedCategory);
       if (selectedCategory == "Category") {
         // checks if current Category is "Category". If so, reset counter to 0 and display joke from randomJokes-state
-        const startCounter = sessionStorage.getItem("counterForRandomJokes")
+        const startCounter = sessionStorage.getItem("counterForRandomJokes");
         if (startCounter === null) {
-          setCounterForRandomJokes(0)
+          setCounterForRandomJokes(0);
         } else {
-          setCounterForRandomJokes(parseInt(startCounter))
+          setCounterForRandomJokes(parseInt(startCounter));
         }
 
         checkIfFavorite();
@@ -101,7 +100,10 @@ function JokeBox() {
     if (selectedCategory == "Category") {
       // checks if current Category is "Category". If so, display joke from randomJokes-state
       setJokeState(randomJokes);
-      sessionStorage.setItem("counterForRandomJokes", String(counterForRandomJokes))
+      sessionStorage.setItem(
+        "counterForRandomJokes",
+        String(counterForRandomJokes),
+      );
     } else if (selectedCategory == "Favorites") {
       // checks if current Category is "Favorites". If so, display joke from favorites-state
       setJokeState(favorites);
