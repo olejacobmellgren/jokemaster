@@ -208,8 +208,8 @@ test("Test render jokes", async () => {
   await userEvent.click(programming);
   expect(programming).toBeTruthy(); // The text is found
 
-  let joke_setup = getByText("why do python programmers wear glasses?");
-  let joke_delivery = getByText("Because they can't C.");
+  const joke_setup = getByText("why do python programmers wear glasses?");
+  const joke_delivery = getByText("Because they can't C.");
   expect(joke_setup.textContent).toBe(
     "why do python programmers wear glasses?",
   );
@@ -314,7 +314,7 @@ test("Test if favorite works", async () => {
   await userEvent.click(favorites);
   expect(favorites).toBeTruthy(); // The text is found
 
-  let joke_number = getByText("1 / 1");
+  const joke_number = getByText("1 / 1");
   expect(joke_number.textContent).toBe("1 / 1");
 
   const joke_setup = getByText(

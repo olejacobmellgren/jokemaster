@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Header from "../components/Header";
 import { test, expect } from "vitest";
 import { CategoryProvider } from "../context/CategoryContext";
