@@ -7,27 +7,35 @@
   font-family: inter;
   src: url(./Fonts/Inter-Regular.ttf);
 }
+
 body {
   font-family: inter;
   font-size: 0.9rem;
 }
 
 .header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  height: 15vh;
+  width: 100%;
 }
 
 .logo {
+  display: flex;
+  justify-content: center;
   font-family: Orbitron-Bold;
-  font-size: 2rem;
+  font-size: 5vh;
+  width: 70%;
 }
 
 .dropdownButtonWrapper {
   display: flex;
   justify-content: center;
-  width: 9rem;
+  width: 15%;
 }
 
 .dropdownButton {
@@ -35,14 +43,15 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 1vh;
   background-color: #f4f9fe;
   border: 1px solid #d8dde2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  padding: 0.7rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  font-size: 1.5vh;
+  border-radius: 1vh;
+  padding: 2vh;
+  padding-left: 3vh;
+  padding-right: 3vh;
   color: #54595e;
 }
 
@@ -51,21 +60,13 @@ body {
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.arrow {
+.dropdownArrow {
   border: solid #abb5be;
   border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 3px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
-}
-
-.darkmodeButton {
-  background-color: #f4f9fe;
-  border: 1px solid #d8dde2;
-  border-radius: 20px;
-  width: 6rem;
-  padding: 0.5rem;
 }
 
 .dropdown {
@@ -81,30 +82,64 @@ body {
   color: #54595e;
 }
 
+.toggleWrapper {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+}
+
 .toggle {
   appearance: none;
-  width: 3rem;
-  height: 3rem;
-  padding: 0.3rem 0 0 0.65rem;
+  background-color: #f4f9fe;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   transition: 1s;
-  padding-top: 0.5rem;
-  margin-right: 5rem;
-  border: solid 0.1rem white;
-  border-radius: 2rem;
+  border-radius: 100px;
+  padding: 10px 13px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .toggle:hover {
-  background-color: white;
+  background-color: rgb(43, 43, 43);
 }
 
 .toggle:after {
-  width: 32px;
-  height: 26px;
   content: "\1F319";
-  font-size: 24px;
+  font-size: 25px;
 }
 
 .toggle:checked:after {
   content: "\1F506";
+}
+
+
+@media (orientation: portrait) {
+  .header {
+    height: 10vh;
+  }
+
+  .logo {
+    width: 40%;
+    font-size: 3.3vw
+  }
+
+  .dropdownButtonWrapper {
+    width: 30%;
+  }
+
+  .dropdownButton {
+    font-size: 3vw;
+    gap: 1vw;
+    border-radius: 2vw;
+    padding: 2vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+
+  .toggleWrapper {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+  }
 }

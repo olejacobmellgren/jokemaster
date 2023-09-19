@@ -27,6 +27,7 @@ function JokeBox() {
   const [jokesFromCategory, setJokesFromCategory] = useState<Joke[]>([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
+
   // extracts data from localStorage and saves it to the state "jokes"
   useEffect(() => {
     // recursive function to fetch data from localStorage
@@ -267,7 +268,7 @@ function JokeBox() {
   return (
     <>
       <div>
-        {selectedCategory === "Category" ? (
+        {/* {selectedCategory === "Category" ? (
           <p>
             {counterForRandomJokes + 1} / {randomJokes.length}
           </p>
@@ -285,59 +286,88 @@ function JokeBox() {
           <p>
             {counter + 1} / {jokesFromCategory.length}
           </p>
-        )}
-        <div className="jokebox">
-          <button onClick={handleLeftClick}>previusos</button>
-          <div>
-            {selectedCategory === "Favorites" && favorites.length === 0 ? (
-              <p>You have no favorites</p>
-            ) : setUp !== "" ? (
-              <p>{setUp}</p>
-            ) : null}
+        )} */}
 
-            {selectedCategory === "Favorites" && favorites.length === 0 ? (
-              <p></p>
-            ) : (
-              <p>{delivery}</p>
+        <div className="jokeboxWrapper">
+          <div className="jokeboxTop">
+            {selectedCategory === "Category" ? null : (
+              <select
+                id="selectJoke"
+                value="default"
+                onChange={(event) => {
+                  setCounter(parseInt(event.target.value));
+                  handleSelectJoke(event);
+                }}
+              >
+                <option value="default" disabled>
+                  Select specific joke
+                </option>
+                {jokesFromCategory.map((joke, index) => (
+                  <option key={index} value={JSON.stringify([joke.id, index])}>
+                    {joke.type == "single"
+                      ? joke.joke.slice(0, 30)
+                      : joke.setup.slice(0, 30)}
+                    ...
+                  </option>
+                ))}
+              </select>
             )}
           </div>
-          <button onClick={handleRightClick}> Next </button>
-        </div>
-        <div>
-          {selectedCategory === "Favorites" &&
-          favorites.length === 0 ? null : isFavorite ? (
-            <img onClick={handleFavorite} className="icon" src={favorite}></img>
-          ) : (
-            <img
-              onClick={handleFavorite}
-              className="icon"
-              src={noFavorite}
-            ></img>
-          )}
-        </div>
-        <div>
-          {selectedCategory === "Category" ? null : (
-            <select
-              id="selectJoke"
-              value="default"
-              onChange={(event) => {
-                setCounter(parseInt(event.target.value));
-                handleSelectJoke(event);
-              }}
-            >
-              <option value="default" disabled>
-                Select specific joke
-              </option>
-              {jokesFromCategory.map((joke, index) => (
-                <option key={index} value={JSON.stringify([joke.id, index])}>
-                  {joke.type == "single"
-                    ? joke.joke.slice(0, 30)
-                    : joke.setup.slice(0, 30)}
-                  ...
-                </option>
-              ))}
-            </select>
-          )}
+          
+          <div className="jokebox">
+            <div>
+              <button onClick={handleLeftClick} className="scrollButton scrollButtonTop">
+                <i className="arrow left"></i>
+              </button>
+            </div>
+
+            <div className="joke">
+              {selectedCategory === "Favorites" && favorites.length === 0 ? (
+                <p>You have no favorites</p>
+              ) : setUp !== "" ? (
+                <p>{setUp}</p>
+              ) : null}
+
+              {selectedCategory === "Favorites" && favorites.length === 0 ? (
+                <p></p>
+              ) : (
+                <p>{delivery}</p>
+              )}
+            </div>
+
+            <div>
+              <button onClick={handleRightClick} className="scrollButton scrollButtonTop">
+                <span className="arrow right"></span>
+              </button>
+            </div>
+          </div>
+
+          <div className="jokeboxBottom">
+            <div>
+              <button onClick={handleLeftClick} className="scrollButton scrollButtonBottom">
+                <i className="arrow left"></i>
+              </button>
+            </div>
+
+            <div>
+              {selectedCategory === "Favorites" &&
+              favorites.length === 0 ? null : isFavorite ? (
+                <img onClick={handleFavorite} className="icon" src={favorite}></img>
+              ) : (
+                <img
+                  onClick={handleFavorite}
+                  className="icon"
+                  src={noFavorite}
+                ></img>
+              )}
+            </div>
+
+            <div>
+              <button onClick={handleRightClick} className="scrollButton scrollButtonBottom">
+                <span className="arrow right"></span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>

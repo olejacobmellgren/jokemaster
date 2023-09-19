@@ -1,7 +1,105 @@
+.jokeboxWrapper {
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 15vh;
+  height: 85vh;
+  width: 100%;
+}
+
+.jokeboxTop {
+  display: flex;
+  justify-content: center;
+}
+
 .jokebox {
   display: flex;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jokeboxBottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.joke {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 3vh;
 }
 
 .icon {
-  width: 4rem;
+  width: 15vh;
 }
+
+.scrollButtonBottom {
+  display: none;
+}
+
+.scrollButtonTop {
+  display: flex;
+}
+
+.scrollButton {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 3vh 3vh;
+  margin: 2vw 2vw;
+  border: 1vh solid #2b2b2b;
+  border-radius: 10vh;
+  transition: all .3s ease;
+  cursor: pointer;
+  align-items: center;
+}
+
+.scrollButton > .arrow {
+  width: 4vh;
+  height: 4vh;
+  border-right: 1.5vh solid #2b2b2b;
+  border-bottom: 1.5vh solid #2b2b2b;
+  border-radius: 0.5vh;
+  position: relative;
+}
+
+.scrollButton:hover > .left {
+  transform: rotate(135deg) translate(1vh, 1vh);
+}
+
+.scrollButton > .left {
+  transform: rotate(135deg);
+  transition: all .3s ease;
+}
+
+.scrollButton:hover > .right {
+  transform: rotate(-45deg) translate(1vh, 1vh);
+}
+
+.scrollButton > .right {
+  transform: rotate(-45deg);
+  transition: all .3s ease;
+}
+
+
+@media (orientation: portrait) {
+  .jokeboxWrapper {
+    padding-top: 10vh;
+    height: 90vh;
+  }
+
+  .scrollButtonBottom {
+    display: flex;
+  }
+
+  .scrollButtonTop {
+    display: none;
+  }
+
+  .joke {
+    font-size: 8vw;
+  }
+}
+
+

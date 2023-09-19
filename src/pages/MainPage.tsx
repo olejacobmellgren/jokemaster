@@ -1,10 +1,8 @@
+import "../assets/MainPage.css";
 function MainPage() {
   return (
     <>
-      <div>
-        <header></header>
-        <main>{/* Your main content goes here */}</main>
-      </div>
+      <main>{/* Your main content goes here */}</main>
     </>
   );
 }
