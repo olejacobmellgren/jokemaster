@@ -21,57 +21,35 @@ const queryClient = new QueryClient();
 
 function JokeComponent() {
 
-  const { isLoading, isError} = useQuery({
-    queryKey: ["apiData", "Categories"],
-    queryFn: async () => {
-      const res_prog = await fetch(`https://v2.jokeapi.dev/joke/Programming?amount=10`);
-      const data_prog = await res_prog.json();
-      const jokesList_prog = data_prog.jokes; // length == 10
-
-      const res_pun = await fetch(`https://v2.jokeapi.dev/joke/Pun?amount=10`);
-      const data_pun = await res_pun.json();
-      const jokesList_pun = data_pun.jokes; // length == 10
-
-      const res_spooky = await fetch(`https://v2.jokeapi.dev/joke/Spooky?amount=10`);
-      const data_spooky = await res_spooky.json();
-      const jokesList_spooky = data_spooky.jokes; // length == 10
-
-      const res_christ = await fetch(`https://v2.jokeapi.dev/joke/Christmas?amount=10`);
-      const data_christ = await res_christ.json();
-      const jokesList_christ = data_christ.jokes; // length == 10
-
-      const jokesCached_prog = localStorage.getItem("Programming")
-      const jokesCached_pun = localStorage.getItem("Pun")
-      const jokesCached_spooky = localStorage.getItem("Spooky")
-      const jokesCached_christ = localStorage.getItem("Christmas")
-
-      // Store jokes for each category in localStorage
-      if (!jokesCached_prog && !jokesCached_pun && !jokesCached_spooky && !jokesCached_christ) {
-        localStorage.setItem("Programming", JSON.stringify(jokesList_prog));
-        localStorage.setItem("Pun", JSON.stringify(jokesList_pun));
-        localStorage.setItem("Spooky", JSON.stringify(jokesList_spooky));
-        localStorage.setItem("Christmas", JSON.stringify(jokesList_christ));
-
-        let allJokesList: Joke[] = [].concat(
-          jokesList_prog,
-          jokesList_pun,
-          jokesList_spooky,
-          jokesList_christ
-        );
-        allJokesList = allJokesList.filter(joke => joke !== undefined);
-        allJokesList.sort(() => Math.random() - 0.5);
+  const categories = ["Programming", "Pun", "Spooky", "Christmas"];
+  const jokesCached_2 = localStorage.getItem("Programming");
   
-        localStorage.setItem("randomJokes", JSON.stringify(allJokesList))
+  if (!jokesCached_2) {
+    useQuery({
+      queryKey: ["apiData", "Categories"],
+      queryFn: async () => {
+        let randomJokesString = localStorage.getItem("randomJokes");
+        let allJokesList: Joke[] = randomJokesString ? JSON.parse(randomJokesString) : [];
+  
+        await Promise.all(categories.map(async (category) => {
+          const res = await fetch(`https://v2.jokeapi.dev/joke/${category}?amount=10`);
+          const data = await res.json();
+          const jokesList = data.jokes; // length == 10
+    
+          const jokesCached = localStorage.getItem(category);
+    
+          if (!jokesCached) {
+            localStorage.setItem(category, JSON.stringify(jokesList));
+            allJokesList = allJokesList.concat(jokesList);
+          }
+        }));
+        allJokesList.sort(() => Math.random() - 0.5);
+    
+        localStorage.setItem("randomJokes", JSON.stringify(allJokesList));
+    
+        return allJokesList;
       }
-
-      return jokesList_prog
-    }
-  });
-
-  if (isLoading) {
-    return <p>Loading...</p>
-  } else if (isError) {
-    return <p>Error fetching</p>
+    })
   }
 
   return null
