@@ -1,64 +1,85 @@
 import Header from "./components/Header.tsx";
 import { Route, Routes } from "react-router-dom";
 import Mainpage from "./pages/MainPage";
-import { useEffect } from "react";
-import { QueryClient } from "@tanstack/react-query";
+import {
+  useQuery,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 import JokeBox from "./components/JokeBox.tsx";
 import { CategoryProvider } from "./context/CategoryContext.tsx";
 import DarkModeProvider from "./context/DarkModeContext.tsx";
 
-function App() {
-  const queryClient = new QueryClient();
+interface Joke {
+  // Define the structure of your JSON object here
+  type: string;
+  setup: string;
+  delivery: string;
+  joke: string;
+  id: number;
+  category: string;
+  // Add other properties if present in your JSON objects
+}
 
-  // Create an async function to fetch and store jokes
-  async function fetchAndStoreJokes() {
-    const jokesCached = localStorage.getItem("Programming");
-    if (!jokesCached) {
-      const categories = ["Programming", "Pun", "Spooky", "Christmas"];
-      const allJokesList = [];
-      for (const category of categories) {
-        try {
-          // Fetch 10 jokes from the specified category
-          const apiJokes = await queryClient.fetchQuery(
-            [`jokes_${category}`],
-            () =>
-              fetch(`https://v2.jokeapi.dev/joke/${category}?amount=10`).then(
-                (res) => res.json(),
-              ),
-          );
-          const jokesList = [];
-          for (let i = 0; i < 10; i++) {
-            jokesList.push(apiJokes.jokes[i]);
-            allJokesList.push(apiJokes.jokes[i]);
-          }
-          // Store jokes for category in localStorage
-          localStorage.setItem(category, JSON.stringify(jokesList));
-        } catch (error) {
-          console.error("Error fetching jokes:", error);
-        }
-      }
-      allJokesList.sort(() => Math.random() - 0.5); // randomizes the list. This list includes 40 jokes
-      localStorage.setItem("randomJokes", JSON.stringify(allJokesList));
-    }
+const queryClient = new QueryClient();
+
+function JokeComponent() {
+  const categories = ["Programming", "Pun", "Spooky", "Christmas"];
+  const jokesCached_2 = localStorage.getItem("Programming");
+
+  if (!jokesCached_2) {
+    useQuery({
+      queryKey: ["apiData", "Categories"],
+      queryFn: async () => {
+        const randomJokesString = localStorage.getItem("randomJokes");
+        let allJokesList: Joke[] = randomJokesString
+          ? JSON.parse(randomJokesString)
+          : [];
+
+        await Promise.all(
+          categories.map(async (category) => {
+            const res = await fetch(
+              `https://v2.jokeapi.dev/joke/${category}?amount=10`,
+            );
+            const data = await res.json();
+            const jokesList = data.jokes; // length == 10
+
+            const jokesCached = localStorage.getItem(category);
+
+            if (!jokesCached) {
+              localStorage.setItem(category, JSON.stringify(jokesList));
+              allJokesList = allJokesList.concat(jokesList);
+            }
+          }),
+        );
+        allJokesList.sort(() => Math.random() - 0.5);
+
+        localStorage.setItem("randomJokes", JSON.stringify(allJokesList));
+
+        return allJokesList;
+      },
+    });
   }
 
-  // Use the fetchAndStoreJokes function in the useEffect
-  useEffect(() => {
-    fetchAndStoreJokes();
-  });
+  return null;
+}
 
+function App() {
   return (
-    <DarkModeProvider>
-      <CategoryProvider>
-        <Header />
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Mainpage />} />
-          </Routes>
-        </div>
-        <JokeBox />
-      </CategoryProvider>
-    </DarkModeProvider>
+    <QueryClientProvider client={queryClient}>
+      <DarkModeProvider>
+        <CategoryProvider>
+          <Header />
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Mainpage />} />
+            </Routes>
+          </div>
+          <JokeComponent />
+          <JokeBox />
+        </CategoryProvider>
+      </DarkModeProvider>
+    </QueryClientProvider>
   );
 }
 

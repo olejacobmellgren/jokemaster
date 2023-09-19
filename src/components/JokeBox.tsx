@@ -36,6 +36,9 @@ function JokeBox() {
       const jokesCached = localStorage.getItem("randomJokes");
       if (jokesCached) {
         randomJokesList = JSON.parse(jokesCached) as Joke[];
+        if (randomJokesList.length !== 40) {
+          setTimeout(fetchDataFromLocalStorage, 100);
+        }
 
         // reset counter to 0 and display joke from randomJokes-state
         setRandomJokes(randomJokesList);
