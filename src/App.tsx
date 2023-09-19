@@ -31,7 +31,7 @@ function JokeComponent() {
     useQuery({
       queryKey: ["apiData", "Categories"],
       queryFn: async () => {
-        let randomJokesString = localStorage.getItem("randomJokes");
+        const randomJokesString = localStorage.getItem("randomJokes");
         let allJokesList: Joke[] = randomJokesString
           ? JSON.parse(randomJokesString)
           : [];
