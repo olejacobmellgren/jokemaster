@@ -1,18 +1,18 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import Header from '../components/Header';
 import { test, expect} from 'vitest';
 import { CategoryProvider } from '../context/CategoryContext';
 import userEvent from '@testing-library/user-event';
 
 
-test('Show dropdown when clicked', () => {
+test('Show dropdown when clicked', async () => {
     const {getByRole} = render(
       <CategoryProvider>
           <Header/>
       </CategoryProvider>
     );
     const dropDown = getByRole("button");
-    userEvent.click(dropDown);
+    await userEvent.click(dropDown);
     const programming = screen.getByText("Programming");
     expect(programming).toBeTruthy(); // The text is found
     const pun = screen.getByText("Pun");
