@@ -8,22 +8,25 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import Header from '../components/Header';
 import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
 
 const server = setupServer(// Describe the joke to mock.
-    rest.get('joke/Programming?amount=2', (req, res, ctx) => {
+    rest.get(`https://v2.jokeapi.dev/joke/Programming?amount=10`, (req, res, ctx) => {
         return res(
             ctx.json({
                 "jokes": [
                     {
                         "category": "Programming",
                         "type": "twopart",
-                        "setup": "How do you generate a random string?",
-                        "delivery": "Put a Windows user in front of Vim and tell them to exit.",
+                        "setup": "why do python programmers wear glasses?",
+                        "delivery": "Because they can't C.",
+                        "id": 294,
                     },
                     {
                         "category": "Programming",
                         "type": "single",
-                        "joke": "Knock knock.\nWho's there?\nRecursion.\nRecursion who?\nKnock knock.",
+                        "joke": "Your momma is so fat, you need to switch to NTFS to store a picture of her.",
+                        "id": 55,
                     }
                 ]
             }),
@@ -40,16 +43,33 @@ afterAll(() => {// Clean up after all tests are done
 })
 
 
-test('Test render jokes', () => {
+// test('Test render jokes', async () => {
+//     const {getByText} = render(
+//         <CategoryProvider>
+//             <JokeBox/>
+//         </CategoryProvider>
+//     );
+//     // const dropDown = getByRole("button", {name: "Category"});
+//     // userEvent.click(dropDown);
+//     // const programming = screen.getByText("Programming");
+//     // expect(programming).toBeTruthy(); // The text is found
+//     userEvent.click(getByText("Next"));
+//     const joke = screen.getByText("How do you generate a random string?");
+// })
+test('Test render jokes', async () => {
     const {getByRole} = render(
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
     );
     const dropDown = getByRole("button", {name: "Category"});
-    fireEvent.click(dropDown);
+    userEvent.click(dropDown);
+    await screen.findAllByText("Programming");
     const programming = screen.getByText("Programming");
+    userEvent.click(programming);
     expect(programming).toBeTruthy(); // The text is found
-    fireEvent.click(programming);
-    const joke = screen.getByText("How do you generate a random string?");
+    userEvent.click(screen.getByText("Next"));
+    await screen.findAllByText("why do python programmers wear glasses?");
+    const joke = screen.getByText("why do python programmers wear glasses?");
+    expect(joke).toBeTruthy(); // The text is found
 })
