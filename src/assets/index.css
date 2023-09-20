@@ -1,4 +1,16 @@
+@font-face {
+  font-family: Orbitron-Bold;
+  src: url(./Fonts/Orbitron-Bold.ttf);
+}
+
+@font-face {
+  font-family: inter;
+  src: url(./Fonts/Inter-Regular.ttf);
+}
+
 body {
+  font-family: inter;
+  font-size: 0.9rem;
   background-color: #becbd3;
 }
 
