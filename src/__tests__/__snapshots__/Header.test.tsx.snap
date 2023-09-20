@@ -17,7 +17,7 @@ exports[`Show dropdown when clicked 1`] = `
           Category
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
       <div
@@ -63,7 +63,7 @@ exports[`Show dropdown when clicked 1`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
