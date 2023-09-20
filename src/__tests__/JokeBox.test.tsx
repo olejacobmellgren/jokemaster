@@ -1,9 +1,8 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { getByTestId, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { test, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
 import App from "../App";
 
 const server = setupServer(
@@ -183,9 +182,7 @@ afterAll(() => {
 });
 
 test("Test render jokes", async () => {
-  const { getByText, getByRole, asFragment } = render(
-      <App />
-  );
+  const { getByText, getByRole, asFragment } = render(<App />);
 
   const dropDown = getByRole("button", { name: "Category" });
   await userEvent.click(dropDown);
@@ -204,9 +201,7 @@ test("Test render jokes", async () => {
 });
 
 test("Test right and left click", async () => {
-  const { getByText, asFragment, getByTestId } = render(
-      <App />
-  );
+  const { getByText, asFragment, getByTestId } = render(<App />);
 
   let joke_number = getByText("1 / 10");
   expect(joke_number.textContent).toBe("1 / 10");
@@ -240,9 +235,7 @@ test("Test right and left click", async () => {
 });
 
 test("Joke renders when changing category", async () => {
-  const { getByText, getByRole, asFragment, getByTestId } = render(
-      <App />
-  );
+  const { getByText, getByRole, asFragment, getByTestId } = render(<App />);
   const dropDown = getByRole("button", { name: "Programming" });
   await userEvent.click(dropDown);
   const pun = getByText("Pun");
@@ -288,9 +281,7 @@ test("Joke renders when changing category", async () => {
 });
 
 test("Test if favorite works", async () => {
-  const { getByText, getByRole, asFragment } = render(
-      <App />
-  );
+  const { getByText, getByRole, asFragment } = render(<App />);
 
   const image = getByRole("img");
   await userEvent.click(image); // favorite the joke. Image refers to the heart
@@ -321,9 +312,7 @@ test("Test if favorite works", async () => {
 });
 
 test("Test if you can unfavorite joke inside Favorites-category", async () => {
-  const { getByText, getByRole, asFragment } = render(
-      <App />
-  );
+  const { getByText, getByRole, asFragment } = render(<App />);
 
   const image = getByRole("img");
   await userEvent.click(image); // unfavorite the joke. Image refers to the heart
