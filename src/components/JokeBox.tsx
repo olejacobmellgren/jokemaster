@@ -267,107 +267,106 @@ function JokeBox() {
 
   return (
     <>
-      <div>
-        {/* {selectedCategory === "Category" ? (
-          <p>
-            {counterForRandomJokes + 1} / {randomJokes.length}
-          </p>
-        ) : selectedCategory === "Favorites" ? (
+      <div className="jokeboxWrapper">
+        <div className="jokeboxTop">
+          {selectedCategory === "Category" ? null : (
+            <select
+              id="selectJoke"
+              value="default"
+              onChange={(event) => {
+                setCounter(parseInt(event.target.value));
+                handleSelectJoke(event);
+              }}
+            >
+              <option value="default" disabled>
+                Select specific joke
+              </option>
+              {jokesFromCategory.map((joke, index) => (
+                <option key={index} value={JSON.stringify([joke.id, index])}>
+                  {joke.type == "single"
+                    ? joke.joke.slice(0, 30)
+                    : joke.setup.slice(0, 30)}
+                  ...
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
+        
+        <div className="jokebox">
           <div>
-            {favoriteCounter + 1 === 1 && favorites.length === 0 ? (
+            <button onClick={handleLeftClick} className="scrollButton scrollButtonTop">
+              <i className="arrow left"></i>
+            </button>
+          </div>
+
+          <div className="joke">
+            {selectedCategory === "Favorites" && favorites.length === 0 ? (
+              <p>You have no favorites</p>
+            ) : setUp !== "" ? (
+              <p>{setUp}</p>
+            ) : null}
+
+            {selectedCategory === "Favorites" && favorites.length === 0 ? (
               <p></p>
             ) : (
-              <p>
-                {favoriteCounter + 1} / {favorites.length}
-              </p>
+              <p>{delivery}</p>
             )}
           </div>
-        ) : (
-          <p>
-            {counter + 1} / {jokesFromCategory.length}
-          </p>
-        )} */}
 
-        <div className="jokeboxWrapper">
-          <div className="jokeboxTop">
-            {selectedCategory === "Category" ? null : (
-              <select
-                id="selectJoke"
-                value="default"
-                onChange={(event) => {
-                  setCounter(parseInt(event.target.value));
-                  handleSelectJoke(event);
-                }}
-              >
-                <option value="default" disabled>
-                  Select specific joke
-                </option>
-                {jokesFromCategory.map((joke, index) => (
-                  <option key={index} value={JSON.stringify([joke.id, index])}>
-                    {joke.type == "single"
-                      ? joke.joke.slice(0, 30)
-                      : joke.setup.slice(0, 30)}
-                    ...
-                  </option>
-                ))}
-              </select>
+          <div>
+            <button onClick={handleRightClick} className="scrollButton scrollButtonTop">
+              <span className="arrow right"></span>
+            </button>
+          </div>
+        </div>
+
+        <div className="jokeboxBottom">
+          <div>
+            <button onClick={handleLeftClick} className="scrollButton scrollButtonBottom">
+              <i className="arrow left"></i>
+            </button>
+          </div>
+
+          <div>
+            {selectedCategory === "Favorites" &&
+            favorites.length === 0 ? null : isFavorite ? (
+              <img onClick={handleFavorite} className="icon" src={favorite}></img>
+            ) : (
+              <img
+                onClick={handleFavorite}
+                className="icon"
+                src={noFavorite}
+              ></img>
             )}
           </div>
-          
-          <div className="jokebox">
+
+          <div>
+            <button onClick={handleRightClick} className="scrollButton scrollButtonBottom">
+              <span className="arrow right"></span>
+            </button>
+          </div>
+        </div>
+        <div className="counter">
+          {selectedCategory === "Category" ? (
+            <p>
+              {counterForRandomJokes + 1} / {randomJokes.length}
+            </p>
+          ) : selectedCategory === "Favorites" ? (
             <div>
-              <button onClick={handleLeftClick} className="scrollButton scrollButtonTop">
-                <i className="arrow left"></i>
-              </button>
-            </div>
-
-            <div className="joke">
-              {selectedCategory === "Favorites" && favorites.length === 0 ? (
-                <p>You have no favorites</p>
-              ) : setUp !== "" ? (
-                <p>{setUp}</p>
-              ) : null}
-
-              {selectedCategory === "Favorites" && favorites.length === 0 ? (
+              {favoriteCounter + 1 === 1 && favorites.length === 0 ? (
                 <p></p>
               ) : (
-                <p>{delivery}</p>
+                <p>
+                  {favoriteCounter + 1} / {favorites.length}
+                </p>
               )}
             </div>
-
-            <div>
-              <button onClick={handleRightClick} className="scrollButton scrollButtonTop">
-                <span className="arrow right"></span>
-              </button>
-            </div>
-          </div>
-
-          <div className="jokeboxBottom">
-            <div>
-              <button onClick={handleLeftClick} className="scrollButton scrollButtonBottom">
-                <i className="arrow left"></i>
-              </button>
-            </div>
-
-            <div>
-              {selectedCategory === "Favorites" &&
-              favorites.length === 0 ? null : isFavorite ? (
-                <img onClick={handleFavorite} className="icon" src={favorite}></img>
-              ) : (
-                <img
-                  onClick={handleFavorite}
-                  className="icon"
-                  src={noFavorite}
-                ></img>
-              )}
-            </div>
-
-            <div>
-              <button onClick={handleRightClick} className="scrollButton scrollButtonBottom">
-                <span className="arrow right"></span>
-              </button>
-            </div>
-          </div>
+          ) : (
+            <p>
+              {counter + 1} / {jokesFromCategory.length}
+            </p>
+          )}
         </div>
       </div>
     </>

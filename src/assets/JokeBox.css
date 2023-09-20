@@ -1,3 +1,11 @@
+.counter {
+  display: flex;
+  font-size: 2vh;
+  justify-content: center;
+  font-family: Orbitron-Bold;
+}
+
+
 .jokeboxWrapper {
   position: fixed;
   top: 0;
