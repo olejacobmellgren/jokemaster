@@ -4,23 +4,7 @@ import { useCategory } from "../context/CategoryContext"; // Importing useCatego
 import { Category } from "../context/CategoryContext"; // Importing Category type
 import { DarkModeProvider } from "../context/DarkModeContext"; // Importing DarkModeContext
 import { useContext } from "react";
-
-type CheckboxProps = {
-  name: string;
-  checked: boolean;
-  onChange: () => void;
-};
-
-function Checkbox({ name, checked, onChange }: CheckboxProps) {
-  return (
-    <>
-      <label>
-        <input type="checkbox" checked={checked} onChange={onChange} />
-        {name}
-      </label>
-    </>
-  );
-}
+import Checkbox from "./Checkbox";
 
 function Header() {
   const { changeCategory } = useCategory(); // Getting changeCategory from the context
@@ -34,7 +18,7 @@ function Header() {
   const [favorites, setFavorites] = useState(false);
   const [category, setCategory] = useState("");
 
-  // a quick check to initiate the category to 'Category'
+  // check if lastCategory exists in localStorage. If so, update category to that category. If not, set category to "Category"
   useEffect(() => {
     if (!programming && category == "") {
       const lastCategory = localStorage.getItem("lastCategory");
@@ -70,6 +54,7 @@ function Header() {
     setDropdown(!dropdown);
   }
 
+  // handles the checkbox logic, setting the checked checkbox to true and changing the category
   function handleCheck({
     checked,
     categoryType,

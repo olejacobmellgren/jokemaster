@@ -16,7 +16,6 @@ interface Joke {
   joke: string;
   id: number;
   category: string;
-  // Add other properties if present in your JSON objects
 }
 
 const queryClient = new QueryClient();
@@ -26,6 +25,7 @@ function JokeComponent() {
   const jokesCached_2 = localStorage.getItem("Programming");
 
   if (!jokesCached_2) {
+    // only fetch jokes from API if localStorage is empty
     useQuery({
       queryKey: ["apiData", "Categories"],
       queryFn: async () => {
@@ -36,6 +36,7 @@ function JokeComponent() {
 
         await Promise.all(
           categories.map(async (category) => {
+            // fetch jokes from each category
             const res = await fetch(
               `https://v2.jokeapi.dev/joke/${category}?amount=10`,
             );
@@ -45,12 +46,12 @@ function JokeComponent() {
             const jokesCached = localStorage.getItem(category);
 
             if (!jokesCached) {
-              localStorage.setItem(category, JSON.stringify(jokesList));
+              localStorage.setItem(category, JSON.stringify(jokesList)); // store jokes form specific category in localStorage
               allJokesList = allJokesList.concat(jokesList);
             }
           }),
         );
-        allJokesList.sort(() => Math.random() - 0.5);
+        allJokesList.sort(() => Math.random() - 0.5); // randomize the list
 
         localStorage.setItem("randomJokes", JSON.stringify(allJokesList));
 

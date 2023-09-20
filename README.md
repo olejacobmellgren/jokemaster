@@ -1,27 +1,23 @@
-# React + TypeScript + Vite
+# JokeMaster-3000 - Prosjekt 1, IT2810
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+JokeMaster-3000 er en web-applikasjon for visning av vitser. Det er mulighet til å filtrere vitsene på kategori, og man kan bla seg gjennom vitsene med to knapper eller hoppe til en spesifikk ressurs ved hjelp av en dropdown-meny. Man kan favoritisere vitser slik at de havner i en egen liste og man kan også velge å ha nettsiden i darkmode. Prosjektet er laget av gruppe 25 i emnet IT2810 ved NTNU. I mappen **[docs](docs)** ligger detaljert dokumentasjon for dette prosjekt: **[project-1](docs/project-1.md)**. Denne inneholder hvilke valg vi har tatt og hvordan vi har gått fram for å oppfylle de ulike kravene til prosjektet.
 
-Currently, two official plugins are available:
+## Bygging
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Prosjektet er konfigurert til å bygge med npm. Ved å kjøre `npm install` i **prosjekt-1** vil man forberede prosjektet for å kunne kjøre.
 
-## Expanding the ESLint configuration
+## Kjøring av applikasjonen
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Etter man har utført en av kommandoen under **[Bygging](readme.md#bygging)** kan man kjøre applikasjonen enten lokalt eller med virtuell maskin.
 
-- Configure the top-level `parserOptions` property like this:
+- #### Kjøring lokalt
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+Man kan kjøre applikasjonen med lokal lagring ved å navigere til **prosjekt-1** og kjøre `npm run dev`. Da vil appen kjøres på en localhost med en lenke som dukker opp i terminalen.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- #### Kjøring med virtuell maskin
+
+Man kan kjøre applikasjonen med virtuell maskin ved å gå til en nettleser og skrive inn lenken: [it2810-25.idi.ntnu.no/project1/](http://it2810-25.idi.ntnu.no/project1/). Merk at virtuell maskin bare er tilgjengelig på NTNU sitt nettverk eller via VPN.
+
+## Testing
+
+Testene for prosjektet kjøres ved `npm run test` i mappen **prosjekt-1**. Da vil alle testene for hver test-fil kjøres og resultatet av testene vises i terminalen.
