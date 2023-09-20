@@ -290,7 +290,7 @@ function JokeBox() {
           </p>
         )}
         <div className="jokebox">
-          <button onClick={handleLeftClick}>previusos</button>
+          <button onClick={handleLeftClick}>Previous</button>
           <div>
             {selectedCategory === "Favorites" && favorites.length === 0 ? (
               <p>You have no favorites</p>
