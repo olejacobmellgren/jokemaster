@@ -5,7 +5,7 @@ import { CategoryProvider } from "../context/CategoryContext";
 import userEvent from "@testing-library/user-event";
 
 test("Show dropdown when clicked", async () => {
-  const { getByRole } = render(
+  const { getByText, getByRole, asFragment } = render(
     <CategoryProvider>
       <Header />
     </CategoryProvider>,
@@ -13,13 +13,15 @@ test("Show dropdown when clicked", async () => {
 
   const dropDown = getByRole("button");
   await userEvent.click(dropDown);
-  const programming = screen.getByText("Programming");
+  expect(asFragment()).toMatchSnapshot();
+
+  const programming = getByText("Programming");
   expect(programming).toBeTruthy(); // The text is found
 
   const pun = screen.getByText("Pun");
   expect(pun).toBeTruthy(); // The text is found
 
-  const favorites = screen.getByText("Favorites");
+  const favorites = getByText("Favorites");
   expect(favorites).toBeTruthy(); // The text is found
 });
 
