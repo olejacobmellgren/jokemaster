@@ -30,6 +30,9 @@
 .joke {
   font-family: 'Times New Roman', Times, serif;
   font-size: 3vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
 }
 
 .icon {
@@ -114,6 +117,7 @@
 
   .joke {
     font-size: 8vw;
+    padding: 3vw 3vw;
   }
 
   .icon {
@@ -123,7 +127,7 @@
   .scrollButton {
     padding: 7vw 7vw;
     border: 2.5vw solid #2b2b2b;
-    border-radius: 10vh;
+    border-radius: 20vw;
   }
   
   .scrollButton > .arrow {
@@ -161,8 +165,8 @@
 }
 
 .dark #selectJoke {
-  background-color: #5A7385;
-  border-color: #445662;
+  background-color: #4a5f6e;
+  border-color: #4c6677;
   color: #d8d8d8;
 }
 
