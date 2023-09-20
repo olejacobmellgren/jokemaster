@@ -34,12 +34,16 @@ For å teste web-applikasjonen har vi laget tester av ulike typer. Dette er vikt
 
 ### Komponent-tester
 
-Vi har laget 
+Vi har laget komponent-tester som tester props, state og brukerinteraksjon med komponenter. For Header har vi laget en enkel test som sjekker at overskriften vises som den skal og en test for interaksjon med dropdown-meny. Vi har ikke testet props for CheckBox-komponenten direkte, men vi har testet dette indirekte gjennom Header-komponenten som tar i bruk slike komponenter. JokeBox-komponenten er den vi har mest omfattende tester for. Her har vi blant annet testet at man kan bytte mellom ulike vitser, at staten til counter oppdateres og at favoritisering fungerer som det skal.
 
 ### Mock-tester
 
+I test-filen for JokeBox har vi laget mock-data ved bruk av MSW (Mock Service Worker). Vi ønsker ikke å hente data fra API-et når vi skal teste og lager derfor mock-data. MSW lager mock-data for to ulike kategorier av vitse og gjør at vi kan teste brukerinteraksjon med denne dataen. Dette legger også grunnlaget for at vi kan lage komponent-tester som tester state innenfor komponentene.
+
 ### Snapshot-tester
 
-### Manuell testing av grensesnitt
+Blant testene for JokeBox har vi også underveis innført Snapshot-tester. Dette er tester som sjekker sammenligner web-applikasjonen med et "snapshot", altså et slags "bilde" av hierarkiet av komponenter, og sjekker om disse er like.
 
-## Annet
+### Manuell testing av brukergrensesnitt
+
+I tillegg har vi gjennomført kontinuerlig manuell testing av brukergrensesnittet for å oppdage mulige feil. Når vi gjør dette setter vi oss inn i scenarioet som en bruker og prøver å bruke web-applikasjonen med funksjonalitet som har blitt implementert.

@@ -1,4 +1,4 @@
-# JokeMaster-3000 - Project 1 IT2810
+# JokeMaster-3000 - Prosjekt 1, IT2810
 
 JokeMaster-3000 er en applikasjon for vitser skrevet i React med Typescript. Prosjektet er laget av gruppe 25 i emnet IT2810 ved NTNU. I mappen **[docs](docs)** ligger detaljert dokumentasjon for dette prosjekt: **[project-1](docs/project-1.md)**. Denne inneholder hvilke valg vi har tatt og hvordan vi har gått fram for å oppfylle de ulike kravene til prosjektet.
 
