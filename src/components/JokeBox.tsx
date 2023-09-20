@@ -36,6 +36,9 @@ function JokeBox() {
       const jokesCached = localStorage.getItem("randomJokes");
       if (jokesCached) {
         randomJokesList = JSON.parse(jokesCached) as Joke[];
+        if (randomJokesList.length !== 40) {
+          setTimeout(fetchDataFromLocalStorage, 100);
+        }
 
         // reset counter to 0 and display joke from randomJokes-state
         setRandomJokes(randomJokesList);
@@ -287,7 +290,7 @@ function JokeBox() {
           </p>
         )}
         <div className="jokebox">
-          <button onClick={handleLeftClick}>previusos</button>
+          <button onClick={handleLeftClick}>Previous</button>
           <div>
             {selectedCategory === "Favorites" && favorites.length === 0 ? (
               <p>You have no favorites</p>
