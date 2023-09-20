@@ -110,7 +110,7 @@ function Header() {
         <div className="dropdownButtonWrapper">
           <button className="dropdownButton" onClick={handleDropdown}>
             <label className="DdBlabel">{getCategory()}</label>
-            <i className="arrow"></i>
+            <i className="dropdownArrow"></i>
           </button>
           {dropdown ? (
             <div className="dropdown">
@@ -175,7 +175,7 @@ function Header() {
         <div className="logo">
           <p>JOKEMASTER-3000</p>
         </div>
-        <div className="switch">
+        <div className="toggleWrapper">
           <input
             className="toggle"
             type="checkbox"

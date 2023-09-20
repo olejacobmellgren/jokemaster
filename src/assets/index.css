@@ -1,11 +1,27 @@
+@font-face {
+  font-family: Orbitron-Bold;
+  src: url(./Fonts/Orbitron-Bold.ttf);
+}
+
+@font-face {
+  font-family: inter;
+  src: url(./Fonts/Inter-Regular.ttf);
+}
+
 body {
+  font-family: inter;
+  font-size: 0.9rem;
   background-color: #becbd3;
 }
 
+.dark body {
+  background-color: #33404a;
+}
+
 .dark h1 {
-  color: #dddddd;
+  color: #f4f4f4;
 }
 
 .dark p {
-  color: #dddddd;
+  color: #f4f4f4;
 }
