@@ -18,17 +18,28 @@ Dataen henter vi fra et REST API kalt [JokeAPI](https://sv443.net/jokeapi/v2/). 
 
 ## Bruk av localstorage og sessionstorage
 
-Dataen vi henter fra API-et lagres i localstorage. Dette gjør at vi unngår unødvendige kall til API-et og heller henter data fra localstorage neste gang web-applikasjonen. I localstorage har vi da lagret lister med vitser innen de forskjellige kategoriene og favoritt vitser. Sessionstorage bruker vi for å lagre telleren ("counter"). Dette gjør at dersom man b
+Dataen vi henter fra API-et lagres i localstorage. Dette gjør at vi unngår unødvendige kall til API-et og heller henter data fra localstorage neste gang web-applikasjonen. I localstorage har vi da lagret lister med vitser innen de forskjellige kategoriene og favoritt vitser. Sessionstorage bruker vi for å lagre telleren ("counter"). Dette gjør at dersom man b (????)
+
 ## React Router
 
-## Responsiv design
+Vi har valgt å ikke bruke React Router. Dette er ikke nødvendig dersom man bare har en side på nettsiden. Likevel startet vi med å implementere det, men fjernet dette mot slutten da vi innså at vi bare hadde bruk for én side. Vi føler fortsatt det var fordelsmessig at vi startet med å bruke det ettersom vi mest sannsynlig kommer til å ha nytte av det i prosjekt 2.
+
+## Responsivt design
+
+Web-applikasjonen har et responsivt design som er tilpasset for de fleste PC-er og mobiltelefoner. I landskapsformat (PC-er) er grensesnitt begrenset av høyden, derfor definerer vi størrelser ut fra dette. Mens i portrettformat(mobiler) er størrelser definert av bredden siden dette er den begrensende faktoren. Får å oppnå dette har vi brukt media-queries for å finne ut av grensnittets orientering, og endre CSS etter dette. For å optimalisere grensesnittet i forhold til begresningene har vi valgt å endre noen av komponentenes plassering.
 
 ## Testing
 
+For å teste web-applikasjonen har vi laget tester av ulike typer. Dette er viktig for å kunne oppdage feil og problemet som kunne forblitt uoppdaget uten tester.
+
 ### Komponent-tester
+
+Vi har laget 
 
 ### Mock-tester
 
 ### Snapshot-tester
+
+### Manuell testing av grensesnitt
 
 ## Annet

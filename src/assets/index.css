@@ -12,6 +12,7 @@ body {
   font-family: inter;
   font-size: 0.9rem;
   background-color: #becbd3;
+  margin: 0;
 }
 
 .dark body {
