@@ -1,6 +1,6 @@
 # Løsninger til prosjekt krav
 
-Dette dokumentet inneholder beskrivelser av hvordan vi har valgt å oppfylle de ulike tekniske kravene som var stilt til prosjektet. 
+Dette dokumentet inneholder beskrivelser av hvordan vi har valgt å oppfylle de ulike tekniske kravene som var stilt til prosjektet.
 
 ## React med Typescript
 

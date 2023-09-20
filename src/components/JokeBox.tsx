@@ -117,6 +117,7 @@ function JokeBox() {
     checkIfFavorite();
   }, [counter, counterForRandomJokes, favoriteCounter]);
 
+  // sets the state for the joke to be displayed
   function setJokeState(jokeList: Joke[]) {
     // input is the Joke[]-list to fetch joke from. Dependent on current category selected.
     if (jokeList.length !== 0) {
@@ -205,6 +206,7 @@ function JokeBox() {
     setIsFavorite(isInFavorites);
   }
 
+  // adds or removes joke from favorites
   function handleFavorite() {
     if (!isFavorite) {
       const joke = getJoke();
@@ -248,6 +250,7 @@ function JokeBox() {
     checkIfFavorite();
   }
 
+  // switches to the specific joke selected in the dropdown
   function handleSelectJoke(event: ChangeEvent<HTMLSelectElement>) {
     const selectJoke = document.getElementById(
       "selectJoke",

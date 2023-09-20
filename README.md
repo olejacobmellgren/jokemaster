@@ -8,7 +8,7 @@ Prosjektet er konfigurert til å bygge med npm. Ved å kjøre `npm install` i **
 
 ## Kjøring av applikasjonen
 
-Etter man har utført en av kommandoen under **[Bygging](readme.md#bygging)** kan man kjøre applikasjonen enten lokalt eller med virtuell maskin. 
+Etter man har utført en av kommandoen under **[Bygging](readme.md#bygging)** kan man kjøre applikasjonen enten lokalt eller med virtuell maskin.
 
 - #### Kjøring lokalt
 

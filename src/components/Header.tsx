@@ -6,7 +6,6 @@ import { DarkModeProvider } from "../context/DarkModeContext"; // Importing Dark
 import { useContext } from "react";
 import Checkbox from "./Checkbox";
 
-
 function Header() {
   const { changeCategory } = useCategory(); // Getting changeCategory from the context
 
@@ -55,6 +54,7 @@ function Header() {
     setDropdown(!dropdown);
   }
 
+  // handles the checkbox logic, setting the checked checkbox to true and changing the category
   function handleCheck({
     checked,
     categoryType,
