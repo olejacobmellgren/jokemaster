@@ -98,8 +98,6 @@
   border-color: #333333;
 }
 
-
-
 @media (orientation: portrait) {
   .jokeboxWrapper {
     padding-top: 10vh;
@@ -152,6 +150,20 @@
     font-size: 4vw;
   }
   
+}
+
+.dark .scrollButton {
+  border-color: #F4F4F4;
+}
+
+.dark .arrow {
+  border-color: #F4F4F4;
+}
+
+.dark #selectJoke {
+  background-color: #5A7385;
+  border-color: #445662;
+  color: #d8d8d8;
 }
 
 

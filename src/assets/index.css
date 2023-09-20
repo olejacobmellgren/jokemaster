@@ -14,10 +14,14 @@ body {
   background-color: #becbd3;
 }
 
+.dark body {
+  background-color: #485D6C;
+}
+
 .dark h1 {
-  color: #dddddd;
+  color: #F4F4F4;
 }
 
 .dark p {
-  color: #dddddd;
+  color: #F4F4F4;
 }
