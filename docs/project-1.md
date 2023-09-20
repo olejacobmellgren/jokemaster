@@ -18,7 +18,7 @@ Dataen henter vi fra et REST API kalt [JokeAPI](https://sv443.net/jokeapi/v2/). 
 
 ## Bruk av localstorage og sessionstorage
 
-Dataen vi henter fra API-et lagres i localstorage. Dette gjør at vi unngår unødvendige kall til API-et og heller henter data fra localstorage neste gang web-applikasjonen kjøres. I localstorage har vi da lagret lister med vitser innen de forskjellige kategoriene og favoritt vitser. Vi lagrer også den nåværende kategorien brukeren befinner seg på, slik at neste gang man åpner web-applikasjonen starter man på samme kategori som før. Sessionstorage bruker vi for å lagre telleren ("counter"). Dette gjør at dersom man b (????)
+Dataen vi henter fra API-et lagres i localstorage. Dette gjør at vi unngår unødvendige kall til API-et og heller henter data fra localstorage neste gang web-applikasjonen. I localstorage har vi da lagret lister med vitser innen de forskjellige kategoriene og favoritt vitser. Vi lagrer også den nåværende kategorien brukeren befinner seg på, slik at neste gang man åpner web-applikasjonen starter man på samme kategori som før. Sessionstorage bruker vi for å lagre telleren ("counter") for når man ikke har valgt en spesifikk kategori. Dette gjør at dersom man begynner å scrolle blant de 40 vitsene uten å ha valgt en kategori, for så velge kategori og så gå tilbake, vil man forsette der man slapp. Dette gir bare mening å lagres for hver økt ("session") man bruker nettsiden, så derfor har vi brukt sessionstorage.
 
 ## React Router
 
@@ -47,3 +47,7 @@ Blant testene for JokeBox har vi også underveis innført Snapshot-tester. Dette
 #### Manuell testing av brukergrensesnitt
 
 I tillegg har vi gjennomført kontinuerlig manuell testing av brukergrensesnittet for å oppdage mulige feil. Når vi gjør dette setter vi oss inn i scenarioet som en bruker og prøver å bruke web-applikasjonen med funksjonalitet som har blitt implementert.
+
+## Annet
+
+I tillegg har vi laget to "Context"-filer, én for kategori og én for darkmode. Dette gjør at kategori og darkmode fungerer som gloabale variabler som er enkelt tilgjengelig på tvers av alle komponenter, som er nødvendig ettersom begge disse brukes i alle komponenter. Valg av darkmode lagres i localstorage ettersom det var et krav at slike preferanser skulle huskes neste gang brukeren åpner nettsiden.
