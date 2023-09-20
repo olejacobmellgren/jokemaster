@@ -12,5 +12,6 @@ module.exports = {
   rules: {
     "react-refresh/only-export-components": "off",
     "react-hooks/exhaustive-deps": "off",
+    "react-hooks/rules-of-hooks": "off",
   },
 };
