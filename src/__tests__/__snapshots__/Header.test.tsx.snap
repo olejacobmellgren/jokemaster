@@ -1,0 +1,75 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Show dropdown when clicked 1`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Category
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+      <div
+        class="dropdown"
+      >
+        <label>
+          <input
+            type="checkbox"
+          />
+          Programming
+        </label>
+        <label>
+          <input
+            type="checkbox"
+          />
+          Pun
+        </label>
+        <label>
+          <input
+            type="checkbox"
+          />
+          Spooky
+        </label>
+        <label>
+          <input
+            type="checkbox"
+          />
+          Christmas
+        </label>
+        <label>
+          <input
+            type="checkbox"
+          />
+          Favorites
+        </label>
+      </div>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

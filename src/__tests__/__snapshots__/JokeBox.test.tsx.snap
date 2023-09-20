@@ -1,0 +1,1288 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Joke renders when changing category 1`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Pun
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <p>
+      1 / 10
+    </p>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          I just got fired from my job at the keyboard factory.
+        </p>
+        <p>
+          They told me I wasn't putting in enough shifts.
+        </p>
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div>
+      <img
+        class="icon"
+        src="/project1/src/assets/images/no-favorite.png"
+      />
+    </div>
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+        <option
+          value="[87,0]"
+        >
+          I just got fired from my job a...
+        </option>
+        <option
+          value="[167,1]"
+        >
+          Has COVID-19 forced you to wea...
+        </option>
+        <option
+          value="[32,2]"
+        >
+          I'm reading a book about anti-...
+        </option>
+        <option
+          value="[41,3]"
+        >
+          The past, the present and the ...
+        </option>
+        <option
+          value="[127,4]"
+        >
+          What does a perverted frog say...
+        </option>
+        <option
+          value="[65,5]"
+        >
+          What do you call a cop's penis...
+        </option>
+        <option
+          value="[182,6]"
+        >
+          You see, mountains aren't just...
+        </option>
+        <option
+          value="[132,7]"
+        >
+          What do you call a cheap circu...
+        </option>
+        <option
+          value="[69,8]"
+        >
+          A grocery store cashier asked ...
+        </option>
+        <option
+          value="[43,9]"
+        >
+          My employer came running to me...
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Joke renders when changing category 2`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Pun
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <p>
+      2 / 10
+    </p>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          Has COVID-19 forced you to wear glasses and a mask at the same time?
+        </p>
+        <p>
+          If so, you may be entitled to condensation.
+        </p>
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div>
+      <img
+        class="icon"
+        src="/project1/src/assets/images/no-favorite.png"
+      />
+    </div>
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+        <option
+          value="[87,0]"
+        >
+          I just got fired from my job a...
+        </option>
+        <option
+          value="[167,1]"
+        >
+          Has COVID-19 forced you to wea...
+        </option>
+        <option
+          value="[32,2]"
+        >
+          I'm reading a book about anti-...
+        </option>
+        <option
+          value="[41,3]"
+        >
+          The past, the present and the ...
+        </option>
+        <option
+          value="[127,4]"
+        >
+          What does a perverted frog say...
+        </option>
+        <option
+          value="[65,5]"
+        >
+          What do you call a cop's penis...
+        </option>
+        <option
+          value="[182,6]"
+        >
+          You see, mountains aren't just...
+        </option>
+        <option
+          value="[132,7]"
+        >
+          What do you call a cheap circu...
+        </option>
+        <option
+          value="[69,8]"
+        >
+          A grocery store cashier asked ...
+        </option>
+        <option
+          value="[43,9]"
+        >
+          My employer came running to me...
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Joke renders when changing category 3`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Pun
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <p>
+      1 / 10
+    </p>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          I just got fired from my job at the keyboard factory.
+        </p>
+        <p>
+          They told me I wasn't putting in enough shifts.
+        </p>
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div>
+      <img
+        class="icon"
+        src="/project1/src/assets/images/no-favorite.png"
+      />
+    </div>
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+        <option
+          value="[87,0]"
+        >
+          I just got fired from my job a...
+        </option>
+        <option
+          value="[167,1]"
+        >
+          Has COVID-19 forced you to wea...
+        </option>
+        <option
+          value="[32,2]"
+        >
+          I'm reading a book about anti-...
+        </option>
+        <option
+          value="[41,3]"
+        >
+          The past, the present and the ...
+        </option>
+        <option
+          value="[127,4]"
+        >
+          What does a perverted frog say...
+        </option>
+        <option
+          value="[65,5]"
+        >
+          What do you call a cop's penis...
+        </option>
+        <option
+          value="[182,6]"
+        >
+          You see, mountains aren't just...
+        </option>
+        <option
+          value="[132,7]"
+        >
+          What do you call a cheap circu...
+        </option>
+        <option
+          value="[69,8]"
+        >
+          A grocery store cashier asked ...
+        </option>
+        <option
+          value="[43,9]"
+        >
+          My employer came running to me...
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test if favorite works 1`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Pun
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <p>
+      1 / 10
+    </p>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          I just got fired from my job at the keyboard factory.
+        </p>
+        <p>
+          They told me I wasn't putting in enough shifts.
+        </p>
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div>
+      <img
+        class="icon"
+        src="/project1/src/assets/images/favorite.png"
+      />
+    </div>
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+        <option
+          value="[87,0]"
+        >
+          I just got fired from my job a...
+        </option>
+        <option
+          value="[167,1]"
+        >
+          Has COVID-19 forced you to wea...
+        </option>
+        <option
+          value="[32,2]"
+        >
+          I'm reading a book about anti-...
+        </option>
+        <option
+          value="[41,3]"
+        >
+          The past, the present and the ...
+        </option>
+        <option
+          value="[127,4]"
+        >
+          What does a perverted frog say...
+        </option>
+        <option
+          value="[65,5]"
+        >
+          What do you call a cop's penis...
+        </option>
+        <option
+          value="[182,6]"
+        >
+          You see, mountains aren't just...
+        </option>
+        <option
+          value="[132,7]"
+        >
+          What do you call a cheap circu...
+        </option>
+        <option
+          value="[69,8]"
+        >
+          A grocery store cashier asked ...
+        </option>
+        <option
+          value="[43,9]"
+        >
+          My employer came running to me...
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test if favorite works 2`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Favorites
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <div>
+      <p>
+        1 / 1
+      </p>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          I just got fired from my job at the keyboard factory.
+        </p>
+        <p>
+          They told me I wasn't putting in enough shifts.
+        </p>
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div>
+      <img
+        class="icon"
+        src="/project1/src/assets/images/favorite.png"
+      />
+    </div>
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+        <option
+          value="[87,0]"
+        >
+          I just got fired from my job a...
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test if you can unfavorite joke inside Favorites-category 1`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Favorites
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <div>
+      <p />
+    </div>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          You have no favorites
+        </p>
+        <p />
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div />
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test render jokes 1`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Programming
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <p>
+      1 / 10
+    </p>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          why do python programmers wear glasses?
+        </p>
+        <p>
+          Because they can't C.
+        </p>
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div>
+      <img
+        class="icon"
+        src="/project1/src/assets/images/no-favorite.png"
+      />
+    </div>
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+        <option
+          value="[294,0]"
+        >
+          why do python programmers wear...
+        </option>
+        <option
+          value="[55,1]"
+        >
+          Your momma is so fat, you need...
+        </option>
+        <option
+          value="[75,2]"
+        >
+          I have a joke about Stack Over...
+        </option>
+        <option
+          value="[34,3]"
+        >
+          What are bits?...
+        </option>
+        <option
+          value="[88,4]"
+        >
+          Why did the Python data scient...
+        </option>
+        <option
+          value="[263,5]"
+        >
+          Why did the web developer walk...
+        </option>
+        <option
+          value="[58,6]"
+        >
+          Your momma is so fat, you need...
+        </option>
+        <option
+          value="[98,7]"
+        >
+          What is the best prefix for gl...
+        </option>
+        <option
+          value="[12,8]"
+        >
+          Why do Java programmers hate c...
+        </option>
+        <option
+          value="[76,9]"
+        >
+          The generation of random numbe...
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test right and left click 1`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Programming
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <p>
+      1 / 10
+    </p>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          why do python programmers wear glasses?
+        </p>
+        <p>
+          Because they can't C.
+        </p>
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div>
+      <img
+        class="icon"
+        src="/project1/src/assets/images/no-favorite.png"
+      />
+    </div>
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+        <option
+          value="[294,0]"
+        >
+          why do python programmers wear...
+        </option>
+        <option
+          value="[55,1]"
+        >
+          Your momma is so fat, you need...
+        </option>
+        <option
+          value="[75,2]"
+        >
+          I have a joke about Stack Over...
+        </option>
+        <option
+          value="[34,3]"
+        >
+          What are bits?...
+        </option>
+        <option
+          value="[88,4]"
+        >
+          Why did the Python data scient...
+        </option>
+        <option
+          value="[263,5]"
+        >
+          Why did the web developer walk...
+        </option>
+        <option
+          value="[58,6]"
+        >
+          Your momma is so fat, you need...
+        </option>
+        <option
+          value="[98,7]"
+        >
+          What is the best prefix for gl...
+        </option>
+        <option
+          value="[12,8]"
+        >
+          Why do Java programmers hate c...
+        </option>
+        <option
+          value="[76,9]"
+        >
+          The generation of random numbe...
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test right and left click 2`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Programming
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <p>
+      2 / 10
+    </p>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          Your momma is so fat, you need to switch to NTFS to store a picture of her.
+        </p>
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div>
+      <img
+        class="icon"
+        src="/project1/src/assets/images/no-favorite.png"
+      />
+    </div>
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+        <option
+          value="[294,0]"
+        >
+          why do python programmers wear...
+        </option>
+        <option
+          value="[55,1]"
+        >
+          Your momma is so fat, you need...
+        </option>
+        <option
+          value="[75,2]"
+        >
+          I have a joke about Stack Over...
+        </option>
+        <option
+          value="[34,3]"
+        >
+          What are bits?...
+        </option>
+        <option
+          value="[88,4]"
+        >
+          Why did the Python data scient...
+        </option>
+        <option
+          value="[263,5]"
+        >
+          Why did the web developer walk...
+        </option>
+        <option
+          value="[58,6]"
+        >
+          Your momma is so fat, you need...
+        </option>
+        <option
+          value="[98,7]"
+        >
+          What is the best prefix for gl...
+        </option>
+        <option
+          value="[12,8]"
+        >
+          Why do Java programmers hate c...
+        </option>
+        <option
+          value="[76,9]"
+        >
+          The generation of random numbe...
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test right and left click 3`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="dropdownButtonWrapper"
+    >
+      <button
+        class="dropdownButton"
+      >
+        <label
+          class="DdBlabel"
+        >
+          Programming
+        </label>
+        <i
+          class="arrow"
+        />
+      </button>
+    </div>
+    <div
+      class="logo"
+    >
+      <p>
+        JOKEMASTER-3000
+      </p>
+    </div>
+    <div
+      class="switch"
+    >
+      <input
+        class="toggle"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div
+    class="App"
+  >
+    <div>
+      <header />
+      <main />
+    </div>
+  </div>
+  <div>
+    <p>
+      1 / 10
+    </p>
+    <div
+      class="jokebox"
+    >
+      <button>
+        Previous
+      </button>
+      <div>
+        <p>
+          why do python programmers wear glasses?
+        </p>
+        <p>
+          Because they can't C.
+        </p>
+      </div>
+      <button>
+         Next 
+      </button>
+    </div>
+    <div>
+      <img
+        class="icon"
+        src="/project1/src/assets/images/no-favorite.png"
+      />
+    </div>
+    <div>
+      <select
+        id="selectJoke"
+      >
+        <option
+          disabled=""
+          value="default"
+        >
+          Select specific joke
+        </option>
+        <option
+          value="[294,0]"
+        >
+          why do python programmers wear...
+        </option>
+        <option
+          value="[55,1]"
+        >
+          Your momma is so fat, you need...
+        </option>
+        <option
+          value="[75,2]"
+        >
+          I have a joke about Stack Over...
+        </option>
+        <option
+          value="[34,3]"
+        >
+          What are bits?...
+        </option>
+        <option
+          value="[88,4]"
+        >
+          Why did the Python data scient...
+        </option>
+        <option
+          value="[263,5]"
+        >
+          Why did the web developer walk...
+        </option>
+        <option
+          value="[58,6]"
+        >
+          Your momma is so fat, you need...
+        </option>
+        <option
+          value="[98,7]"
+        >
+          What is the best prefix for gl...
+        </option>
+        <option
+          value="[12,8]"
+        >
+          Why do Java programmers hate c...
+        </option>
+        <option
+          value="[76,9]"
+        >
+          The generation of random numbe...
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
