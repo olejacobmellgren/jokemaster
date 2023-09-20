@@ -19,7 +19,7 @@ function Header() {
   const [favorites, setFavorites] = useState(false);
   const [category, setCategory] = useState("");
 
-  // a quick check to initiate the category to 'Category'
+  // check if lastCategory exists in localStorage. If so, update category to that category. If not, set category to "Category"
   useEffect(() => {
     if (!programming && category == "") {
       const lastCategory = localStorage.getItem("lastCategory");
