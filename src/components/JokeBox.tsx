@@ -27,7 +27,6 @@ function JokeBox() {
   const [jokesFromCategory, setJokesFromCategory] = useState<Joke[]>([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
-
   // extracts data from localStorage and saves it to the state "jokes"
   useEffect(() => {
     // recursive function to fetch data from localStorage
@@ -292,10 +291,13 @@ function JokeBox() {
             </select>
           )}
         </div>
-        
+
         <div className="jokebox">
           <div>
-            <button onClick={handleLeftClick} className="scrollButton scrollButtonTop">
+            <button
+              onClick={handleLeftClick}
+              className="scrollButton scrollButtonTop"
+            >
               <i className="arrow left"></i>
             </button>
           </div>
@@ -315,7 +317,10 @@ function JokeBox() {
           </div>
 
           <div>
-            <button onClick={handleRightClick} className="scrollButton scrollButtonTop">
+            <button
+              onClick={handleRightClick}
+              className="scrollButton scrollButtonTop"
+            >
               <span className="arrow right"></span>
             </button>
           </div>
@@ -323,7 +328,10 @@ function JokeBox() {
 
         <div className="jokeboxBottom">
           <div>
-            <button onClick={handleLeftClick} className="scrollButton scrollButtonBottom">
+            <button
+              onClick={handleLeftClick}
+              className="scrollButton scrollButtonBottom"
+            >
               <i className="arrow left"></i>
             </button>
           </div>
@@ -331,7 +339,11 @@ function JokeBox() {
           <div>
             {selectedCategory === "Favorites" &&
             favorites.length === 0 ? null : isFavorite ? (
-              <img onClick={handleFavorite} className="icon" src={favorite}></img>
+              <img
+                onClick={handleFavorite}
+                className="icon"
+                src={favorite}
+              ></img>
             ) : (
               <img
                 onClick={handleFavorite}
@@ -342,7 +354,10 @@ function JokeBox() {
           </div>
 
           <div>
-            <button onClick={handleRightClick} className="scrollButton scrollButtonBottom">
+            <button
+              onClick={handleRightClick}
+              className="scrollButton scrollButtonBottom"
+            >
               <span className="arrow right"></span>
             </button>
           </div>

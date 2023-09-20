@@ -102,7 +102,6 @@
   content: "\1F506";
 }
 
-
 @media (orientation: portrait) {
   .header {
     height: 10vh;
@@ -110,7 +109,7 @@
 
   .logo {
     width: 40%;
-    font-size: 3.3vw
+    font-size: 3.3vw;
   }
 
   .dropdownButtonWrapper {

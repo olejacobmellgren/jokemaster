@@ -5,7 +5,6 @@
   font-family: Orbitron-Bold;
 }
 
-
 .jokeboxWrapper {
   position: fixed;
   top: 0;
@@ -36,7 +35,7 @@
 }
 
 .joke {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 3vh;
   display: flex;
   flex-direction: column;
@@ -61,7 +60,7 @@
   margin: 2vw 2vw;
   border: 1vh solid #2b2b2b;
   border-radius: 10vh;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
   align-items: center;
 }
@@ -81,7 +80,7 @@
 
 .scrollButton > .left {
   transform: rotate(135deg);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .scrollButton:hover > .right {
@@ -90,7 +89,7 @@
 
 .scrollButton > .right {
   transform: rotate(-45deg);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 #selectJoke {
@@ -137,7 +136,7 @@
     border: 2.5vw solid #2b2b2b;
     border-radius: 20vw;
   }
-  
+
   .scrollButton > .arrow {
     width: 8vw;
     height: 8vw;
@@ -145,11 +144,11 @@
     border-bottom: 2.5vw solid #2b2b2b;
     border-radius: 1vw;
   }
-  
+
   .scrollButton:hover > .left {
     transform: rotate(135deg) translate(0, 0);
   }
-  
+
   .scrollButton:hover > .right {
     transform: rotate(-45deg) translate(0, 0);
   }
@@ -161,15 +160,14 @@
     width: 42vw;
     font-size: 4vw;
   }
-  
 }
 
 .dark .scrollButton {
-  border-color: #F4F4F4;
+  border-color: #f4f4f4;
 }
 
 .dark .arrow {
-  border-color: #F4F4F4;
+  border-color: #f4f4f4;
 }
 
 .dark #selectJoke {
@@ -177,5 +175,3 @@
   border-color: #4c6677;
   color: #d8d8d8;
 }
-
-
