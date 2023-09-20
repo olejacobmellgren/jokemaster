@@ -314,8 +314,8 @@ test("Test if favorite works", async () => {
   await userEvent.click(favorites);
   expect(favorites).toBeTruthy(); // The text is found
 
-  const joke_number = getByText("1 / 1");
-  expect(joke_number.textContent).toBe("1 / 1");
+  const favorite_joke_number = getByText("1 / 1");
+  expect(favorite_joke_number.textContent).toBe("1 / 1");
 
   const joke_setup = getByText(
     "I just got fired from my job at the keyboard factory.",
