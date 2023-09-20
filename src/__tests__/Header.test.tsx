@@ -13,8 +13,8 @@ test("Show dropdown when clicked", async () => {
 
   const dropDown = getByRole("button");
   await userEvent.click(dropDown);
-  expect(asFragment()).toMatchSnapshot()
-  
+  expect(asFragment()).toMatchSnapshot();
+
   const programming = getByText("Programming");
   expect(programming).toBeTruthy(); // The text is found
 
@@ -23,7 +23,6 @@ test("Show dropdown when clicked", async () => {
 
   const favorites = getByText("Favorites");
   expect(favorites).toBeTruthy(); // The text is found
-
 });
 
 test("Title is found", () => {
