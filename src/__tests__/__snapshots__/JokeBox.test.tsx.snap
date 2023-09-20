@@ -17,7 +17,7 @@ exports[`Joke renders when changing category 1`] = `
           Pun
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -29,7 +29,7 @@ exports[`Joke renders when changing category 1`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -38,42 +38,11 @@ exports[`Joke renders when changing category 1`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <p>
-      1 / 10
-    </p>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          I just got fired from my job at the keyboard factory.
-        </p>
-        <p>
-          They told me I wasn't putting in enough shifts.
-        </p>
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div>
-      <img
-        class="icon"
-        src="/project1/src/assets/images/no-favorite.png"
-      />
-    </div>
-    <div>
       <select
         id="selectJoke"
       >
@@ -134,6 +103,75 @@ exports[`Joke renders when changing category 1`] = `
           My employer came running to me...
         </option>
       </select>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          I just got fired from my job at the keyboard factory.
+        </p>
+        <p>
+          They told me I wasn't putting in enough shifts.
+        </p>
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div>
+        <img
+          class="icon"
+          src="/project1/src/assets/images/no-favorite.png"
+        />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <p>
+        1 / 10
+      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -156,7 +194,7 @@ exports[`Joke renders when changing category 2`] = `
           Pun
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -168,7 +206,7 @@ exports[`Joke renders when changing category 2`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -177,42 +215,11 @@ exports[`Joke renders when changing category 2`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <p>
-      2 / 10
-    </p>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          Has COVID-19 forced you to wear glasses and a mask at the same time?
-        </p>
-        <p>
-          If so, you may be entitled to condensation.
-        </p>
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div>
-      <img
-        class="icon"
-        src="/project1/src/assets/images/no-favorite.png"
-      />
-    </div>
-    <div>
       <select
         id="selectJoke"
       >
@@ -273,6 +280,75 @@ exports[`Joke renders when changing category 2`] = `
           My employer came running to me...
         </option>
       </select>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          Has COVID-19 forced you to wear glasses and a mask at the same time?
+        </p>
+        <p>
+          If so, you may be entitled to condensation.
+        </p>
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div>
+        <img
+          class="icon"
+          src="/project1/src/assets/images/no-favorite.png"
+        />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <p>
+        2 / 10
+      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -295,7 +371,7 @@ exports[`Joke renders when changing category 3`] = `
           Pun
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -307,7 +383,7 @@ exports[`Joke renders when changing category 3`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -316,42 +392,11 @@ exports[`Joke renders when changing category 3`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <p>
-      1 / 10
-    </p>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          I just got fired from my job at the keyboard factory.
-        </p>
-        <p>
-          They told me I wasn't putting in enough shifts.
-        </p>
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div>
-      <img
-        class="icon"
-        src="/project1/src/assets/images/no-favorite.png"
-      />
-    </div>
-    <div>
       <select
         id="selectJoke"
       >
@@ -412,6 +457,75 @@ exports[`Joke renders when changing category 3`] = `
           My employer came running to me...
         </option>
       </select>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          I just got fired from my job at the keyboard factory.
+        </p>
+        <p>
+          They told me I wasn't putting in enough shifts.
+        </p>
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div>
+        <img
+          class="icon"
+          src="/project1/src/assets/images/no-favorite.png"
+        />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <p>
+        1 / 10
+      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -434,7 +548,7 @@ exports[`Test if favorite works 1`] = `
           Pun
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -446,7 +560,7 @@ exports[`Test if favorite works 1`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -455,42 +569,11 @@ exports[`Test if favorite works 1`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <p>
-      1 / 10
-    </p>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          I just got fired from my job at the keyboard factory.
-        </p>
-        <p>
-          They told me I wasn't putting in enough shifts.
-        </p>
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div>
-      <img
-        class="icon"
-        src="/project1/src/assets/images/favorite.png"
-      />
-    </div>
-    <div>
       <select
         id="selectJoke"
       >
@@ -552,6 +635,75 @@ exports[`Test if favorite works 1`] = `
         </option>
       </select>
     </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          I just got fired from my job at the keyboard factory.
+        </p>
+        <p>
+          They told me I wasn't putting in enough shifts.
+        </p>
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div>
+        <img
+          class="icon"
+          src="/project1/src/assets/images/favorite.png"
+        />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <p>
+        1 / 10
+      </p>
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -573,7 +725,7 @@ exports[`Test if favorite works 2`] = `
           Favorites
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -585,7 +737,7 @@ exports[`Test if favorite works 2`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -594,44 +746,11 @@ exports[`Test if favorite works 2`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <div>
-      <p>
-        1 / 1
-      </p>
-    </div>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          I just got fired from my job at the keyboard factory.
-        </p>
-        <p>
-          They told me I wasn't putting in enough shifts.
-        </p>
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div>
-      <img
-        class="icon"
-        src="/project1/src/assets/images/favorite.png"
-      />
-    </div>
-    <div>
       <select
         id="selectJoke"
       >
@@ -647,6 +766,77 @@ exports[`Test if favorite works 2`] = `
           I just got fired from my job a...
         </option>
       </select>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          I just got fired from my job at the keyboard factory.
+        </p>
+        <p>
+          They told me I wasn't putting in enough shifts.
+        </p>
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div>
+        <img
+          class="icon"
+          src="/project1/src/assets/images/favorite.png"
+        />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <div>
+        <p>
+          1 / 1
+        </p>
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -669,7 +859,7 @@ exports[`Test if you can unfavorite joke inside Favorites-category 1`] = `
           Favorites
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -681,7 +871,7 @@ exports[`Test if you can unfavorite joke inside Favorites-category 1`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -690,35 +880,11 @@ exports[`Test if you can unfavorite joke inside Favorites-category 1`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <div>
-      <p />
-    </div>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          You have no favorites
-        </p>
-        <p />
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div />
-    <div>
       <select
         id="selectJoke"
       >
@@ -729,6 +895,68 @@ exports[`Test if you can unfavorite joke inside Favorites-category 1`] = `
           Select specific joke
         </option>
       </select>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          You have no favorites
+        </p>
+        <p />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div />
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <div>
+        <p />
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -751,7 +979,7 @@ exports[`Test render jokes 1`] = `
           Programming
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -763,7 +991,7 @@ exports[`Test render jokes 1`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -772,42 +1000,11 @@ exports[`Test render jokes 1`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <p>
-      1 / 10
-    </p>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          why do python programmers wear glasses?
-        </p>
-        <p>
-          Because they can't C.
-        </p>
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div>
-      <img
-        class="icon"
-        src="/project1/src/assets/images/no-favorite.png"
-      />
-    </div>
-    <div>
       <select
         id="selectJoke"
       >
@@ -868,6 +1065,75 @@ exports[`Test render jokes 1`] = `
           The generation of random numbe...
         </option>
       </select>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          why do python programmers wear glasses?
+        </p>
+        <p>
+          Because they can't C.
+        </p>
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div>
+        <img
+          class="icon"
+          src="/project1/src/assets/images/no-favorite.png"
+        />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <p>
+        1 / 10
+      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -890,7 +1156,7 @@ exports[`Test right and left click 1`] = `
           Programming
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -902,7 +1168,7 @@ exports[`Test right and left click 1`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -911,42 +1177,11 @@ exports[`Test right and left click 1`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <p>
-      1 / 10
-    </p>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          why do python programmers wear glasses?
-        </p>
-        <p>
-          Because they can't C.
-        </p>
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div>
-      <img
-        class="icon"
-        src="/project1/src/assets/images/no-favorite.png"
-      />
-    </div>
-    <div>
       <select
         id="selectJoke"
       >
@@ -1007,6 +1242,75 @@ exports[`Test right and left click 1`] = `
           The generation of random numbe...
         </option>
       </select>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          why do python programmers wear glasses?
+        </p>
+        <p>
+          Because they can't C.
+        </p>
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div>
+        <img
+          class="icon"
+          src="/project1/src/assets/images/no-favorite.png"
+        />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <p>
+        1 / 10
+      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -1029,7 +1333,7 @@ exports[`Test right and left click 2`] = `
           Programming
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -1041,7 +1345,7 @@ exports[`Test right and left click 2`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -1050,39 +1354,11 @@ exports[`Test right and left click 2`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <p>
-      2 / 10
-    </p>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          Your momma is so fat, you need to switch to NTFS to store a picture of her.
-        </p>
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div>
-      <img
-        class="icon"
-        src="/project1/src/assets/images/no-favorite.png"
-      />
-    </div>
-    <div>
       <select
         id="selectJoke"
       >
@@ -1143,6 +1419,72 @@ exports[`Test right and left click 2`] = `
           The generation of random numbe...
         </option>
       </select>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          Your momma is so fat, you need to switch to NTFS to store a picture of her.
+        </p>
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div>
+        <img
+          class="icon"
+          src="/project1/src/assets/images/no-favorite.png"
+        />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <p>
+        2 / 10
+      </p>
     </div>
   </div>
 </DocumentFragment>
@@ -1165,7 +1507,7 @@ exports[`Test right and left click 3`] = `
           Programming
         </label>
         <i
-          class="arrow"
+          class="dropdownArrow"
         />
       </button>
     </div>
@@ -1177,7 +1519,7 @@ exports[`Test right and left click 3`] = `
       </p>
     </div>
     <div
-      class="switch"
+      class="toggleWrapper"
     >
       <input
         class="toggle"
@@ -1186,42 +1528,11 @@ exports[`Test right and left click 3`] = `
     </div>
   </div>
   <div
-    class="App"
+    class="jokeboxWrapper"
   >
-    <div>
-      <header />
-      <main />
-    </div>
-  </div>
-  <div>
-    <p>
-      1 / 10
-    </p>
     <div
-      class="jokebox"
+      class="jokeboxTop"
     >
-      <button>
-        Previous
-      </button>
-      <div>
-        <p>
-          why do python programmers wear glasses?
-        </p>
-        <p>
-          Because they can't C.
-        </p>
-      </div>
-      <button>
-         Next 
-      </button>
-    </div>
-    <div>
-      <img
-        class="icon"
-        src="/project1/src/assets/images/no-favorite.png"
-      />
-    </div>
-    <div>
       <select
         id="selectJoke"
       >
@@ -1282,6 +1593,75 @@ exports[`Test right and left click 3`] = `
           The generation of random numbe...
         </option>
       </select>
+    </div>
+    <div
+      class="jokebox"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div
+        class="joke"
+      >
+        <p>
+          why do python programmers wear glasses?
+        </p>
+        <p>
+          Because they can't C.
+        </p>
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonTop"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="jokeboxBottom"
+    >
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="left"
+        >
+          <i
+            class="arrow left"
+          />
+        </button>
+      </div>
+      <div>
+        <img
+          class="icon"
+          src="/project1/src/assets/images/no-favorite.png"
+        />
+      </div>
+      <div>
+        <button
+          class="scrollButton scrollButtonBottom"
+          data-testid="right"
+        >
+          <span
+            class="arrow right"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="counter"
+    >
+      <p>
+        1 / 10
+      </p>
     </div>
   </div>
 </DocumentFragment>

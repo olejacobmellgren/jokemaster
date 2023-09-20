@@ -1,6 +1,4 @@
 import Header from "./components/Header.tsx";
-import { Route, Routes } from "react-router-dom";
-import Mainpage from "./pages/MainPage";
 import {
   useQuery,
   QueryClient,
@@ -70,11 +68,6 @@ function App() {
       <DarkModeProvider>
         <CategoryProvider>
           <Header />
-          <div className="App">
-            <Routes>
-              <Route path="/" element={<Mainpage />} />
-            </Routes>
-          </div>
           <JokeComponent />
           <JokeBox />
         </CategoryProvider>

@@ -334,6 +334,7 @@ function JokeBox() {
             <button
               onClick={handleLeftClick}
               className="scrollButton scrollButtonBottom"
+              data-testid="left"
             >
               <i className="arrow left"></i>
             </button>
@@ -360,6 +361,7 @@ function JokeBox() {
             <button
               onClick={handleRightClick}
               className="scrollButton scrollButtonBottom"
+              data-testid="right"
             >
               <span className="arrow right"></span>
             </button>

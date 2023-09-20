@@ -3,7 +3,6 @@ import { setupServer } from "msw/node";
 import { render } from "@testing-library/react";
 import { test, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
 import App from "../App";
 
 const server = setupServer(
@@ -183,11 +182,7 @@ afterAll(() => {
 });
 
 test("Test render jokes", async () => {
-  const { getByText, getByRole, asFragment } = render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  );
+  const { getByText, getByRole, asFragment } = render(<App />);
 
   const dropDown = getByRole("button", { name: "Category" });
   await userEvent.click(dropDown);
@@ -206,17 +201,13 @@ test("Test render jokes", async () => {
 });
 
 test("Test right and left click", async () => {
-  const { getByText, getByRole, asFragment } = render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  );
+  const { getByText, asFragment, getByTestId } = render(<App />);
 
   let joke_number = getByText("1 / 10");
   expect(joke_number.textContent).toBe("1 / 10");
   expect(asFragment()).toMatchSnapshot();
 
-  await userEvent.click(getByRole("button", { name: "Next" }));
+  await userEvent.click(getByTestId("right"));
   expect(asFragment()).toMatchSnapshot();
   const joke = getByText(
     "Your momma is so fat, you need to switch to NTFS to store a picture of her.",
@@ -229,7 +220,7 @@ test("Test right and left click", async () => {
   expect(joke_number.textContent).not.toBe("1 / 10");
   expect(joke_number.textContent).toBe("2 / 10");
 
-  await userEvent.click(getByRole("button", { name: "Previous" }));
+  await userEvent.click(getByTestId("left"));
   expect(asFragment()).toMatchSnapshot();
   joke_number = getByText("1 / 10");
   expect(joke_number.textContent).not.toBe("2 / 10");
@@ -244,11 +235,7 @@ test("Test right and left click", async () => {
 });
 
 test("Joke renders when changing category", async () => {
-  const { getByText, getByRole, asFragment } = render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  );
+  const { getByText, getByRole, asFragment, getByTestId } = render(<App />);
   const dropDown = getByRole("button", { name: "Programming" });
   await userEvent.click(dropDown);
   const pun = getByText("Pun");
@@ -259,7 +246,7 @@ test("Joke renders when changing category", async () => {
   let joke_number = getByText("1 / 10");
   expect(joke_number.textContent).toBe("1 / 10");
 
-  await userEvent.click(getByRole("button", { name: "Next" }));
+  await userEvent.click(getByTestId("right"));
   expect(asFragment()).toMatchSnapshot();
   let joke_setup = getByText(
     "Has COVID-19 forced you to wear glasses and a mask at the same time?",
@@ -276,7 +263,7 @@ test("Joke renders when changing category", async () => {
   expect(joke_number.textContent).not.toBe("1 / 10");
   expect(joke_number.textContent).toBe("2 / 10");
 
-  await userEvent.click(getByRole("button", { name: "Previous" }));
+  await userEvent.click(getByTestId("left"));
   expect(asFragment()).toMatchSnapshot();
   joke_number = getByText("1 / 10");
   expect(joke_number.textContent).not.toBe("2 / 10");
@@ -294,11 +281,7 @@ test("Joke renders when changing category", async () => {
 });
 
 test("Test if favorite works", async () => {
-  const { getByText, getByRole, asFragment } = render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  );
+  const { getByText, getByRole, asFragment } = render(<App />);
 
   const image = getByRole("img");
   await userEvent.click(image); // favorite the joke. Image refers to the heart
@@ -329,11 +312,7 @@ test("Test if favorite works", async () => {
 });
 
 test("Test if you can unfavorite joke inside Favorites-category", async () => {
-  const { getByText, getByRole, asFragment } = render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  );
+  const { getByText, getByRole, asFragment } = render(<App />);
 
   const image = getByRole("img");
   await userEvent.click(image); // unfavorite the joke. Image refers to the heart
