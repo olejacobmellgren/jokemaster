@@ -10,13 +10,13 @@ Prosjektet er konfigurert til å bygge med npm. Ved å kjøre `npm install` i **
 
 Etter man har utført en av kommandoen under **[Bygging](readme.md#bygging)** kan man kjøre applikasjonen enten lokalt eller med virtuell maskin. 
 
-- ### Kjøring lokalt
+- #### Kjøring lokalt
 
 Man kan kjøre applikasjonen med lokal lagring ved å navigere til **prosjekt-1** og kjøre `npm run dev`. Da vil appen kjøres på en localhost med en lenke som dukker opp i terminalen.
 
-- ### Kjøring med virtuell maskin
+- #### Kjøring med virtuell maskin
 
-Man kan kjøre applikasjonen med virtuell maskin ved å gå til en nettleser og skrive inn lenken: [it2810-25.idi.ntnu.no](http://it2810-25.idi.ntnu.no/project1/). Merk at virtuell maskin bare er tilgjengelig på NTNU sitt nettverk eller via VPN.
+Man kan kjøre applikasjonen med virtuell maskin ved å gå til en nettleser og skrive inn lenken: [it2810-25.idi.ntnu.no/project1/](http://it2810-25.idi.ntnu.no/project1/). Merk at virtuell maskin bare er tilgjengelig på NTNU sitt nettverk eller via VPN.
 
 ## Testing
 

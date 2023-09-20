@@ -8,7 +8,7 @@ Prosjektet ble satt opp med Vite som tilbyr en enkel måte å sette opp et prosj
 
 ## React state og props
 
-For å vedlikeholde state i web-applikasjon har vi tatt i bruk React sin hook kalt useState(). Dette tillater oss å gi funksjonelle komponenter en state. Denne hooken tilbyr en nåværende verdi og en setter-funksjon for å endre denne verdien. I "Header" har vi brukt useState for å holde oversikt over hvilken kategori av vitser som er valgt. I "Jokebox" har vi brukt useState for flere deler. Vi har brukt det blant annetfor å ha en liste med oversikt over hvilke vitser som skal vises, for en teller ("counter") som bestemmer hvilken vits som skal vises og for å vite om en vits er favoritt eller ikke. I tillegg trengte vi en useState-hook for å endre teksten til vitsen som skal vises.
+For å vedlikeholde state i web-applikasjon har vi tatt i bruk React sin hook kalt useState(). Dette tillater oss å gi funksjonelle komponenter en state. Denne hooken tilbyr en nåværende verdi og en setter-funksjon for å endre denne verdien. I "Header" har vi brukt useState for å holde oversikt over hvilken kategori av vitser som er valgt. I "Jokebox" har vi brukt useState for flere deler. Vi har brukt det blant annet for å ha en liste med oversikt over hvilke vitser som skal vises, for en teller ("counter") som bestemmer hvilken vits som skal vises og for å vite om en vits er favoritt eller ikke. I tillegg trengte vi en useState-hook for å endre teksten til vitsen som skal vises.
 
 Props er noe vi ikke har tatt i bruk like mye. Vi har brukt det for en sjekkboks ("checkbox") som er en komponent med properties navn, sjekket ("checked") og onChange-funksjon. Det er hensiktsmessig å ha dette som en komponent ettersom den skal brukes flere ganger i dropdown menyen i header. Vi vurderte om det ville være mer effektivt og oversiktlig om Jokebox komponenten ble delt opp i flere komponenter som tar i bruk props. Likevel kom vi fram til at dette ikke var nødvendig siden vi bare har én statisk side der det er lite muligheter for universalt gjenbruk.
 
@@ -18,7 +18,7 @@ Dataen henter vi fra et REST API kalt [JokeAPI](https://sv443.net/jokeapi/v2/). 
 
 ## Bruk av localstorage og sessionstorage
 
-Dataen vi henter fra API-et lagres i localstorage. Dette gjør at vi unngår unødvendige kall til API-et og heller henter data fra localstorage neste gang web-applikasjonen. I localstorage har vi da lagret lister med vitser innen de forskjellige kategoriene og favoritt vitser. Sessionstorage bruker vi for å lagre telleren ("counter"). Dette gjør at dersom man b (????)
+Dataen vi henter fra API-et lagres i localstorage. Dette gjør at vi unngår unødvendige kall til API-et og heller henter data fra localstorage neste gang web-applikasjonen kjøres. I localstorage har vi da lagret lister med vitser innen de forskjellige kategoriene og favoritt vitser. Vi lagrer også den nåværende kategorien brukeren befinner seg på, slik at neste gang man åpner web-applikasjonen starter man på samme kategori som før. Sessionstorage bruker vi for å lagre telleren ("counter"). Dette gjør at dersom man b (????)
 
 ## React Router
 
@@ -26,24 +26,24 @@ Vi har valgt å ikke bruke React Router. Dette er ikke nødvendig dersom man bar
 
 ## Responsivt design
 
-Web-applikasjonen har et responsivt design som er tilpasset for de fleste PC-er og mobiltelefoner. I landskapsformat (PC-er) er grensesnitt begrenset av høyden, derfor definerer vi størrelser ut fra dette. Mens i portrettformat(mobiler) er størrelser definert av bredden siden dette er den begrensende faktoren. Får å oppnå dette har vi brukt media-queries for å finne ut av grensnittets orientering, og endre CSS etter dette. For å optimalisere grensesnittet i forhold til begresningene har vi valgt å endre noen av komponentenes plassering.
+Web-applikasjonen har et responsivt design som er tilpasset for de fleste PC-er og mobiltelefoner. I landskapsformat (PC-er) er grensesnitt begrenset av høyden, derfor definerer vi størrelser ut fra dette. Mens i portrettformat(mobiler) er størrelser definert av bredden siden dette er den begrensende faktoren. Får å oppnå dette har vi brukt media-queries for å finne ut av grensesnittets orientering, og endre CSS etter dette. For å optimalisere grensesnittet i forhold til begresningene har vi valgt å endre noen av komponentenes plassering.
 
 ## Testing
 
 For å teste web-applikasjonen har vi laget tester av ulike typer. Dette er viktig for å kunne oppdage feil og problemet som kunne forblitt uoppdaget uten tester.
 
-### Komponent-tester
+#### Komponent-tester
 
 Vi har laget komponent-tester som tester props, state og brukerinteraksjon med komponenter. For Header har vi laget en enkel test som sjekker at overskriften vises som den skal og en test for interaksjon med dropdown-meny. Vi har ikke testet props for CheckBox-komponenten direkte, men vi har testet dette indirekte gjennom Header-komponenten som tar i bruk slike komponenter. JokeBox-komponenten er den vi har mest omfattende tester for. Her har vi blant annet testet at man kan bytte mellom ulike vitser, at staten til counter oppdateres og at favoritisering fungerer som det skal.
 
-### Mock-tester
+#### Mock-tester
 
-I test-filen for JokeBox har vi laget mock-data ved bruk av MSW (Mock Service Worker). Vi ønsker ikke å hente data fra API-et når vi skal teste og lager derfor mock-data. MSW lager mock-data for to ulike kategorier av vitse og gjør at vi kan teste brukerinteraksjon med denne dataen. Dette legger også grunnlaget for at vi kan lage komponent-tester som tester state innenfor komponentene.
+I test-filen for JokeBox har vi laget mock-data ved bruk av MSW (Mock Service Worker). Vi ønsker ikke å hente data fra API-et når vi skal teste og lager derfor mock-data. MSW lager mock-data for to ulike kategorier av vitser (Programming + Pun) og gjør at vi kan teste brukerinteraksjon med denne dataen. Dette legger også grunnlaget for at vi kan lage komponent-tester som tester state innenfor komponentene.
 
-### Snapshot-tester
+#### Snapshot-tester
 
 Blant testene for JokeBox har vi også underveis innført Snapshot-tester. Dette er tester som sjekker sammenligner web-applikasjonen med et "snapshot", altså et slags "bilde" av hierarkiet av komponenter, og sjekker om disse er like.
 
-### Manuell testing av brukergrensesnitt
+#### Manuell testing av brukergrensesnitt
 
 I tillegg har vi gjennomført kontinuerlig manuell testing av brukergrensesnittet for å oppdage mulige feil. Når vi gjør dette setter vi oss inn i scenarioet som en bruker og prøver å bruke web-applikasjonen med funksjonalitet som har blitt implementert.
