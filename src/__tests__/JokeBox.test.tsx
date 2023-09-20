@@ -12,7 +12,7 @@ const server = setupServer(
     (req, res, ctx) => {
       const queryParameters = req.url.searchParams;
 
-      if (queryParameters.has('temp_data')) { // this if-check is just done to use the variable "req" in some way. Else, "npm run build" won't wornk
+      if (queryParameters.has('temp_data')) { // this if-check is just done to use the variable "req" in some way. Else, "npm run build" won't work
         // do nothing
       }
       return res(
@@ -96,7 +96,7 @@ const server = setupServer(
   rest.get(`https://v2.jokeapi.dev/joke/Pun?amount=10`, (req, res, ctx) => {
     const queryParameters = req.url.searchParams;
 
-    if (queryParameters.has('temp_data')) { // this if-check is just done to use the variable "req" in some way. Else, "npm run build" won't wornk
+    if (queryParameters.has('temp_data')) { // this if-check is just done to use the variable "req" in some way. Else, "npm run build" won't work
       // do nothing
     }
     return res(
