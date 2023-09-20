@@ -8,11 +8,17 @@ Prosjektet ble satt opp med Vite som tilbyr en enkel måte å sette opp et prosj
 
 ## React state og props
 
+For å vedlikeholde state i web-applikasjon har vi tatt i bruk React sin hook kalt useState(). Dette tillater oss å gi funksjonelle komponenter en state. Denne hooken tilbyr en nåværende verdi og en setter-funksjon for å endre denne verdien. I "Header" har vi brukt useState for å holde oversikt over hvilken kategori av vitser som er valgt. I "Jokebox" har vi brukt useState for flere deler. Vi har brukt det blant annetfor å ha en liste med oversikt over hvilke vitser som skal vises, for en teller ("counter") som bestemmer hvilken vits som skal vises og for å vite om en vits er favoritt eller ikke. I tillegg trengte vi en useState-hook for å endre teksten til vitsen som skal vises.
+
+Props er noe vi ikke har tatt i bruk like mye. Vi har brukt det for en sjekkboks ("checkbox") som er en komponent med properties navn, sjekket ("checked") og onChange-funksjon. Det er hensiktsmessig å ha dette som en komponent ettersom den skal brukes flere ganger i dropdown menyen i header. Vi vurderte om det ville være mer effektivt og oversiktlig om Jokebox komponenten ble delt opp i flere komponenter som tar i bruk props. Likevel kom vi fram til at dette ikke var nødvendig siden vi bare har én statisk side der det er lite muligheter for universalt gjenbruk.
 
 ## Henting av data fra REST API
 
+Dataen henter vi fra et REST API kalt [JokeAPI](https://sv443.net/jokeapi/v2/). Dette API-et tilbyr en rekke vitser innen ulike kategorier levert på et enkelt JSON-format. For å hente dataen fra API-et brukte vi TanStack Query. Hver gang web-applikasjonen åpnes vil det sjekkes om dataen allerede er hentet, eller om vi må hente det. Om det ikke allerede er hentet bruker vi useQuery for å hente 10 vitser fra de ulike kategoriene vi har valgt.
+
 ## Bruk av localstorage og sessionstorage
 
+Dataen vi henter fra API-et lagres i localstorage. Dette gjør at vi unngår unødvendige kall til API-et og heller henter data fra localstorage neste gang web-applikasjonen. I localstorage har vi da lagret lister med vitser innen de forskjellige kategoriene og favoritt vitser. Sessionstorage bruker vi for å lagre telleren ("counter"). Dette gjør at dersom man b
 ## React Router
 
 ## Responsiv design

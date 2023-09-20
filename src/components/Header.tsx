@@ -4,23 +4,8 @@ import { useCategory } from "../context/CategoryContext"; // Importing useCatego
 import { Category } from "../context/CategoryContext"; // Importing Category type
 import { DarkModeProvider } from "../context/DarkModeContext"; // Importing DarkModeContext
 import { useContext } from "react";
+import Checkbox from "./Checkbox";
 
-type CheckboxProps = {
-  name: string;
-  checked: boolean;
-  onChange: () => void;
-};
-
-function Checkbox({ name, checked, onChange }: CheckboxProps) {
-  return (
-    <>
-      <label>
-        <input type="checkbox" checked={checked} onChange={onChange} />
-        {name}
-      </label>
-    </>
-  );
-}
 
 function Header() {
   const { changeCategory } = useCategory(); // Getting changeCategory from the context
