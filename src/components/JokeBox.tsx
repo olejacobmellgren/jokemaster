@@ -12,14 +12,12 @@ interface Joke {
 }
 
 function JokeBox({ currentFilter }: { currentFilter: string }) {
-  
-
   const [counter, setCounter] = useState(0);
   const [setUp, setSetUp] = useState("");
   const [delivery, setDelivery] = useState("");
   const [jokesFromCategory, setJokesFromCategory] = useState<Joke[]>([]);
-  const [isFavorite, setIsFavorite] = useState<boolean>()
-  const [favorites, setFavorites] = useState<Joke[]>([])
+  const [isFavorite, setIsFavorite] = useState<boolean>();
+  const [favorites, setFavorites] = useState<Joke[]>([]);
 
   useEffect(() => {
     // recursive function to fetch data from localStorage
@@ -27,113 +25,117 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
       const jokesCached = localStorage.getItem("randomJokes");
       if (jokesCached && JSON.parse(jokesCached).length === 40) {
         // Store user-favorites inside "favorites"
-        let favorites: Joke[] = []
-        const favoritesCached = localStorage.getItem("Favorites")
+        let favorites: Joke[] = [];
+        const favoritesCached = localStorage.getItem("Favorites");
         if (favoritesCached) {
-          favorites = JSON.parse(favoritesCached) as Joke[]
+          favorites = JSON.parse(favoritesCached) as Joke[];
         }
-        setFavorites(favorites)
-        updateJokelist()
+        setFavorites(favorites);
+        updateJokelist();
       } else {
         // if data is not available yet, wait for a short interval and try again
         setTimeout(fetchDataFromLocalStorage, 100); // wait for 100ms before trying again
       }
-    }
+    };
     fetchDataFromLocalStorage(); // Call the function initially
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (jokesFromCategory.length !== 0) {
       if (jokesFromCategory[counter].type === "single") {
         setSetUp("");
-        setDelivery(jokesFromCategory[counter].joke)
+        setDelivery(jokesFromCategory[counter].joke);
       } else {
-        setSetUp(jokesFromCategory[counter].setup)
-        setDelivery(jokesFromCategory[counter].delivery)
+        setSetUp(jokesFromCategory[counter].setup);
+        setDelivery(jokesFromCategory[counter].delivery);
       }
-      checkIfFavorite(jokesFromCategory[counter])
+      checkIfFavorite(jokesFromCategory[counter]);
     }
-  }, [counter, jokesFromCategory])
+  }, [counter, jokesFromCategory]);
 
   useEffect(() => {
-    updateJokelist()
-    setCounter(0)
-  }, [currentFilter])
+    updateJokelist();
+    setCounter(0);
+  }, [currentFilter]);
 
   // Update the list setJokesFromCategory depending on what filter is stored in localStorage. Initial jokes
   const updateJokelist = () => {
-    let newJokes: Joke[] = []
+    let newJokes: Joke[] = [];
     let newJokesCached;
     if (currentFilter == "Category") {
-      newJokesCached = localStorage.getItem("randomJokes")
+      newJokesCached = localStorage.getItem("randomJokes");
     } else {
-      newJokesCached = localStorage.getItem(currentFilter)
+      newJokesCached = localStorage.getItem(currentFilter);
     }
     if (newJokesCached) {
-      newJokes = JSON.parse(newJokesCached) as Joke[]
+      newJokes = JSON.parse(newJokesCached) as Joke[];
     }
-    setJokesFromCategory(newJokes)
-  }
+    setJokesFromCategory(newJokes);
+  };
 
   const handleRightClick = () => {
     if (counter + 1 < jokesFromCategory.length) {
       setCounter((prevCounter) => prevCounter + 1);
     } else {
-      setCounter(0)
+      setCounter(0);
     }
-  }
+  };
 
   const handleLeftClick = () => {
     if (counter + 1 !== 1) {
       setCounter((prevCounter) => prevCounter - 1);
     } else {
-      setCounter(jokesFromCategory.length - 1)
+      setCounter(jokesFromCategory.length - 1);
     }
-  }
+  };
 
   const checkIfFavorite = (currentJoke: Joke) => {
-    const isInFavorites = favorites.some((favorite) => favorite.id === currentJoke.id);
+    const isInFavorites = favorites.some(
+      (favorite) => favorite.id === currentJoke.id,
+    );
     setIsFavorite(isInFavorites);
-  }
+  };
 
   const handleFavorite = () => {
-    const joke = jokesFromCategory[counter]
+    const joke = jokesFromCategory[counter];
     let updatedFavorites;
     if (!isFavorite) {
       updatedFavorites = [...favorites, joke];
       setFavorites(updatedFavorites);
-      setIsFavorite(true)
+      setIsFavorite(true);
     } else {
       if (currentFilter === "Favorites") {
         if (counter + 1 === favorites.length) {
-          handleLeftClick()
+          handleLeftClick();
         }
       } else {
-        setIsFavorite(false)
+        setIsFavorite(false);
       }
-      updatedFavorites = favorites.filter((favorite) => favorite.id !== joke.id);
+      updatedFavorites = favorites.filter(
+        (favorite) => favorite.id !== joke.id,
+      );
       setFavorites(updatedFavorites);
     }
     if (currentFilter === "Favorites") {
-      setJokesFromCategory(updatedFavorites)
+      setJokesFromCategory(updatedFavorites);
     }
-    localStorage.setItem("Favorites", JSON.stringify(updatedFavorites))
-  }
-  
+    localStorage.setItem("Favorites", JSON.stringify(updatedFavorites));
+  };
+
   return (
     <>
       <div className="jokeboxWrapper">
         {currentFilter === "Category" ? null : (
           <div className="jokeboxTop">
             <select
-            id="selectJoke"
-            value="default"
-            onChange={(event) => {
-              const [_id, index] = JSON.parse(event.target.value);
-              setCounter(index);
-            }}
+              id="selectJoke"
+              value="default"
+              onChange={(event) => {
+                const [, index] = JSON.parse(event.target.value);
+                setCounter(index);
+              }}
             >
-              <option value="default" style={{display: "none"}} disabled>
+              <option value="default" style={{ display: "none" }} disabled>
                 Select specific joke
               </option>
               {jokesFromCategory.map((joke, index) => (
@@ -213,7 +215,9 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
         </div>
         {jokesFromCategory.length !== 0 && (
           <div className="counter">
-            <p>{counter + 1} / {jokesFromCategory.length}</p>
+            <p>
+              {counter + 1} / {jokesFromCategory.length}
+            </p>
           </div>
         )}
       </div>

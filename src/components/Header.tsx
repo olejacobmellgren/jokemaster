@@ -7,20 +7,23 @@ type HeaderProps = {
   onSelect: (option: string) => void;
 };
 
-
-function Header({onSelect}: HeaderProps) {
+function Header({ onSelect }: HeaderProps) {
   const { darkMode, setDarkMode } = useContext(DarkModeProvider);
   const categories = ["Programming", "Pun", "Spooky", "Christmas", "Favorites"];
 
   const handleFilterChange = (value: string) => {
-    onSelect(value)
-  }
+    onSelect(value);
+  };
 
   return (
     <>
       <div className="header">
         <div className="dropdownMenu">
-          <DropdownMenu filter="Category" options={categories} onSelect={(value) => handleFilterChange(value)} />
+          <DropdownMenu
+            filter="Category"
+            options={categories}
+            onSelect={(value) => handleFilterChange(value)}
+          />
         </div>
         <div className="logo">
           <p>JOKEMASTER-</p>
