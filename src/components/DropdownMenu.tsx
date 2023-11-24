@@ -25,12 +25,26 @@ function ButtonInside({ name, onClick, checkedOption }: ButtonProps) {
 }
 
 function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
-  const [checkedOption, setCheckedOption] = useState(filter);
+  const [checkedOption, setCheckedOption] = useState<string>(filter);
   const [isOpen, setIsOpen] = useState(false);
   const [filterApplied, setFilterApplied] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem(filter, checkedOption);
+    const storedCategory = localStorage.getItem("Category");
+    if (storedCategory) {
+      setCheckedOption(storedCategory);
+      if (storedCategory !== "Category") {
+        setFilterApplied(true);
+      }
+    }
+    setInitialLoad(false);
+  }, []);
+
+  useEffect(() => {
+    if (!initialLoad) {
+      localStorage.setItem(filter, checkedOption);
+    }
   }, [filter, checkedOption]);
 
   const handleOptionClick = (option: string) => {
@@ -48,7 +62,7 @@ function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
 
   const handleClear = () => {
     setFilterApplied(false);
-    onSelect("Category");
+    onSelect(filter);
     setCheckedOption(filter);
     if (isOpen) {
       setIsOpen(false);
