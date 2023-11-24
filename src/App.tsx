@@ -5,8 +5,8 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import JokeBox from "./components/JokeBox.tsx";
-import { CategoryProvider } from "./context/CategoryContext.tsx";
 import DarkModeProvider from "./context/DarkModeContext.tsx";
+import { useState } from "react";
 
 interface Joke {
   // Define the structure of your JSON object here
@@ -64,16 +64,22 @@ function JokeComponent() {
 }
 
 function App() {
+  const [currentFilter, setCurrentFilter] = useState(
+    localStorage.getItem("Category") || "Category",
+  );
+
+  const handleCategoryChange = (value: string) => {
+    setCurrentFilter(value);
+  };
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <DarkModeProvider>
-        <CategoryProvider>
-          <Header />
-          <JokeComponent />
-          <JokeBox />
-        </CategoryProvider>
-      </DarkModeProvider>
-    </QueryClientProvider>
+    <DarkModeProvider>
+      <QueryClientProvider client={queryClient}>
+        <Header onSelect={(value) => handleCategoryChange(value)} />
+        <JokeComponent />
+        <JokeBox currentFilter={currentFilter} />
+      </QueryClientProvider>
+    </DarkModeProvider>
   );
 }
 

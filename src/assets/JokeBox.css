@@ -6,8 +6,6 @@
 }
 
 .jokeboxWrapper {
-  position: fixed;
-  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -123,7 +121,7 @@
   }
 
   .joke {
-    font-size: 8vw;
+    font-size: 2.5rem;
     padding: 3vw 3vw;
   }
 
@@ -159,6 +157,13 @@
     border-radius: 30vw;
     width: 42vw;
     font-size: 4vw;
+  }
+}
+
+@media (max-width: 550px) {
+  .joke {
+    font-size: 2rem;
+    padding: 7vw 7vw;
   }
 }
 
