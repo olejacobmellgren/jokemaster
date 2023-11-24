@@ -12,7 +12,7 @@ interface Joke {
 }
 
 function JokeBox({ currentFilter }: { currentFilter: string }) {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0); // used as index for current joke
   const [setUp, setSetUp] = useState("");
   const [delivery, setDelivery] = useState("");
   const [jokesFromCategory, setJokesFromCategory] = useState<Joke[]>([]);
