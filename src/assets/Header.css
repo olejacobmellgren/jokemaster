@@ -6,7 +6,14 @@
   flex-direction: row;
   align-items: center;
   height: 15vh;
-  width: 100%;
+  width: calc(100% - 8vw);
+  padding: 0 4vw;
+}
+
+.dropdownMenu {
+  display: flex;
+  justify-content: center;
+  width: 25%;
 }
 
 .logo {
@@ -14,61 +21,11 @@
   justify-content: center;
   font-family: Orbitron-Bold;
   font-size: 5vh;
-  width: 70%;
-}
-
-.dropdownButtonWrapper {
-  display: flex;
-  justify-content: center;
-  width: 15%;
-}
-
-.dropdownButton {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1vh;
-  background-color: #f4f9fe;
-  border: 1px solid #d8dde2;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  font-size: 2vh;
-  border-radius: 1vh;
-  padding: 2vh;
-  padding-left: 3vh;
-  padding-right: 3vh;
-  color: #54595e;
-}
-
-.dropdownButton:hover {
-  cursor: pointer;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.dropdownArrow {
-  border: solid #abb5be;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 3px;
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
-
-.dropdown {
-  position: absolute;
-  top: 11vh;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  padding: 0.5rem;
-  background-color: #f4f9fe;
-  border: 1px solid #d8dde2;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  color: #54595e;
+  width: 50%;
 }
 
 .toggleWrapper {
-  width: 15%;
+  width: 25%;
   display: flex;
   justify-content: center;
 }
@@ -102,27 +59,24 @@
   content: "\1F506";
 }
 
-@media (orientation: portrait) {
+@media (max-width: 1125px) {
   .header {
     height: 10vh;
   }
 
+  .dropdownMenu {
+    width: 30%;
+  }
+
   .logo {
+    flex-direction: column;
+    align-items: center;
     width: 40%;
     font-size: 3.3vw;
   }
 
-  .dropdownButtonWrapper {
-    width: 30%;
-  }
-
-  .dropdownButton {
-    font-size: 3vw;
-    gap: 1vw;
-    border-radius: 2vw;
-    padding: 2vw;
-    padding-left: 2vw;
-    padding-right: 2vw;
+  .logo p {
+    margin: 0;
   }
 
   .toggleWrapper {
