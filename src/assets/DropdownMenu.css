@@ -1,114 +1,113 @@
 .dropdownButtonWrapper {
-    position: relative;
-    display: flex;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  position: relative;
+  display: flex;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
-  
+
 .dropdownButton {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1vh;
-    background-color: #f4f9fe;
-    border: 1px solid transparent;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    font-size: 2vh;
-    border-radius: 1vh;
-    padding: 1.5vh;
-    padding-left: 2.5vh;
-    padding-right: 2.5vh;
-    color: #54595e;
-    font-weight: 500;
-    font-family: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1vh;
+  background-color: #f4f9fe;
+  border: 1px solid transparent;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-size: 2vh;
+  border-radius: 1vh;
+  padding: 1.5vh;
+  padding-left: 2.5vh;
+  padding-right: 2.5vh;
+  color: #54595e;
+  font-weight: 500;
+  font-family: inherit;
 }
 
 .dropdownButton:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .DdBlabel {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .dropdownButtonInside {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1vh;
-    background-color: #f4f9fe;
-    font-size: 2vh;
-    border-radius: 0.5vh;
-    padding: 1vh;
-    padding-left: 2.5vh;
-    padding-right: 2.5vh;
-    color: #54595e;
-    margin: 2vh, 0, 2vh, 0;
-    width: 100%;
-    text-align: center;
-    border: 1px solid transparent;
-    font-weight: 500;
-    font-family: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1vh;
+  background-color: #f4f9fe;
+  font-size: 2vh;
+  border-radius: 0.5vh;
+  padding: 1vh;
+  padding-left: 2.5vh;
+  padding-right: 2.5vh;
+  color: #54595e;
+  margin: 2vh, 0, 2vh, 0;
+  width: 100%;
+  text-align: center;
+  border: 1px solid transparent;
+  font-weight: 500;
+  font-family: inherit;
 }
 
 .dropdownButtonInside:hover {
-    cursor: pointer;
-    background-color: #e3e3e3;
+  cursor: pointer;
+  background-color: #e3e3e3;
 }
 
 .dropdownArrow {
-    border: solid #abb5be;
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
+  border: solid #abb5be;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 
 .dropdown {
-    position: absolute;
-    top: 100%;
-    border-radius: 10px;
-    margin-top: 5px;
-    z-index: 1;
-    padding: 0.25rem;
-    background-color: #f4f9fe;
-    border: 1px solid #d8dde2;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #54595e;
-    width: max-content;
-    /* Next two lines are important for the cool effect*/
-    overflow: hidden;
-    transition:
-        max-height 0.3s ease,
-        opacity 0.3s ease;
-    /* Fjern de to linjene under dersom dropdown ikke skal være sentrert i forhold til dropdownButton */
-    left: 50%;
-    transform: translateX(-50%);
+  position: absolute;
+  top: 100%;
+  border-radius: 10px;
+  margin-top: 5px;
+  z-index: 1;
+  padding: 0.25rem;
+  background-color: #f4f9fe;
+  border: 1px solid #d8dde2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #54595e;
+  width: max-content;
+  /* Next two lines are important for the cool effect*/
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+  /* Fjern de to linjene under dersom dropdown ikke skal være sentrert i forhold til dropdownButton */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .dropdown.active {
-    max-height: 500px;
-    opacity: 1;
+  max-height: 500px;
+  opacity: 1;
 }
 
 .dropdown.closed {
-    max-height: 0;
-    opacity: 0;
+  max-height: 0;
+  opacity: 0;
 }
 
 .clear-button {
-    margin-left: 1rem;
-    background-color: transparent;
-    border: none;
+  margin-left: 1rem;
+  background-color: transparent;
+  border: none;
 }
 
 .clear-button img {
-    width: 20px;
+  width: 20px;
 }
 
 .clear-button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
-  

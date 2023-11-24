@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import '../assets/DropdownMenu.css';
-import ClearIcon from '../assets/images/clear-icon.png';
+import { useState, useEffect } from "react";
+import "../assets/DropdownMenu.css";
+import ClearIcon from "../assets/images/clear-icon.png";
 
 type DropdownProps = {
   filter: string;
@@ -17,21 +17,16 @@ type ButtonProps = {
 function ButtonInside({ name, onClick, checkedOption }: ButtonProps) {
   return (
     <button className="dropdownButtonInside" onClick={onClick}>
-      <span style={{ color: name == checkedOption ? '#00CC00' : '' }}>
-          {name}
-        </span>
-
+      <span style={{ color: name == checkedOption ? "#00CC00" : "" }}>
+        {name}
+      </span>
     </button>
   );
 }
 
-function DropdownMenu({
-  filter,
-  options,
-  onSelect,
-}: DropdownProps) {
+function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
   const [checkedOption, setCheckedOption] = useState(filter);
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const [filterApplied, setFilterApplied] = useState(false);
 
   useEffect(() => {
@@ -44,11 +39,11 @@ function DropdownMenu({
       setCheckedOption(option);
       onSelect(option);
     }
-    setIsOpen(false)
+    setIsOpen(false);
   };
 
   const handleDropdown = () => {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
   };
 
   const handleClear = () => {
@@ -56,7 +51,7 @@ function DropdownMenu({
     onSelect("Category");
     setCheckedOption(filter);
     if (isOpen) {
-      setIsOpen(false)
+      setIsOpen(false);
     }
   };
 
@@ -66,7 +61,7 @@ function DropdownMenu({
         <label className="DdBlabel">{checkedOption}</label>
         <i className="dropdownArrow"></i>
       </button>
-      <div className={`dropdown ${isOpen ? 'active' : 'closed'}`}>
+      <div className={`dropdown ${isOpen ? "active" : "closed"}`}>
         {options.map((option) => {
           return (
             <ButtonInside

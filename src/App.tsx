@@ -64,19 +64,20 @@ function JokeComponent() {
 }
 
 function App() {
-  const [currentFilter, setCurrentFilter] = useState(localStorage.getItem("Category") || "Category")
+  const [currentFilter, setCurrentFilter] = useState(
+    localStorage.getItem("Category") || "Category",
+  );
 
-  
   const handleCategoryChange = (value: string) => {
-    setCurrentFilter(value)
-  }
+    setCurrentFilter(value);
+  };
 
   return (
     <DarkModeProvider>
       <QueryClientProvider client={queryClient}>
         <Header onSelect={(value) => handleCategoryChange(value)} />
         <JokeComponent />
-        <JokeBox currentFilter={currentFilter}/>
+        <JokeBox currentFilter={currentFilter} />
       </QueryClientProvider>
     </DarkModeProvider>
   );

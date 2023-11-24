@@ -17,9 +17,7 @@ type JokeboxProps = {
   currentFilter: string;
 };
 
-function JokeBox({currentFilter} : JokeboxProps) {
-  
-
+function JokeBox({ currentFilter }: JokeboxProps) {
   const [counter, setCounter] = useState(0); // Counter for jokes from different categories. Goes up to 9
   const [favoriteCounter, setFavoriteCounter] = useState(0); // Counter for Favorites. Goes up to amount of favorites
   const [counterForRandomJokes, setCounterForRandomJokes] = useState(0); // Own counter for random jokes. Goes up to 39
@@ -90,7 +88,6 @@ function JokeBox({currentFilter} : JokeboxProps) {
       }
       setJokesFromCategory(jokesFromCategory);
     }
-    
   }, [currentFilter]);
 
   useEffect(() => {
@@ -276,12 +273,12 @@ function JokeBox({currentFilter} : JokeboxProps) {
         {currentFilter === "Category" ? null : (
           <div className="jokeboxTop">
             <select
-            id="selectJoke"
-            value="default"
-            onChange={(event) => {
-              setCounter(parseInt(event.target.value));
-              handleSelectJoke(event);
-            }}
+              id="selectJoke"
+              value="default"
+              onChange={(event) => {
+                setCounter(parseInt(event.target.value));
+                handleSelectJoke(event);
+              }}
             >
               <option value="default" disabled>
                 Select specific joke
