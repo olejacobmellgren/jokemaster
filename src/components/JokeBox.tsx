@@ -22,14 +22,24 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   const [favorites, setFavorites] = useState<Joke[]>([])
 
   useEffect(() => {
-    // Store user-favorites inside "favorites"
-    let favorites: Joke[] = []
-    const favoritesCached = localStorage.getItem("Favorites")
-    if (favoritesCached) {
-      favorites = JSON.parse(favoritesCached) as Joke[]
+    // recursive function to fetch data from localStorage
+    const fetchDataFromLocalStorage = () => {
+      const jokesCached = localStorage.getItem("randomJokes");
+      if (jokesCached) {
+        // Store user-favorites inside "favorites"
+        let favorites: Joke[] = []
+        const favoritesCached = localStorage.getItem("Favorites")
+        if (favoritesCached) {
+          favorites = JSON.parse(favoritesCached) as Joke[]
+        }
+        setFavorites(favorites)
+        updateJokelist()
+      } else {
+        // if data is not available yet, wait for a short interval and try again
+        setTimeout(fetchDataFromLocalStorage, 100); // wait for 100ms before trying again
+      }
     }
-    setFavorites(favorites)
-    updateJokelist()
+    fetchDataFromLocalStorage(); // Call the function initially
   }, [])
 
   useEffect(() => {
