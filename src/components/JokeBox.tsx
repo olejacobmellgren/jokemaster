@@ -25,7 +25,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
     // recursive function to fetch data from localStorage
     const fetchDataFromLocalStorage = () => {
       const jokesCached = localStorage.getItem("randomJokes");
-      if (jokesCached) {
+      if (jokesCached && JSON.parse(jokesCached).length === 40) {
         // Store user-favorites inside "favorites"
         let favorites: Joke[] = []
         const favoritesCached = localStorage.getItem("Favorites")
