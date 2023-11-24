@@ -27,6 +27,20 @@
     cursor: pointer;
 }
 
+@media (max-width: 550px) {
+    .dropdownButton {
+        font-size: 0.8rem;
+        padding: 1rem
+    }
+
+    .clear-button {
+        position: absolute;
+        margin-left: 0 !important;
+        left: 35%;
+        top: 120%;
+    }
+}
+
 .DdBlabel {
     cursor: pointer;
 }
