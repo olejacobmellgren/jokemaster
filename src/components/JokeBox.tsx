@@ -18,8 +18,17 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   const [jokesFromCategory, setJokesFromCategory] = useState<Joke[]>([]);
   const [isFavorite, setIsFavorite] = useState<boolean>();
   const [favorites, setFavorites] = useState<Joke[]>([]);
-  const categories = ["Category", "Programming", "Pun", "Spooky", "Christmas", "Favorites"]
-  const [storedCounter, setStoredCounter] = useState(JSON.parse(sessionStorage.getItem("storedCounter") || "[0,0,0,0,0,0]"))
+  const categories = [
+    "Category",
+    "Programming",
+    "Pun",
+    "Spooky",
+    "Christmas",
+    "Favorites",
+  ];
+  const [storedCounter, setStoredCounter] = useState(
+    JSON.parse(sessionStorage.getItem("storedCounter") || "[0,0,0,0,0,0]"),
+  );
 
   useEffect(() => {
     // recursive function to fetch data from localStorage and sessionStorage
@@ -57,13 +66,13 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
 
   useEffect(() => {
     updateJokelist();
-    const index = categories.indexOf(currentFilter)
+    const index = categories.indexOf(currentFilter);
     setCounter(storedCounter[index]);
   }, [currentFilter]);
 
   useEffect(() => {
-    sessionStorage.setItem("storedCounter", JSON.stringify(storedCounter))
-  }, [storedCounter])
+    sessionStorage.setItem("storedCounter", JSON.stringify(storedCounter));
+  }, [storedCounter]);
 
   // Update the list setJokesFromCategory depending on what filter is stored in sessionStorage. Initial jokes
   const updateJokelist = () => {
@@ -85,7 +94,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   };
 
   const handleRightClick = () => {
-    const index = categories.indexOf(currentFilter)
+    const index = categories.indexOf(currentFilter);
     const updatedCounter = [...storedCounter];
     if (counter + 1 < jokesFromCategory.length) {
       setCounter((prevCounter) => prevCounter + 1);
@@ -98,7 +107,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   };
 
   const handleLeftClick = () => {
-    const index = categories.indexOf(currentFilter)
+    const index = categories.indexOf(currentFilter);
     const updatedCounter = [...storedCounter];
     if (counter + 1 !== 1) {
       setCounter((prevCounter) => prevCounter - 1);
