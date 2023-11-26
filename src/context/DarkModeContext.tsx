@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 const DarkModeContext = ({ children }: { children: JSX.Element }) => {
   const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("darkMode") === "dark",
+    sessionStorage.getItem("darkMode") === "dark",
   );
 
   useEffect(() => {
@@ -17,9 +17,9 @@ const DarkModeContext = ({ children }: { children: JSX.Element }) => {
 
   const newDarkMode = (updatedDarkMode: boolean) => {
     if (updatedDarkMode) {
-      localStorage.setItem("darkMode", "dark");
+      sessionStorage.setItem("darkMode", "dark");
     } else {
-      localStorage.removeItem("darkMode");
+      sessionStorage.removeItem("darkMode");
     }
     setDarkMode(updatedDarkMode);
   };

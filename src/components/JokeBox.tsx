@@ -18,11 +18,22 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   const [jokesFromCategory, setJokesFromCategory] = useState<Joke[]>([]);
   const [isFavorite, setIsFavorite] = useState<boolean>();
   const [favorites, setFavorites] = useState<Joke[]>([]);
+  const categories = [
+    "Category",
+    "Programming",
+    "Pun",
+    "Spooky",
+    "Christmas",
+    "Favorites",
+  ];
+  const [storedCounter, setStoredCounter] = useState(
+    JSON.parse(sessionStorage.getItem("storedCounter") || "[0,0,0,0,0,0]"),
+  );
 
   useEffect(() => {
-    // recursive function to fetch data from localStorage
+    // recursive function to fetch data from localStorage and sessionStorage
     const fetchDataFromLocalStorage = () => {
-      const jokesCached = localStorage.getItem("randomJokes");
+      const jokesCached = sessionStorage.getItem("randomJokes");
       if (jokesCached && JSON.parse(jokesCached).length === 40) {
         // Store user-favorites inside "favorites"
         let favorites: Joke[] = [];
@@ -55,17 +66,26 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
 
   useEffect(() => {
     updateJokelist();
-    setCounter(0);
+    const index = categories.indexOf(currentFilter);
+    setCounter(storedCounter[index]);
   }, [currentFilter]);
 
-  // Update the list setJokesFromCategory depending on what filter is stored in localStorage. Initial jokes
+  useEffect(() => {
+    sessionStorage.setItem("storedCounter", JSON.stringify(storedCounter));
+  }, [storedCounter]);
+
+  // Update the list setJokesFromCategory depending on what filter is stored in sessionStorage. Initial jokes
   const updateJokelist = () => {
     let newJokes: Joke[] = [];
     let newJokesCached;
     if (currentFilter == "Category") {
-      newJokesCached = localStorage.getItem("randomJokes");
+      newJokesCached = sessionStorage.getItem("randomJokes");
     } else {
-      newJokesCached = localStorage.getItem(currentFilter);
+      if (currentFilter != "Favorites") {
+        newJokesCached = sessionStorage.getItem(currentFilter);
+      } else {
+        newJokesCached = localStorage.getItem(currentFilter);
+      }
     }
     if (newJokesCached) {
       newJokes = JSON.parse(newJokesCached) as Joke[];
@@ -74,19 +94,29 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   };
 
   const handleRightClick = () => {
+    const index = categories.indexOf(currentFilter);
+    const updatedCounter = [...storedCounter];
     if (counter + 1 < jokesFromCategory.length) {
       setCounter((prevCounter) => prevCounter + 1);
+      updatedCounter[index] = storedCounter[index] + 1;
     } else {
       setCounter(0);
+      updatedCounter[index] = 0;
     }
+    setStoredCounter(updatedCounter);
   };
 
   const handleLeftClick = () => {
+    const index = categories.indexOf(currentFilter);
+    const updatedCounter = [...storedCounter];
     if (counter + 1 !== 1) {
       setCounter((prevCounter) => prevCounter - 1);
+      updatedCounter[index] = storedCounter[index] - 1;
     } else {
       setCounter(jokesFromCategory.length - 1);
+      updatedCounter[index] = jokesFromCategory.length - 1;
     }
+    setStoredCounter(updatedCounter);
   };
 
   const checkIfFavorite = (currentJoke: Joke) => {

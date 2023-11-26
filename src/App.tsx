@@ -22,14 +22,14 @@ const queryClient = new QueryClient();
 
 function JokeComponent() {
   const categories = ["Programming", "Pun", "Spooky", "Christmas"];
-  const jokesCached_2 = localStorage.getItem("Programming");
+  const jokesCached_2 = sessionStorage.getItem("Programming");
 
   if (!jokesCached_2) {
-    // only fetch jokes from API if localStorage is empty
+    // only fetch jokes from API if sessionStorage is empty
     useQuery({
       queryKey: ["apiData", "Categories"],
       queryFn: async () => {
-        const randomJokesString = localStorage.getItem("randomJokes");
+        const randomJokesString = sessionStorage.getItem("randomJokes");
         let allJokesList: Joke[] = randomJokesString
           ? JSON.parse(randomJokesString)
           : [];
@@ -43,17 +43,17 @@ function JokeComponent() {
             const data = await res.json();
             const jokesList = data.jokes; // length == 10
 
-            const jokesCached = localStorage.getItem(category);
+            const jokesCached = sessionStorage.getItem(category);
 
             if (!jokesCached) {
-              localStorage.setItem(category, JSON.stringify(jokesList)); // store jokes form specific category in localStorage
+              sessionStorage.setItem(category, JSON.stringify(jokesList)); // store jokes form specific category in sessionStorage
               allJokesList = allJokesList.concat(jokesList);
             }
           }),
         );
         allJokesList.sort(() => Math.random() - 0.5); // randomize the list
 
-        localStorage.setItem("randomJokes", JSON.stringify(allJokesList));
+        sessionStorage.setItem("randomJokes", JSON.stringify(allJokesList));
 
         return allJokesList;
       },
@@ -65,7 +65,7 @@ function JokeComponent() {
 
 function App() {
   const [currentFilter, setCurrentFilter] = useState(
-    localStorage.getItem("Category") || "Category",
+    sessionStorage.getItem("Category") || "Category",
   );
 
   const handleCategoryChange = (value: string) => {

@@ -31,7 +31,7 @@ function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
   const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    const storedCategory = localStorage.getItem("Category");
+    const storedCategory = sessionStorage.getItem("Category");
     if (storedCategory) {
       setCheckedOption(storedCategory);
       if (storedCategory !== "Category") {
@@ -43,7 +43,7 @@ function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
 
   useEffect(() => {
     if (!initialLoad) {
-      localStorage.setItem(filter, checkedOption);
+      sessionStorage.setItem(filter, checkedOption);
     }
   }, [filter, checkedOption]);
 
