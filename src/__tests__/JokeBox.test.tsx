@@ -194,9 +194,9 @@ afterAll(() => {
 });
 
 test("Test render jokes", async () => {
-  const { getByText, getByRole, asFragment } = render(<App />);
+  const { getByText, asFragment } = render(<App />);
 
-  const dropDown = getByRole("button", { name: "Category" });
+  const dropDown = getByText("Category");
   await userEvent.click(dropDown);
   const programming = getByText("Programming");
   await userEvent.click(programming);
@@ -247,9 +247,8 @@ test("Test right and left click", async () => {
 });
 
 test("Joke renders when changing category", async () => {
-  const { getByText, getByRole, asFragment, getByTestId } = render(<App />);
-  const dropDown = getByRole("button", { name: "Programming" });
-  await userEvent.click(dropDown);
+  const { getByText, asFragment, getByTestId } = render(<App />);
+
   const pun = getByText("Pun");
   await userEvent.click(pun);
   expect(pun).toBeTruthy(); // The text is found
@@ -293,16 +292,21 @@ test("Joke renders when changing category", async () => {
 });
 
 test("Test if favorite works", async () => {
-  const { getByText, getByRole, asFragment } = render(<App />);
+  const { getByText, getByTestId, asFragment } = render(<App />);
 
-  const image = getByRole("img");
-  await userEvent.click(image); // favorite the joke. Image refers to the heart
+  const heart = getByTestId("nofavorite");
+  await userEvent.click(heart);
   expect(asFragment()).toMatchSnapshot();
 
-  const dropDown = getByRole("button", { name: "Pun" });
+  const clear = getByTestId("clear");
+  await userEvent.click(clear);
+
+  const dropDown = getByText("Category");
   await userEvent.click(dropDown);
+
   const favorites = getByText("Favorites");
   await userEvent.click(favorites);
+
   expect(favorites).toBeTruthy(); // The text is found
   expect(asFragment()).toMatchSnapshot();
 
@@ -324,10 +328,19 @@ test("Test if favorite works", async () => {
 });
 
 test("Test if you can unfavorite joke inside Favorites-category", async () => {
-  const { getByText, getByRole, asFragment } = render(<App />);
+  const { getByText, getByTestId, asFragment } = render(<App />);
 
-  const image = getByRole("img");
-  await userEvent.click(image); // unfavorite the joke. Image refers to the heart
+  const clear = getByTestId("clear");
+  await userEvent.click(clear);
+
+  const dropDown = getByText("Category");
+  await userEvent.click(dropDown);
+
+  const favorites = getByText("Favorites");
+  await userEvent.click(favorites);
+
+  const heartTofavorite = getByTestId("favorited");
+  await userEvent.click(heartTofavorite);
   expect(asFragment()).toMatchSnapshot();
 
   const errorMessage = getByText("You have no favorites");

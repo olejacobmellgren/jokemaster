@@ -88,7 +88,11 @@ function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
         })}
       </div>
       {filterApplied && (
-        <button className="clear-button" onClick={handleClear}>
+        <button
+          className="clear-button"
+          onClick={handleClear}
+          data-testid="clear"
+        >
           <img src={ClearIcon}></img>
         </button>
       )}

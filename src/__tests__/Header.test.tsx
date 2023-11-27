@@ -1,17 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import Header from "../components/Header";
-import { test, expect } from "vitest";
-import { CategoryProvider } from "../context/CategoryContext";
+import { vi, test, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 test("Show dropdown when clicked", async () => {
-  const { getByText, getByRole, asFragment } = render(
-    <CategoryProvider>
-      <Header />
-    </CategoryProvider>,
-  );
+  const { getByText, asFragment } = render(<Header onSelect={vi.fn()} />);
 
-  const dropDown = getByRole("button");
+  const dropDown = getByText("Category");
   await userEvent.click(dropDown);
   expect(asFragment()).toMatchSnapshot();
 
@@ -26,12 +21,10 @@ test("Show dropdown when clicked", async () => {
 });
 
 test("Title is found", () => {
-  const { getByText } = render(
-    <CategoryProvider>
-      <Header />
-    </CategoryProvider>,
-  );
+  const { getByText } = render(<Header onSelect={vi.fn()} />);
 
-  const title = getByText("JOKEMASTER-3000");
+  const title = getByText("JOKEMASTER-");
+  const title2 = getByText("3000");
   expect(title).toBeTruthy(); // The text is found
+  expect(title2).toBeTruthy(); // The text is found
 });
