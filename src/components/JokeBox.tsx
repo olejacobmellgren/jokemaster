@@ -224,12 +224,14 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
                 onClick={handleFavorite}
                 className="icon"
                 src={favorite}
+                data-testid="favorited"
               ></img>
             ) : (
               <img
                 onClick={handleFavorite}
                 className="icon"
                 src={noFavorite}
+                data-testid="nofavorite"
               ></img>
             )}
           </div>
