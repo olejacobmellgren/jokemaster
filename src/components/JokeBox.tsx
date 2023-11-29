@@ -86,10 +86,8 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   // Method to support navigation with arrow keys
   const handleKeyPress = (event: KeyboardEvent) => {
     if (event.key === "ArrowLeft") {
-      console.log("left");
       handleLeftClick();
     } else if (event.key === "ArrowRight") {
-      console.log("right");
       handleRightClick();
     }
   };
