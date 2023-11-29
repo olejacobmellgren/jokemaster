@@ -262,7 +262,9 @@ test("Joke renders when changing category", async () => {
   const joke_setup = getByText(
     "Has COVID-19 forced you to wear glasses and a mask at the same time?",
   );
-  const joke_delivery = getByText("If so, you may be entitled to condensation.");
+  const joke_delivery = getByText(
+    "If so, you may be entitled to condensation.",
+  );
   expect(joke_setup.textContent).toBe(
     "Has COVID-19 forced you to wear glasses and a mask at the same time?",
   );

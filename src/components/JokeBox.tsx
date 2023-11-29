@@ -5,8 +5,7 @@ import noFavorite from "../assets/images/no-favorite.png";
 import noFavoriteWhite from "../assets/images/no-favorite-white.png";
 import { DarkModeProvider } from "../context/DarkModeContext";
 
-interface Joke
- {
+interface Joke {
   type: string;
   setup: string;
   delivery: string;
@@ -22,7 +21,6 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   const [isFavorite, setIsFavorite] = useState<boolean>();
   const [favorites, setFavorites] = useState<Joke[]>([]);
   const { darkMode } = useContext(DarkModeProvider);
-
 
   const categories = [
     "Category",
