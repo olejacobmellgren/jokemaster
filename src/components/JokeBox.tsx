@@ -58,7 +58,8 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   }, []);
 
   useEffect(() => {
-    if (jokesFromCategory.length !== 0) { // Makes sure here is content inside jokesFromCategory, will crash if not
+    if (jokesFromCategory.length !== 0) {
+      // Makes sure here is content inside jokesFromCategory, will crash if not
       if (jokesFromCategory[counter].type === "single") {
         setSetUp("");
         setDelivery(jokesFromCategory[counter].joke);
