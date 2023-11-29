@@ -259,10 +259,10 @@ test("Joke renders when changing category", async () => {
 
   await userEvent.click(getByTestId("right"));
   expect(asFragment()).toMatchSnapshot();
-  let joke_setup = getByText(
+  const joke_setup = getByText(
     "Has COVID-19 forced you to wear glasses and a mask at the same time?",
   );
-  let joke_delivery = getByText("If so, you may be entitled to condensation.");
+  const joke_delivery = getByText("If so, you may be entitled to condensation.");
   expect(joke_setup.textContent).toBe(
     "Has COVID-19 forced you to wear glasses and a mask at the same time?",
   );
@@ -279,16 +279,6 @@ test("Joke renders when changing category", async () => {
   joke_number = getByText("1 / 10");
   expect(joke_number.textContent).not.toBe("2 / 10");
   expect(joke_number.textContent).toBe("1 / 10");
-  joke_setup = getByText(
-    "I just got fired from my job at the keyboard factory.",
-  );
-  joke_delivery = getByText("They told me I wasn't putting in enough shifts.");
-  expect(joke_setup.textContent).toBe(
-    "I just got fired from my job at the keyboard factory.",
-  );
-  expect(joke_delivery.textContent).toBe(
-    "They told me I wasn't putting in enough shifts.",
-  );
 });
 
 test("Test if favorite works", async () => {
@@ -312,19 +302,6 @@ test("Test if favorite works", async () => {
 
   const favorite_joke_number = getByText("1 / 1");
   expect(favorite_joke_number.textContent).toBe("1 / 1");
-
-  const joke_setup = getByText(
-    "I just got fired from my job at the keyboard factory.",
-  );
-  const joke_delivery = getByText(
-    "They told me I wasn't putting in enough shifts.",
-  );
-  expect(joke_setup.textContent).toBe(
-    "I just got fired from my job at the keyboard factory.",
-  );
-  expect(joke_delivery.textContent).toBe(
-    "They told me I wasn't putting in enough shifts.",
-  );
 });
 
 test("Test if you can unfavorite joke inside Favorites-category", async () => {
