@@ -10,7 +10,7 @@
   padding: 0 4vw;
 }
 
-.dropdownMenu {
+.dropdown-menu {
   display: flex;
   justify-content: center;
   width: 25%;
@@ -24,7 +24,7 @@
   width: 50%;
 }
 
-.toggleWrapper {
+.toggle-wrapper {
   width: 25%;
   display: flex;
   justify-content: center;
@@ -87,12 +87,12 @@
 }
 
 @media (max-width: 550px) {
-  .toggleWrapper {
+  .toggle-wrapper {
     justify-content: flex-start;
     width: 20%;
   }
 
-  .dropdownMenu {
+  .dropdown-menu {
     width: 40%;
   }
 }
@@ -103,7 +103,7 @@
   }
 }
 
-.dark .dropdownButton {
+.dark .dropdown-button {
   background-color: #4d6272;
   border-color: #5a7387;
   color: #f4f9fe;

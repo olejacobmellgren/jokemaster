@@ -5,7 +5,7 @@
   font-family: Orbitron-Bold;
 }
 
-.jokeboxWrapper {
+.jokebox-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -14,7 +14,7 @@
   width: 100%;
 }
 
-.jokeboxTop {
+.jokebox-top {
   display: flex;
   justify-content: center;
 }
@@ -24,10 +24,10 @@
   height: 100%;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.jokeboxBottom {
+.jokebox-bottom {
   display: flex;
   justify-content: center;
 }
@@ -48,17 +48,12 @@
 
 .icon:hover {
   cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 
-.scrollButtonBottom {
-  display: none;
-}
-
-.scrollButtonTop {
+.scroll-button {
   display: flex;
-}
-
-.scrollButton {
   background-color: rgba(0, 0, 0, 0);
   padding: 3vh 3vh;
   margin: 2vw 2vw;
@@ -69,7 +64,7 @@
   align-items: center;
 }
 
-.scrollButton > .arrow {
+.scroll-button > .arrow {
   width: 4vh;
   height: 4vh;
   border-right: 1.5vh solid #2b2b2b;
@@ -78,20 +73,20 @@
   position: relative;
 }
 
-.scrollButton:hover > .left {
+.scroll-button:hover > .left {
   transform: rotate(135deg) translate(1vh, 1vh);
 }
 
-.scrollButton > .left {
+.scroll-button > .left {
   transform: rotate(135deg);
   transition: all 0.3s ease;
 }
 
-.scrollButton:hover > .right {
+.scroll-button:hover > .right {
   transform: rotate(-45deg) translate(1vh, 1vh);
 }
 
-.scrollButton > .right {
+.scroll-button > .right {
   transform: rotate(-45deg);
   transition: all 0.3s ease;
 }
@@ -113,17 +108,9 @@
 }
 
 @media (orientation: portrait) {
-  .jokeboxWrapper {
+  .jokebox-wrapper {
     padding-top: 10vh;
     height: 90vh;
-  }
-
-  .scrollButtonBottom {
-    display: flex;
-  }
-
-  .scrollButtonTop {
-    display: none;
   }
 
   .joke {
@@ -136,13 +123,13 @@
     width: 30vw;
   }
 
-  .scrollButton {
+  .scroll-button {
     padding: 7vw 7vw;
     border: 2.5vw solid #2b2b2b;
     border-radius: 20vw;
   }
 
-  .scrollButton > .arrow {
+  .scroll-button > .arrow {
     width: 8vw;
     height: 8vw;
     border-right: 2.5vw solid #2b2b2b;
@@ -150,11 +137,11 @@
     border-radius: 1vw;
   }
 
-  .scrollButton:hover > .left {
+  .scroll-button:hover > .left {
     transform: rotate(135deg) translate(0, 0);
   }
 
-  .scrollButton:hover > .right {
+  .scroll-button:hover > .right {
     transform: rotate(-45deg) translate(0, 0);
   }
 
@@ -174,7 +161,7 @@
   }
 }
 
-.dark .scrollButton {
+.dark .scroll-button {
   border-color: #f4f4f4;
 }
 
