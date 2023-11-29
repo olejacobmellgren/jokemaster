@@ -185,7 +185,8 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   return (
     <>
       <div className="jokebox-wrapper">
-        {currentFilter === "Category" || (currentFilter === "Favorites" && favorites.length === 0) ? null : (
+        {currentFilter === "Category" ||
+        (currentFilter === "Favorites" && favorites.length === 0) ? null : (
           <div className="jokebox-top">
             <select
               id="selectJoke"
