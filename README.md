@@ -77,4 +77,3 @@ I tillegg har vi gjennomført kontinuerlig manuell testing av brukergrensesnitte
 ## Annet
 
 I tillegg har vi laget en "Context"-fil for darkmode. Dette gjør at darkmode fungerer som en global variabel som er enkelt tilgjengelig på tvers av alle komponenter, som er nødvendig ettersom denne brukes overalt. Valg av darkmode lagres i localstorage ettersom det var et krav at slike preferanser skulle huskes neste gang brukeren åpner nettsiden.
-
