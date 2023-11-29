@@ -22,6 +22,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   const [favorites, setFavorites] = useState<Joke[]>([]);
   const { darkMode } = useContext(DarkModeProvider);
 
+  // Categories a user can choose between
   const categories = [
     "Category",
     "Programming",
@@ -30,9 +31,10 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
     "Christmas",
     "Favorites",
   ];
+
   const [storedCounter, setStoredCounter] = useState(
     JSON.parse(sessionStorage.getItem("storedCounter") || "[0,0,0,0,0,0]"),
-  );
+  ); // counter for each category
 
   useEffect(() => {
     // recursive function to fetch data from localStorage and sessionStorage
@@ -57,6 +59,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
 
   useEffect(() => {
     if (jokesFromCategory.length !== 0) {
+      // Makes sure here is content inside jokesFromCategory, will crash if not
       if (jokesFromCategory[counter].type === "single") {
         setSetUp("");
         setDelivery(jokesFromCategory[counter].joke);
@@ -68,16 +71,19 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
     }
   }, [counter, jokesFromCategory]);
 
+  // Updates jokesFromCategory when filter is changed. Also updates counter
   useEffect(() => {
     updateJokelist();
     const index = categories.indexOf(currentFilter);
     setCounter(storedCounter[index]);
   }, [currentFilter]);
 
+  // Updates sessionStorage when storedCounter is updated.
   useEffect(() => {
     sessionStorage.setItem("storedCounter", JSON.stringify(storedCounter));
   }, [storedCounter]);
 
+  // Method to support navigation with arrow keys
   const handleKeyPress = (event: KeyboardEvent) => {
     if (event.key === "ArrowLeft") {
       console.log("left");
@@ -88,6 +94,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
     }
   };
 
+  // Adds eventlistener on keydown. Connected to handleKeyPress
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress, true);
     return () => {
@@ -114,6 +121,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
     setJokesFromCategory(newJokes);
   };
 
+  // Increases counter and updates storedCounter with this new change.
   const handleRightClick = () => {
     const index = categories.indexOf(currentFilter);
     const updatedCounter = [...storedCounter];
@@ -127,6 +135,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
     setStoredCounter(updatedCounter);
   };
 
+  // Decreases counter and updates storedCounter with this new change.
   const handleLeftClick = () => {
     const index = categories.indexOf(currentFilter);
     const updatedCounter = [...storedCounter];
@@ -144,9 +153,11 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
     const isInFavorites = favorites.some(
       (favorite) => favorite.id === currentJoke.id,
     );
+    // If joke is favorited, update the heart to be red
     setIsFavorite(isInFavorites);
   };
 
+  // Method that runs when heart is clicked. Handles adding/removing the joke to/from favorites in localstorage.
   const handleFavorite = () => {
     const joke = jokesFromCategory[counter];
     let updatedFavorites;

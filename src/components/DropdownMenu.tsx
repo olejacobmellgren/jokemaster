@@ -2,18 +2,21 @@ import { useState, useEffect } from "react";
 import "../assets/DropdownMenu.css";
 import ClearIcon from "../assets/images/clear-icon.png";
 
+// Props for DropdownMenu
 type DropdownProps = {
   filter: string;
   options: string[];
   onSelect: (option: string) => void;
 };
 
+// Props for buttons inside DropdownMenu
 type ButtonProps = {
   name: string;
   onClick: () => void;
   checkedOption: string;
 };
 
+// Component for buttons inside DropdownMenu. Selected filter has green color
 function ButtonInside({ name, onClick, checkedOption }: ButtonProps) {
   return (
     <button className="dropdown-button-inside" onClick={onClick}>
@@ -30,6 +33,7 @@ function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
   const [filterApplied, setFilterApplied] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
 
+  // Initial useEffect that runs. Makes sure to initiate the filter stored in sessionStorage. If nothing is stored, set filter to "Category"
   useEffect(() => {
     const storedCategory = sessionStorage.getItem("Category");
     if (storedCategory) {
@@ -41,12 +45,14 @@ function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
     setInitialLoad(false);
   }, []);
 
+  // Updates sessionStorage when filter is applied
   useEffect(() => {
     if (!initialLoad) {
       sessionStorage.setItem(filter, checkedOption);
     }
   }, [filter, checkedOption]);
 
+  // Updates applied filter and closes dropdownMenu
   const handleOptionClick = (option: string) => {
     if (option !== checkedOption) {
       setFilterApplied(true);
@@ -56,10 +62,12 @@ function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
     setIsOpen(false);
   };
 
+  // Closes and opens dropdownMenu
   const handleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  // Resets filter
   const handleClear = () => {
     setFilterApplied(false);
     onSelect(filter);
