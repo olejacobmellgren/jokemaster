@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "../assets/JokeBox.css";
 import favorite from "../assets/images/favorite.png";
 import noFavorite from "../assets/images/no-favorite.png";
+import noFavoriteWhite from "../assets/images/no-favorite-white.png";
+import { DarkModeProvider } from "../context/DarkModeContext";
 
-interface Joke {
+interface Joke
+ {
   type: string;
   setup: string;
   delivery: string;
@@ -18,6 +21,9 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
   const [jokesFromCategory, setJokesFromCategory] = useState<Joke[]>([]);
   const [isFavorite, setIsFavorite] = useState<boolean>();
   const [favorites, setFavorites] = useState<Joke[]>([]);
+  const { darkMode } = useContext(DarkModeProvider);
+
+
   const categories = [
     "Category",
     "Programming",
@@ -185,6 +191,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
               <option value="default" style={{ display: "none" }} disabled>
                 Select specific joke
               </option>
+
               {jokesFromCategory.map((joke, index) => (
                 <option key={index} value={JSON.stringify([joke.id, index])}>
                   {joke.type == "single"
@@ -231,7 +238,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
               <img
                 onClick={handleFavorite}
                 className="icon"
-                src={noFavorite}
+                src={darkMode ? noFavoriteWhite : noFavorite}
                 data-testid="nofavorite"
               ></img>
             )}

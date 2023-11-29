@@ -7,7 +7,7 @@
   align-items: center;
   height: 15vh;
   width: calc(100% - 8vw);
-  padding: 0 4vw;
+  padding: 0 0vw;
 }
 
 .dropdown-menu {
@@ -64,7 +64,7 @@
     height: 10vh;
   }
 
-  .dropdownMenu {
+  .dropdown-menu {
     width: 30%;
   }
 
@@ -79,7 +79,7 @@
     margin: 0;
   }
 
-  .toggleWrapper {
+  .toggle-wrapper {
     width: 30%;
     display: flex;
     justify-content: center;
@@ -94,12 +94,6 @@
 
   .dropdown-menu {
     width: 40%;
-  }
-}
-
-@media (max-width: 450px) {
-  .logo {
-    font-size: 12px;
   }
 }
 

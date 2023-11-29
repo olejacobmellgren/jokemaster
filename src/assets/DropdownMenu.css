@@ -16,8 +16,6 @@
   font-size: 2vh;
   border-radius: 1vh;
   padding: 1.5vh;
-  padding-left: 2.5vh;
-  padding-right: 2.5vh;
   color: #54595e;
   font-weight: 500;
   font-family: inherit;
@@ -30,14 +28,6 @@
 @media (max-width: 700px) {
   .dropdown-button {
     font-size: 0.8rem;
-    padding: 1rem;
-  }
-
-  .clear-button {
-    position: absolute;
-    margin-left: 0 !important;
-    left: 35%;
-    top: 120%;
   }
 }
 
@@ -66,9 +56,18 @@
   font-family: inherit;
 }
 
+.dark .dropdown-button-inside {
+  background-color: #4d6272;
+  color: white;
+}
+
 .dropdown-button-inside:hover {
   cursor: pointer;
   background-color: #e3e3e3;
+}
+
+.dark .dropdown-button-inside:hover {
+  background-color: #33404a;
 }
 
 .dropdown-arrow {

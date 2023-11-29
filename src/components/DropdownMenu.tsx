@@ -16,7 +16,7 @@ type ButtonProps = {
 
 function ButtonInside({ name, onClick, checkedOption }: ButtonProps) {
   return (
-    <button className="dropdownButtonInside" onClick={onClick}>
+    <button className="dropdown-button-inside" onClick={onClick}>
       <span style={{ color: name == checkedOption ? "#00CC00" : "" }}>
         {name}
       </span>
