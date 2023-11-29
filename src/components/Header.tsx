@@ -3,6 +3,7 @@ import { DarkModeProvider } from "../context/DarkModeContext"; // Importing Dark
 import { useContext } from "react";
 import DropdownMenu from "./DropdownMenu";
 
+// Props for Header
 type HeaderProps = {
   onSelect: (option: string) => void;
 };
@@ -11,6 +12,7 @@ function Header({ onSelect }: HeaderProps) {
   const { darkMode, setDarkMode } = useContext(DarkModeProvider);
   const categories = ["Programming", "Pun", "Spooky", "Christmas", "Favorites"];
 
+  // Sends the applied filter back to App.tsx. Runs when filter is applied inside DropdownMenu
   const handleFilterChange = (value: string) => {
     onSelect(value);
   };

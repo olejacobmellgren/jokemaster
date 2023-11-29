@@ -8,8 +8,8 @@ import JokeBox from "./components/JokeBox.tsx";
 import DarkModeProvider from "./context/DarkModeContext.tsx";
 import { useState } from "react";
 
+// Interface for joke
 interface Joke {
-  // Define the structure of your JSON object here
   type: string;
   setup: string;
   delivery: string;
@@ -68,6 +68,7 @@ function App() {
     sessionStorage.getItem("Category") || "Category",
   );
 
+  // Update current filter applied
   const handleCategoryChange = (value: string) => {
     setCurrentFilter(value);
   };
