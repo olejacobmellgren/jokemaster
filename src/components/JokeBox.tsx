@@ -223,8 +223,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
           </div>
         </div>
         <div className="jokebox-bottom">
-        {favorites.length === 0 && currentFilter === "Favorites" ? 
-           null : (
+          {favorites.length === 0 && currentFilter === "Favorites" ? null : (
             <div>
               <button
                 onClick={handleLeftClick}
@@ -253,8 +252,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
               ></img>
             )}
           </div>
-          {favorites.length === 0 && currentFilter === "Favorites" ? 
-           null : (
+          {favorites.length === 0 && currentFilter === "Favorites" ? null : (
             <div>
               <button
                 onClick={handleRightClick}
@@ -264,7 +262,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
                 <span className="arrow right"></span>
               </button>
             </div>
-           )}
+          )}
         </div>
         {jokesFromCategory.length !== 0 && (
           <div className="counter">
