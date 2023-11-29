@@ -74,6 +74,23 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
     sessionStorage.setItem("storedCounter", JSON.stringify(storedCounter));
   }, [storedCounter]);
 
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (event.key === "ArrowLeft") {
+      console.log("left");
+      handleLeftClick();
+    } else if (event.key === "ArrowRight") {
+      console.log("right");
+      handleRightClick();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress, true);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress, true);
+    };
+  }, [jokesFromCategory, counter]);
+
   // Update the list setJokesFromCategory depending on what filter is stored in sessionStorage. Initial jokes
   const updateJokelist = () => {
     let newJokes: Joke[] = [];
@@ -154,9 +171,9 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
 
   return (
     <>
-      <div className="jokeboxWrapper">
+      <div className="jokebox-wrapper">
         {currentFilter === "Category" ? null : (
-          <div className="jokeboxTop">
+          <div className="jokebox-top">
             <select
               id="selectJoke"
               value="default"
@@ -180,14 +197,6 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
           </div>
         )}
         <div className="jokebox">
-          <div>
-            <button
-              onClick={handleLeftClick}
-              className="scrollButton scrollButtonTop"
-            >
-              <i className="arrow left"></i>
-            </button>
-          </div>
           <div className="joke">
             {currentFilter === "Favorites" && jokesFromCategory.length === 0 ? (
               <p>You have no favorites</p>
@@ -198,20 +207,12 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
               </>
             )}
           </div>
-          <div>
-            <button
-              onClick={handleRightClick}
-              className="scrollButton scrollButtonTop"
-            >
-              <span className="arrow right"></span>
-            </button>
-          </div>
         </div>
-        <div className="jokeboxBottom">
+        <div className="jokebox-bottom">
           <div>
             <button
               onClick={handleLeftClick}
-              className="scrollButton scrollButtonBottom"
+              className="scroll-button"
               data-testid="left"
             >
               <i className="arrow left"></i>
@@ -238,7 +239,7 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
           <div>
             <button
               onClick={handleRightClick}
-              className="scrollButton scrollButtonBottom"
+              className="scroll-button"
               data-testid="right"
             >
               <span className="arrow right"></span>

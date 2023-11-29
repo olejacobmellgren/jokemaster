@@ -1,10 +1,10 @@
-.dropdownButtonWrapper {
+.dropdown-button-wrapper {
   position: relative;
   display: flex;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-.dropdownButton {
+.dropdown-button {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,12 +23,12 @@
   font-family: inherit;
 }
 
-.dropdownButton:hover {
+.dropdown-button:hover {
   cursor: pointer;
 }
 
 @media (max-width: 700px) {
-  .dropdownButton {
+  .dropdown-button {
     font-size: 0.8rem;
     padding: 1rem;
   }
@@ -45,7 +45,7 @@
   cursor: pointer;
 }
 
-.dropdownButtonInside {
+.dropdown-button-inside {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -66,12 +66,12 @@
   font-family: inherit;
 }
 
-.dropdownButtonInside:hover {
+.dropdown-button-inside:hover {
   cursor: pointer;
   background-color: #e3e3e3;
 }
 
-.dropdownArrow {
+.dropdown-arrow {
   border: solid #abb5be;
   border-width: 0 2px 2px 0;
   display: inline-block;

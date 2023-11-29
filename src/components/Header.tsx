@@ -18,7 +18,7 @@ function Header({ onSelect }: HeaderProps) {
   return (
     <>
       <div className="header">
-        <div className="dropdownMenu">
+        <div className="dropdown-menu">
           <DropdownMenu
             filter="Category"
             options={categories}
@@ -29,7 +29,7 @@ function Header({ onSelect }: HeaderProps) {
           <p>JOKEMASTER-</p>
           <p>3000</p>
         </div>
-        <div className="toggleWrapper">
+        <div className="toggle-wrapper">
           <input
             className="toggle"
             type="checkbox"

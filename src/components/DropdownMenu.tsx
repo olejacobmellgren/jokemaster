@@ -70,10 +70,10 @@ function DropdownMenu({ filter, options, onSelect }: DropdownProps) {
   };
 
   return (
-    <div className="dropdownButtonWrapper">
-      <button className="dropdownButton" onClick={handleDropdown}>
+    <div className="dropdown-button-wrapper">
+      <button className="dropdown-button" onClick={handleDropdown}>
         <label className="DdBlabel">{checkedOption}</label>
-        <i className="dropdownArrow"></i>
+        <i className="dropdown-arrow"></i>
       </button>
       <div className={`dropdown ${isOpen ? "active" : "closed"}`}>
         {options.map((option) => {
