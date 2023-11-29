@@ -8,9 +8,9 @@ Prosjektet ble satt opp med Vite som tilbyr en enkel måte å sette opp et prosj
 
 ## React state og props
 
-For å vedlikeholde state i web-applikasjon har vi tatt i bruk React sin hook kalt useState(). Dette tillater oss å gi funksjonelle komponenter en state. Denne hooken tilbyr en nåværende verdi og en setter-funksjon for å endre denne verdien. I "Header" har vi brukt useState for å holde oversikt over hvilken kategori av vitser som er valgt. I "Jokebox" har vi brukt useState for flere deler. Vi har brukt det blant annet for å ha en liste med oversikt over hvilke vitser som skal vises, for en teller ("counter") som bestemmer hvilken vits som skal vises og for å vite om en vits er favoritt eller ikke. I tillegg trengte vi en useState-hook for å endre teksten til vitsen som skal vises.
+For å vedlikeholde state i web-applikasjon har vi tatt i bruk React sin hook kalt useState(). Dette tillater oss å gi funksjonelle komponenter en state. Denne hooken tilbyr en nåværende verdi og en setter-funksjon for å endre denne verdien. I "Jokebox" har vi brukt useState for flere deler. Vi har brukt det blant annet for å ha en liste med oversikt over hvilke vitser som skal vises, for en teller ("counter") som bestemmer hvilken vits som skal vises og for å vite om en vits er favoritt eller ikke. I tillegg trengte vi en useState-hook for å endre teksten til vitsen som skal vises.
 
-Props er noe vi ikke har tatt i bruk like mye. Vi har brukt det for en sjekkboks ("checkbox") som er en komponent med properties navn, sjekket ("checked") og onChange-funksjon. Det er hensiktsmessig å ha dette som en komponent ettersom den skal brukes flere ganger i dropdown menyen i header. Vi vurderte om det ville være mer effektivt og oversiktlig om Jokebox komponenten ble delt opp i flere komponenter som tar i bruk props. Likevel kom vi fram til at dette ikke var nødvendig siden vi bare har én statisk side der det er lite muligheter for universalt gjenbruk.
+Props spiller en sentral rolle i prosjektet vårt. Når en bruker velger en kategori i Header, er det nødvendig at denne informasjonen når Jokebox for å bestemme hvilken type vits som skal vises. For å håndtere dette sender Header den valgte kategorien som en prop til Jokebox, samtidig som den får tilgang til en metode gjennom props for å oppdatere denne verdien. De tilgjengelige kategoriene for filtrering sendes fra Header til DropdownMenu som en prop. Denne effektive utvekslingen av informasjon gjennom props legger til rette for en dynamisk og sammenhengende brukeropplevelse.
 
 ## Henting av data fra REST API
 
@@ -18,7 +18,9 @@ Dataen henter vi fra et REST API kalt [JokeAPI](https://sv443.net/jokeapi/v2/). 
 
 ## Bruk av localstorage og sessionstorage
 
-Dataen vi henter fra API-et lagres i localstorage. Dette gjør at vi unngår unødvendige kall til API-et og heller henter data fra localstorage neste gang web-applikasjonen. I localstorage har vi da lagret lister med vitser innen de forskjellige kategoriene og favoritt vitser. Vi lagrer også den nåværende kategorien brukeren befinner seg på, slik at neste gang man åpner web-applikasjonen starter man på samme kategori som før. Sessionstorage bruker vi for å lagre telleren ("counter") for når man ikke har valgt en spesifikk kategori. Dette gjør at dersom man begynner å scrolle blant de 40 vitsene uten å ha valgt en kategori, for så velge kategori og så gå tilbake, vil man forsette der man slapp. Dette gir bare mening å lagres for hver økt ("session") man bruker nettsiden, så derfor har vi brukt sessionstorage.
+Dataen vi henter fra API-et lagres i sessionstorage. Dette gjør at vi unngår unødvendige kall til API-et og heller henter data fra sessionstorage ved reload. Grunnen til at vi lagrer i sessionstorage fremfor localstorage, er grunnet temaets natur - man har ikke lyst til at de samme vitsene skal vises hele tiden, variasjon er nødvendig. I sessionstorage har vi da lagret lister med vitser innen de forskjellige kategoriene som finnes. Vi lagrer også den nåværende kategorien brukeren befinner seg på, slik at man ved reload starter på samme kategori som før. I tillegg lagrer vi en teller ("counter") for hvor langt brukeren har bladd, slik at man starter på samme sted ved reload. Vi lagrer en liste av counters for de forskjellige kategoriene en bruker har besøkt.
+
+Localstorage er brukt for å lagre favoritt-vitsene til en bruker. Det vil si at selv om web-applikasjonen lukkes og åpnes igjen, vil dette bli lagret.
 
 ## React Router
 
@@ -50,4 +52,4 @@ I tillegg har vi gjennomført kontinuerlig manuell testing av brukergrensesnitte
 
 ## Annet
 
-I tillegg har vi laget to "Context"-filer, én for kategori og én for darkmode. Dette gjør at kategori og darkmode fungerer som gloabale variabler som er enkelt tilgjengelig på tvers av alle komponenter, som er nødvendig ettersom begge disse brukes i alle komponenter. Valg av darkmode lagres i localstorage ettersom det var et krav at slike preferanser skulle huskes neste gang brukeren åpner nettsiden.
+I tillegg har vi laget en "Context"-fil for darkmode. Dette gjør at darkmode fungerer som en global variabel som er enkelt tilgjengelig på tvers av alle komponenter, som er nødvendig ettersom denne brukes overalt. Valg av darkmode lagres i localstorage ettersom det var et krav at slike preferanser skulle huskes neste gang brukeren åpner nettsiden.
