@@ -223,15 +223,17 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
           </div>
         </div>
         <div className="jokebox-bottom">
-          <div>
-            <button
-              onClick={handleLeftClick}
-              className="scroll-button"
-              data-testid="left"
-            >
-              <i className="arrow left"></i>
-            </button>
-          </div>
+          {favorites.length === 0 && currentFilter === "Favorites" ? null : (
+            <div>
+              <button
+                onClick={handleLeftClick}
+                className="scroll-button"
+                data-testid="left"
+              >
+                <i className="arrow left"></i>
+              </button>
+            </div>
+          )}
           <div>
             {currentFilter === "Favorites" &&
             favorites.length === 0 ? null : isFavorite ? (
@@ -250,15 +252,17 @@ function JokeBox({ currentFilter }: { currentFilter: string }) {
               ></img>
             )}
           </div>
-          <div>
-            <button
-              onClick={handleRightClick}
-              className="scroll-button"
-              data-testid="right"
-            >
-              <span className="arrow right"></span>
-            </button>
-          </div>
+          {favorites.length === 0 && currentFilter === "Favorites" ? null : (
+            <div>
+              <button
+                onClick={handleRightClick}
+                className="scroll-button"
+                data-testid="right"
+              >
+                <span className="arrow right"></span>
+              </button>
+            </div>
+          )}
         </div>
         {jokesFromCategory.length !== 0 && (
           <div className="counter">
